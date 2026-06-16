@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JoJo — Full Reference: Arminda Introduction and Brokered Carrier Renewals</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #0D1B2A; color: #E8EFF7; padding: 0 0 60px 0; }
+
+  .conf-banner { background: #B8860B; color: #fff; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 8px 16px; text-transform: uppercase; }
+
+  .header { background: linear-gradient(135deg, #1C2B35 0%, #0D1B2A 100%); border-bottom: 2px solid #AAD0E7; padding: 28px 32px 22px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #AAD0E7; margin-bottom: 4px; }
+  .header .sub { color: #7AAFC8; font-size: 13px; }
+  .header .meta { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { background: #1C3040; border: 1px solid #2A4A60; border-radius: 20px; padding: 4px 14px; font-size: 11px; color: #AAD0E7; font-weight: 500; }
+  .pill.yellow { background: #1A1600; border-color: #FFD16660; color: #FFD166; }
+  .pill.green { background: #0A1A10; border-color: #06D6A060; color: #06D6A0; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 24px 0; }
+
+  .tab-bar { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #2A4A60; background: #1C2B35; color: #7AAFC8; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .tab-btn.active { background: #AAD0E7; color: #0D1B2A; border-color: #AAD0E7; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .section { margin-bottom: 28px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #AAD0E730; color: #AAD0E7; }
+  .section-label.red { color: #FF6B6B; border-color: #FF6B6B30; }
+  .section-label.green { color: #06D6A0; border-color: #06D6A030; }
+  .section-label.yellow { color: #FFD166; border-color: #FFD16630; }
+
+  .warn-block { background: #1A0F0F; border-left: 3px solid #FF6B6B; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFB3B3; }
+  .warn-block strong { color: #FF6B6B; }
+  .info-block { background: #0A1525; border-left: 3px solid #AAD0E7; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #BDD5E8; }
+  .tip-block { background: #1A1600; border-left: 3px solid #FFD166; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFE9A0; }
+  .green-block { background: #0A1A10; border-left: 3px solid #06D6A0; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #A3D9B8; }
+
+  /* Role cards */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .role-card { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 18px; }
+  .role-card .name { font-size: 15px; font-weight: 700; color: #AAD0E7; margin-bottom: 4px; }
+  .role-card .title { font-size: 11px; color: #7AAFC8; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .role-card ul { list-style: none; padding: 0; }
+  .role-card ul li { font-size: 12px; color: #BDD5E8; padding: 5px 0; border-bottom: 1px solid #1A2A38; line-height: 1.6; }
+  .role-card ul li:last-child { border-bottom: none; }
+  .role-card ul li.yes::before { content: "✓  "; color: #06D6A0; font-weight: 700; }
+  .role-card ul li.no::before { content: "✕  "; color: #FF6B6B; font-weight: 700; }
+
+  /* Stage grid */
+  .stage-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin: 14px 0; }
+  .stage-card { border-radius: 8px; padding: 12px 14px; font-size: 12px; font-weight: 600; }
+  .stage-card .owner { font-size: 10px; font-weight: 400; margin-top: 4px; opacity: 0.85; }
+  .stage-jojo { background: #0A1A2E; border: 1px solid #AAD0E7; color: #AAD0E7; }
+  .stage-arminda { background: #0A1A10; border: 1px solid #06D6A060; color: #06D6A0; }
+  .stage-eva { background: #1A1600; border: 1px solid #FFD16660; color: #FFD166; }
+
+  /* Step flow */
+  .step-flow { display: flex; flex-direction: column; gap: 0; margin: 16px 0; }
+  .step-card { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 18px 20px; margin-bottom: 4px; display: flex; gap: 16px; align-items: flex-start; position: relative; }
+  .step-card::after { content: ''; position: absolute; left: 28px; bottom: -5px; width: 2px; height: 9px; background: #2A4A60; }
+  .step-card:last-child::after { display: none; }
+  .step-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .step-num.jojo { background: #AAD0E7; color: #0D1B2A; }
+  .step-num.eva { background: #FFD166; color: #0D1B2A; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 700; color: #E8EFF7; margin-bottom: 4px; }
+  .step-detail { font-size: 12px; color: #7AAFC8; line-height: 1.8; }
+  .step-owner { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .step-owner.jojo { color: #AAD0E7; }
+  .step-owner.eva { color: #FFD166; }
+  .step-stage { display: inline-block; background: #1C3040; border: 1px solid #AAD0E740; border-radius: 12px; padding: 2px 10px; font-size: 10px; color: #AAD0E7; margin-top: 6px; font-weight: 600; }
+
+  /* AZ field list */
+  .field-list { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+  .field-row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; align-items: flex-start; }
+  .field-row:last-child { border-bottom: none; }
+  .field-num { width: 22px; min-width: 22px; height: 22px; background: #AAD0E7; color: #0D1B2A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin-top: 1px; }
+  .field-label { font-weight: 600; color: #AAD0E7; min-width: 140px; }
+  .field-value { color: #BDD5E8; line-height: 1.7; }
+
+  /* Carrier table */
+  .ref-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .ref-table th { text-align: left; padding: 10px 14px; background: #1C2B35; color: #7AAFC8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #2A4A60; }
+  .ref-table td { padding: 10px 14px; border-bottom: 1px solid #1A2A38; color: #BDD5E8; vertical-align: top; line-height: 1.6; }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; margin: 12px 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; color: #BDD5E8; line-height: 1.7; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .box { width: 16px; height: 16px; min-width: 16px; border: 1.5px solid #AAD0E7; border-radius: 3px; margin-top: 2px; }
+
+  .rule-list { list-style: none; padding: 0; margin: 12px 0; }
+  .rule-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; color: #BDD5E8; line-height: 1.7; }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-list li .dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; margin-top: 5px; }
+  .rule-list li .dot.green { background: #06D6A0; }
+  .rule-list li .dot.red { background: #FF6B6B; }
+  .rule-list li .dot.yellow { background: #FFD166; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, #AAD0E710, #AAD0E740, #AAD0E710); margin: 24px 0; }
+  .footer-note { text-align: center; color: #2A4A60; font-size: 11px; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+
+<div class="header">
+  <h1>JoJo — Full Reference Guide</h1>
+  <div class="sub">Arminda Introduction + Brokered Carrier Renewals Pipeline SOP</div>
+  <div class="meta">
+    <span class="pill">June 16, 2026</span>
+    <span class="pill yellow">JoJo Reference</span>
+    <span class="pill green">Updated and Final</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('arminda')">Meet Arminda</button>
+    <button class="tab-btn" onclick="switchTab('stages')">Stage Ownership</button>
+    <button class="tab-btn" onclick="switchTab('flow')">Full Renewal Flow</button>
+    <button class="tab-btn" onclick="switchTab('az')">AZ Record Creation</button>
+    <button class="tab-btn" onclick="switchTab('carriers')">Carriers and GAs</button>
+    <button class="tab-btn" onclick="switchTab('checklist')">Per Record Checklist</button>
+  </div>
+
+  <!-- TAB 1: ARMINDA -->
+  <div class="tab-content active" id="tab-arminda">
+    <div class="section-label green">New Team Member Starting Today</div>
+    <div class="info-block">
+      Arminda is our new back office specialist. She started today June 16 2026. Her role is strictly cleanup and data work inside AgencyZoom and Momentum AMP. She is here to keep the pipelines organized so your active work stays clean and uninterrupted.
+    </div>
+
+    <div class="two-col">
+      <div class="role-card">
+        <div class="name">Arminda</div>
+        <div class="title">Back Office Specialist</div>
+        <ul>
+          <li class="yes">AZ pipeline stale record audit</li>
+          <li class="yes">AZ tag cleanup and corrections</li>
+          <li class="yes">Early stage cleanup only</li>
+          <li class="yes">Momentum AMP data entry</li>
+          <li class="no">No quotes ever</li>
+          <li class="no">No client contact ever</li>
+          <li class="no">No carrier contact ever</li>
+          <li class="no">No CERTs ever</li>
+          <li class="no">No DocuSign ever</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="name">JoJo</div>
+        <div class="title">Brokerage VA1 — Active Work</div>
+        <ul>
+          <li class="yes">PL quotes and service</li>
+          <li class="yes">Renewals all lines</li>
+          <li class="yes">DocuSign processing</li>
+          <li class="yes">CERTs all lines</li>
+          <li class="yes">Brokered Carrier Renewals active stages</li>
+          <li class="yes">Carrier processing and follow up</li>
+          <li class="yes">AZ record creation for renewals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label red">Three Rules for Working Alongside Arminda</div>
+    <ul class="rule-list">
+      <li>
+        <div class="dot green"></div>
+        <span>If you see a stale or messy record in the early stages leave it alone. Arminda will find it and clean it up. You do not need to touch early stage records.</span>
+      </li>
+      <li>
+        <div class="dot yellow"></div>
+        <span>If Arminda ever contacts you directly about a record redirect her to Eva. All of Arminda's questions and flags go to Eva only, not to you. This keeps your work uninterrupted.</span>
+      </li>
+      <li>
+        <div class="dot red"></div>
+        <span>Never move a record backward into an early stage without telling Eva first. Arminda audits those stages and a backward move could cause confusion.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- TAB 2: STAGES -->
+  <div class="tab-content" id="tab-stages">
+    <div class="section-label">Brokered Carrier Renewals — Stage Ownership</div>
+    <div class="stage-grid">
+      <div class="stage-card stage-arminda">Prepare<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card stage-arminda">Renewal Packet<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card stage-arminda">Requote<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card stage-jojo">Propose<div class="owner">JoJo only</div></div>
+      <div class="stage-card stage-jojo">Waiting Sign/DocuSign<div class="owner">JoJo then Eva confirms</div></div>
+      <div class="stage-card stage-eva">Completed<div class="owner">JoJo logs after Eva confirms bind</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Commercial Renewals — Stage Ownership</div>
+    <div class="stage-grid">
+      <div class="stage-card stage-arminda">60 Start<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card stage-arminda">Notify/Renewal Packet<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card stage-arminda">Reshop Needed/Started<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card stage-jojo">Underwriting<div class="owner">JoJo and Eva</div></div>
+      <div class="stage-card stage-eva">10 Propose<div class="owner">Eva</div></div>
+      <div class="stage-card stage-eva">Bind<div class="owner">Eva</div></div>
+      <div class="stage-card stage-eva">Completed<div class="owner">Eva</div></div>
+    </div>
+
+    <div class="tip-block">
+      Arminda only audits early stages for stale records. If you are actively working a record in those stages your activity date will be current and she will not flag it. You will never be stepped on.
+    </div>
+  </div>
+
+  <!-- TAB 3: FLOW -->
+  <div class="tab-content" id="tab-flow">
+    <div class="section-label">Full Brokered Renewal Flow — 9 Steps</div>
+
+    <div class="step-flow">
+      <div class="step-card">
+        <div class="step-num eva">E</div>
+        <div class="step-body">
+          <div class="step-owner eva">Eva</div>
+          <div class="step-title">Step 1: Eva receives renewal notice and forwards to JoJo</div>
+          <div class="step-detail">Eva gets email from carrier or GA with renewal notice. Eva forwards it to JoJo via Slack or email. That forwarded email is your trigger to create the AZ record.</div>
+          <span class="step-stage">Your trigger: forwarded email from Eva</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 2: Create the AZ service ticket</div>
+          <div class="step-detail">Create the record in AZ Brokered Carrier Renewals pipeline immediately. See the AZ Record Creation tab for exact field by field steps. Confirm back to Eva in Slack once record is created.</div>
+          <span class="step-stage">Stage: Prepare</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 3: Gather application and supplemental app</div>
+          <div class="step-detail">Pull current policy from AZ or Momentum AMP. Identify what application and supplemental app the carrier requires for this line. Fill in updated business information from prior AZ notes.</div>
+          <span class="step-stage">Stage: Prepare</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 4: Send DocuSign to client for application signatures</div>
+          <div class="step-detail">Send completed application and supplemental app to client via DocuSign. Log envelope in AZ Tab 35 DocuSign Activity Log. Move record to Renewal Packet stage. Follow up every 3 business days if no response.</div>
+          <span class="step-stage">Stage: Renewal Packet</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 5: Submit signed application to carrier or GA</div>
+          <div class="step-detail">Once client signs submit the application to the correct carrier or GA. Log submission date in AZ notes. Move record to Requote stage.</div>
+          <span class="step-stage">Stage: Requote</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 6: Receive renewal offer and prepare renewal proposal</div>
+          <div class="step-detail">Carrier sends back final renewal offer with new premium. Prepare the renewal proposal document for the client showing the final premium. Move record to Propose stage.</div>
+          <span class="step-stage">Stage: Propose</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo</div>
+          <div class="step-title">Step 7: Send renewal proposal to client for signature</div>
+          <div class="step-detail">Send renewal proposal to client via DocuSign. Log envelope in AZ. Move record to Waiting Sign/DocuSign stage. Follow up every 3 business days if no response.</div>
+          <span class="step-stage">Stage: Waiting Sign/DocuSign</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num eva">E</div>
+        <div class="step-body">
+          <div class="step-owner eva">Eva confirms</div>
+          <div class="step-title">Step 8: Notify Eva and wait for written confirmation</div>
+          <div class="step-detail">Once client signs the renewal proposal notify Eva in Slack. Wait for Eva written confirmation before doing anything else. Never email the carrier without Eva confirmation first.</div>
+          <span class="step-stage">Stage: Waiting Sign/DocuSign — hold for Eva</span>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num jojo">J</div>
+        <div class="step-body">
+          <div class="step-owner jojo">JoJo — after Eva confirms</div>
+          <div class="step-title">Step 9: Email carrier to bind and complete record</div>
+          <div class="step-detail">Email carrier or GA to bind. Attach signed renewal proposal. Log binding request date in AZ notes. Once binding confirmation received move record to Completed and log completion date.</div>
+          <span class="step-stage">Stage: Completed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: AZ RECORD CREATION -->
+  <div class="tab-content" id="tab-az">
+    <div class="section-label">AZ Service Ticket Creation — Field by Field</div>
+    <div class="info-block">
+      As soon as Eva forwards you a renewal email create the AZ record the same day. Here is exactly what to fill in.
+    </div>
+
+    <div class="field-list">
+      <div class="field-row">
+        <div class="field-num">1</div>
+        <div class="field-label">Pipeline</div>
+        <div class="field-value">Go to Brokered Carrier Renewals pipeline. Click Add to create new service ticket.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">2</div>
+        <div class="field-label">Contact</div>
+        <div class="field-value">Search existing client by name. Select the correct contact. Do not create a new contact.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">3</div>
+        <div class="field-label">Policy Number</div>
+        <div class="field-value">Link the existing policy number to the record. Pull from the renewal email or from AZ policy records.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">4</div>
+        <div class="field-label">Carrier Name</div>
+        <div class="field-value">Enter the carrier or GA name from the renewal email. Example: TAPCO, IMACO, US Asia, CID, Connect, KraftLake.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">5</div>
+        <div class="field-label">Renewal Date</div>
+        <div class="field-value">Enter the policy renewal date from the renewal email.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">6</div>
+        <div class="field-label">Current Premium</div>
+        <div class="field-value">Enter the current premium from the renewal email.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">7</div>
+        <div class="field-label">Owner</div>
+        <div class="field-value">Set to Eva.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">8</div>
+        <div class="field-label">Assignee</div>
+        <div class="field-value">Assign to yourself (JoJo).</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">9</div>
+        <div class="field-label">Vertical</div>
+        <div class="field-value">Assign to yourself (JoJo). This field allows future reassignment to a Commercial Renewals VA when hired.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">10</div>
+        <div class="field-label">Stage</div>
+        <div class="field-value">Set to Prepare.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">11</div>
+        <div class="field-label">AZ Internal Note</div>
+        <div class="field-value">Add a note with the following format:<br><br>
+          Carrier: [carrier name]<br>
+          Renewal Date: [date]<br>
+          Current Premium: [amount]<br>
+          Forwarded by Eva on: [today's date]
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">12</div>
+        <div class="field-label">Confirm to Eva</div>
+        <div class="field-value">Reply to Eva in Slack: "Record created for [client name]. Renewal date [date]. Ready to work."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: CARRIERS -->
+  <div class="tab-content" id="tab-carriers">
+    <div class="section-label">Brokered Carriers and General Agents</div>
+    <div class="warn-block">
+      <strong>Always check the dec page or policy number first</strong> to confirm which carrier originally wrote the policy before submitting anything.
+    </div>
+    <table class="ref-table">
+      <thead><tr><th>Carrier or GA</th><th>Type</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TAPCO</strong></td><td>Carrier</td><td>Direct brokered carrier. Submit application directly to TAPCO contact.</td></tr>
+        <tr><td><strong>IMACO</strong></td><td>General Agent</td><td>GA access. Submit through IMACO portal or email contact.</td></tr>
+        <tr><td><strong>US Asia</strong></td><td>General Agent</td><td>GA access. Often used for Korean market commercial accounts.</td></tr>
+        <tr><td><strong>CID</strong></td><td>General Agent</td><td>GA access. Submit application through CID.</td></tr>
+        <tr><td><strong>Connect</strong></td><td>General Agent</td><td>GA access. Confirm correct contact before submitting.</td></tr>
+        <tr><td><strong>KraftLake</strong></td><td>GA / Market Access</td><td>Used for broader market access on harder to place risks.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TAB 6: CHECKLIST -->
+  <div class="tab-content" id="tab-checklist">
+    <div class="section-label green">Per Record Checklist — Work Through This on Every Renewal</div>
+    <ul class="checklist">
+      <li><div class="box"></div><span>Receive forwarded renewal email from Eva in Slack or email.</span></li>
+      <li><div class="box"></div><span>Create AZ service ticket same day. Fill in all 12 fields. See AZ Record Creation tab.</span></li>
+      <li><div class="box"></div><span>Confirm record created to Eva in Slack with client name and renewal date.</span></li>
+      <li><div class="box"></div><span>Pull current policy from AZ or Momentum AMP. Note renewal date and current premium.</span></li>
+      <li><div class="box"></div><span>Identify application and supplemental app required by carrier for this line of business.</span></li>
+      <li><div class="box"></div><span>Fill in updated application using prior AZ notes and current business details.</span></li>
+      <li><div class="box"></div><span>Send DocuSign to client with application and supplemental app. Log envelope in AZ Tab 35.</span></li>
+      <li><div class="box"></div><span>Move record to Renewal Packet stage in AZ once DocuSign is sent.</span></li>
+      <li><div class="box"></div><span>Follow up with client every 3 business days if no DocuSign response. Log follow up in AZ notes.</span></li>
+      <li><div class="box"></div><span>Once client signs submit application to correct carrier or GA. Log submission date in AZ notes.</span></li>
+      <li><div class="box"></div><span>Move record to Requote stage after submission.</span></li>
+      <li><div class="box"></div><span>Receive renewal offer from carrier. Prepare renewal proposal for client with final premium.</span></li>
+      <li><div class="box"></div><span>Move record to Propose stage. Send renewal proposal to client via DocuSign. Log in AZ Tab 35.</span></li>
+      <li><div class="box"></div><span>Move record to Waiting Sign/DocuSign stage. Follow up every 3 business days if no response.</span></li>
+      <li><div class="box"></div><span>Once client signs notify Eva in Slack. Wait for Eva written confirmation before binding.</span></li>
+      <li><div class="box"></div><span>After Eva confirms email carrier to bind with signed renewal proposal attached.</span></li>
+      <li><div class="box"></div><span>Once binding confirmation received move record to Completed. Log completion date in AZ notes.</span></li>
+    </ul>
+  </div>
+
+  <div class="footer-note">Insurance Town Agency &nbsp;|&nbsp; JoJo Full Reference Guide &nbsp;|&nbsp; June 16, 2026 &nbsp;|&nbsp; Internal Use Only</div>
+
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
