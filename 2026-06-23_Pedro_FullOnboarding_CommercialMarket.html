@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro — Commercial Data and Market Specialist Onboarding</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #0D1B2A; color: #E8EFF7; padding: 0 0 60px 0; }
+
+  .conf-banner { background: #B8860B; color: #fff; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 8px 16px; text-transform: uppercase; }
+
+  .header { background: linear-gradient(135deg, #1C2B35 0%, #0D1B2A 100%); border-bottom: 2px solid #AAD0E7; padding: 28px 32px 22px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #AAD0E7; margin-bottom: 4px; }
+  .header .sub { color: #7AAFC8; font-size: 13px; }
+  .header .meta { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { background: #1C3040; border: 1px solid #2A4A60; border-radius: 20px; padding: 4px 14px; font-size: 11px; color: #AAD0E7; font-weight: 500; }
+  .pill.red { background: #1A0F0F; border-color: #FF6B6B60; color: #FF6B6B; }
+  .pill.green { background: #0A1A10; border-color: #06D6A060; color: #06D6A0; }
+  .pill.yellow { background: #1A1600; border-color: #FFD16660; color: #FFD166; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 24px 0; }
+
+  .tab-bar { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #2A4A60; background: #1C2B35; color: #7AAFC8; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .tab-btn.active { background: #AAD0E7; color: #0D1B2A; border-color: #AAD0E7; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .section { margin-bottom: 28px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #AAD0E730; color: #AAD0E7; }
+  .section-label.red { color: #FF6B6B; border-color: #FF6B6B30; }
+  .section-label.green { color: #06D6A0; border-color: #06D6A030; }
+  .section-label.yellow { color: #FFD166; border-color: #FFD16630; }
+
+  .warn-block { background: #1A0F0F; border-left: 3px solid #FF6B6B; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFB3B3; }
+  .warn-block strong { color: #FF6B6B; }
+  .info-block { background: #0A1525; border-left: 3px solid #AAD0E7; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #BDD5E8; }
+  .tip-block { background: #1A1600; border-left: 3px solid #FFD166; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFE9A0; }
+  .green-block { background: #0A1A10; border-left: 3px solid #06D6A0; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #A3D9B8; }
+
+  .profile-card { background: #111D28; border: 1px solid #AAD0E760; border-radius: 12px; padding: 20px 24px; margin: 16px 0; }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .profile-row { padding: 8px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-label { font-size: 10px; font-weight: 700; color: #7AAFC8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .profile-value { color: #E8EFF7; font-weight: 500; }
+
+  .market-flow { display: flex; flex-direction: column; gap: 4px; margin: 16px 0; }
+  .market-card { background: #111D28; border-radius: 10px; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; position: relative; }
+  .market-card::after { content: ''; position: absolute; left: 28px; bottom: -5px; width: 2px; height: 9px; background: #2A4A60; }
+  .market-card:last-child::after { display: none; }
+  .market-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .market-num.first { background: #06D6A0; color: #0D1B2A; }
+  .market-num.second { background: #AAD0E7; color: #0D1B2A; }
+  .market-num.third { background: #FFD166; color: #0D1B2A; }
+  .market-body { flex: 1; }
+  .market-title { font-size: 14px; font-weight: 700; color: #E8EFF7; margin-bottom: 4px; }
+  .market-detail { font-size: 12px; color: #7AAFC8; line-height: 1.8; }
+  .market-card.first-card { border: 1px solid #06D6A060; }
+  .market-card.second-card { border: 1px solid #AAD0E760; }
+  .market-card.third-card { border: 1px solid #FFD16660; }
+
+  .az-note { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #AAD0E7; line-height: 2; margin: 14px 0; white-space: pre-wrap; }
+
+  .field-list { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+  .field-row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; align-items: flex-start; }
+  .field-row:last-child { border-bottom: none; }
+  .field-num { width: 22px; min-width: 22px; height: 22px; background: #AAD0E7; color: #0D1B2A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin-top: 1px; }
+  .field-label { font-weight: 600; color: #AAD0E7; min-width: 160px; }
+  .field-value { color: #BDD5E8; line-height: 1.7; }
+
+  .checklist { list-style: none; padding: 0; margin: 12px 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; color: #BDD5E8; line-height: 1.7; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .box { width: 16px; height: 16px; min-width: 16px; border: 1.5px solid #AAD0E7; border-radius: 3px; margin-top: 2px; }
+  .checklist li .who { font-size: 10px; font-weight: 700; color: #FFD166; background: #1A1600; border-radius: 4px; padding: 1px 6px; white-space: nowrap; margin-top: 2px; }
+
+  .eod-box { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #AAD0E7; line-height: 2; white-space: pre-wrap; margin: 14px 0; }
+
+  .ref-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .ref-table th { text-align: left; padding: 10px 14px; background: #1C2B35; color: #7AAFC8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #2A4A60; }
+  .ref-table td { padding: 10px 14px; border-bottom: 1px solid #1A2A38; color: #BDD5E8; vertical-align: top; line-height: 1.6; }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, #AAD0E710, #AAD0E740, #AAD0E710); margin: 24px 0; }
+  .footer-note { text-align: center; color: #2A4A60; font-size: 11px; margin-top: 40px; }
+  .note-label { font-size: 11px; font-weight: 700; color: #7AAFC8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+
+<div class="header">
+  <h1>Pedro — Commercial Data and Market Specialist</h1>
+  <div class="sub">Full Onboarding Reference: Market Submission Order, AZ Submission Notes, and Daily Standards</div>
+  <div class="meta">
+    <span class="pill">June 23, 2026</span>
+    <span class="pill red">Hard Rules Apply From Day One</span>
+    <span class="pill green">Confirmed Hire</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile')">Your Profile</button>
+    <button class="tab-btn" onclick="switchTab('market')">Market Order</button>
+    <button class="tab-btn" onclick="switchTab('az')">AZ Submission Notes</button>
+    <button class="tab-btn" onclick="switchTab('rejections')">Rejection Logging</button>
+    <button class="tab-btn" onclick="switchTab('eod')">EOD Standard</button>
+    <button class="tab-btn" onclick="switchTab('eva')">Eva Action Items</button>
+  </div>
+
+  <!-- TAB 1: PROFILE -->
+  <div class="tab-content active" id="tab-profile">
+    <div class="section-label">Your Role and Setup</div>
+
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row"><div class="profile-label">Title</div><div class="profile-value">Commercial Data and Market Specialist</div></div>
+          <div class="profile-row"><div class="profile-label">Email</div><div class="profile-value">sales@insurancetownagency.com</div></div>
+          <div class="profile-row"><div class="profile-label">Schedule</div><div class="profile-value">9:00 AM to 4:00 PM daily</div></div>
+        </div>
+        <div>
+          <div class="profile-row"><div class="profile-label">AZ Access</div><div class="profile-value">Own login confirmed</div></div>
+          <div class="profile-row"><div class="profile-label">Insightful</div><div class="profile-value">Active monitoring confirmed</div></div>
+          <div class="profile-row"><div class="profile-label">Slack</div><div class="profile-value">Active</div></div>
+          <div class="profile-row"><div class="profile-label">EOD Channel</div><div class="profile-value">#eod-brokerage-pedro</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:24px;">What You Do</div>
+    <div class="info-block">
+      You research and input commercial insurance market data on behalf of Insurance Town Agency. You submit applications to carriers and GAs, log all activity in AgencyZoom, and report your progress daily. All quotes and communications go out under Eva Chong's agency identity. You never imply you are a licensed agent. You never sign your name as the agent on any document.
+    </div>
+
+    <div class="green-block">
+      <strong>Confirmed hire.</strong> All rules in this document apply from day one. Perform at a high standard and follow all standards exactly as written.
+    </div>
+
+    <div class="section-label yellow" style="margin-top:24px;">Sending Quotes on Behalf of Eva</div>
+    <div class="tip-block">
+      When you send any quote or communication to a client or carrier you must always include: "On behalf of Eva Chong, Insurance Town Agency." Never send as yourself. Never imply you are licensed. Always represent Eva's agency identity in every communication.
+    </div>
+  </div>
+
+  <!-- TAB 2: MARKET ORDER -->
+  <div class="tab-content" id="tab-market">
+    <div class="section-label red">Top Priority Hard Rule — Market Submission Order</div>
+
+    <div class="warn-block">
+      <strong>This rule applies to every single quote from day one. No exceptions ever.</strong> Always follow this exact order before going to any outside market.
+    </div>
+
+    <div class="market-flow">
+      <div class="market-card first-card">
+        <div class="market-num first">1</div>
+        <div class="market-body">
+          <div class="market-title">Farmers First — Always</div>
+          <div class="market-detail">
+            Every commercial quote starts with Farmers. Check Farmers eligibility before anything else. If Farmers can write it, it stays with Farmers. Only move to step 2 if Farmers declines or cannot write the risk.<br><br>
+            If Farmers declines: log in AZ notes — Farmers Declined plus reason. Move to KraftLake.
+          </div>
+        </div>
+      </div>
+
+      <div class="market-card second-card">
+        <div class="market-num second">2</div>
+        <div class="market-body">
+          <div class="market-title">KraftLake — Direct Carriers in Dashboard</div>
+          <div class="market-detail">
+            Go to KraftLake dashboard. Check all direct carriers available for this risk. Submit to the most appropriate carrier based on the risk type and coverage needed. If a KraftLake carrier declines you must log the carrier name, case number, and reason in AZ notes and take a screenshot showing the case ID.<br><br>
+            If all KraftLake carriers decline: log each one. Move to step 3.
+          </div>
+        </div>
+      </div>
+
+      <div class="market-card third-card">
+        <div class="market-num third">3</div>
+        <div class="market-body">
+          <div class="market-title">Outside Broker Markets — Only After Steps 1 and 2 Are Exhausted</div>
+          <div class="market-detail">
+            Only go to outside broker markets after Farmers and all available KraftLake carriers have been attempted and declined. Outside markets include TAPCO, IMACO, US Asia, CID, Connect, and others as applicable. Flag to Eva before submitting to any outside market for the first time on a new risk type.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="green-block">
+      This order is not optional. It is an agency-wide compliance requirement. Farmers requires that we attempt Farmers and KraftLake before accessing outside markets. Every declination must be documented in AZ notes with case number and screenshot before moving to the next market.
+    </div>
+  </div>
+
+  <!-- TAB 3: AZ SUBMISSION NOTES -->
+  <div class="tab-content" id="tab-az">
+    <div class="section-label">AZ Submission Note Standard — Every Quote Every Time</div>
+
+    <div class="info-block">
+      Every submission action you take must be logged in AZ the same day. Use the correct format below depending on whether this is a new submission or an update to an existing one. Never create a new note for the same submission — always update the existing note.
+    </div>
+
+    <div class="note-label">New Submission — First Time Logging This Deal</div>
+    <div class="az-note">## 📌 Submission Update
+
+LOB: [General Liability / BOP / Workers Comp / Commercial Auto / Umbrella]
+Markets Submitted: [number]
+
+Carrier Status:
+🟢 Carrier 1 — [Carrier Name]: Quoted $[amount]
+🟡 Carrier 2 — [Carrier Name]: Referred to UW
+🔴 Carrier 3 — [Carrier Name]: Declined — [reason] | Case# [XXXXXX] | Screenshot: Attached
+
+Client Contact: [What was communicated to client if anything]
+
+Docs Sent:
+✅ Acord  ✅ Loss Runs  ✅ Driver List  ✅ Current Competing Quote  ✅ Photos
+
+Next Follow-Up: [Date] at [Time]
+
+Status: 🟡 Pending Review / 🟢 Quoted / 🔴 Declined
+
+Handled By: Pedro Torres</div>
+
+    <div class="note-label">Updated Submission — Adding to an Existing Note</div>
+    <div class="az-note">## 📌 Submission Update — Follow-Up
+
+Previously Submitted: [Original date]
+Update Date: [Today's date]
+
+New Carrier Activity:
+🟢 Carrier 1 — [Carrier Name]: Quoted $[amount]
+🟡 Carrier 2 — [Carrier Name]: Still awaiting response
+🔴 Carrier 3 — [Carrier Name]: Declined — [reason]
+
+Client Update: [What you communicated or received from client]
+
+Next Follow-Up: [Date] at [Time]
+
+Status: 🟡 Pending Review / 🟢 Quoted / 🔴 Declined
+
+Handled By: Pedro Torres</div>
+
+    <div class="tip-block">
+      ⚠️ Always update the same note — never create a new note for the same submission. If you submitted today and are waiting for a response, the note still gets logged today with status Pending Review. Update it again when the response comes back.
+    </div>
+  </div>
+
+  <!-- TAB 4: REJECTION LOGGING -->
+  <div class="tab-content" id="tab-rejections">
+    <div class="section-label red">Rejection Logging — Hard Rule</div>
+
+    <div class="warn-block">
+      <strong>Every rejection must be logged the same day it happens.</strong> No exceptions. A rejection without documentation did not happen as far as the agency is concerned.
+    </div>
+
+    <div class="section-label yellow" style="margin-top:20px;">KraftLake Rejection — Exact Steps</div>
+    <div class="field-list">
+      <div class="field-row">
+        <div class="field-num">1</div>
+        <div class="field-label">Note the carrier</div>
+        <div class="field-value">Write down the exact KraftLake carrier name that declined.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">2</div>
+        <div class="field-label">Note the case number</div>
+        <div class="field-value">Copy the exact case number or reference ID from the KraftLake dashboard.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">3</div>
+        <div class="field-label">Take screenshot</div>
+        <div class="field-value">Screenshot the decline screen. The case ID must be visible in the screenshot. No case ID visible means take another screenshot.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">4</div>
+        <div class="field-label">Log in AZ notes</div>
+        <div class="field-value">Add to AZ submission note: 🔴 KL Rejected. Carrier: [name]. Case#: [number]. Reason: [reason if shown]. Screenshot attached.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">5</div>
+        <div class="field-label">Attach screenshot</div>
+        <div class="field-value">Attach the screenshot directly to the AZ record so Eva can see it without asking.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num">6</div>
+        <div class="field-label">Move to next carrier</div>
+        <div class="field-value">Only after logging the rejection move to the next available KraftLake carrier or outside market.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label yellow">Rejection Note Example in AZ</div>
+    <div class="az-note">🔴 KL Rejected — Markel
+Case#: KL-2026-084521
+Reason: Habitational risk not eligible
+Screenshot: Attached, Case ID visible
+
+🔴 KL Rejected — Employers
+Case#: KL-2026-084599
+Reason: Loss ratio too high
+Screenshot: Attached, Case ID visible
+
+Moving to outside market: TAPCO
+Flag to Eva: Yes, first submission to TAPCO for this risk type</div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Outside Market Rejection Logging</div>
+    <div class="info-block">
+      Same rule applies to outside markets. Every decline gets logged with carrier name, reason, and any reference number provided. Flag to Eva any time all markets decline on a risk. Eva decides next steps.
+    </div>
+  </div>
+
+  <!-- TAB 5: EOD -->
+  <div class="tab-content" id="tab-eod">
+    <div class="section-label">EOD Standard — Submit Daily by 4:00 PM to #eod-brokerage-pedro</div>
+
+    <div class="eod-box">📋 EOD — Pedro Torres | [Date] | [Hours Worked]
+
+💼 QUOTES WORKED:
+- [Client/Business Name] | [LOB] | [Markets Submitted] | 🟡 Pending / 🟢 Quoted / 🔴 Declined
+
+📤 SUBMISSIONS SENT:
+- [Client Name] | [Carrier] | 🟢 Quoted $[amount] / 🟡 Referred to UW / 🔴 Declined
+
+🚫 KL REJECTIONS LOGGED:
+- [Client Name] | [Carrier] | Case #[XXXXXX] | Screenshot uploaded: Y/N
+
+⏳ PENDING RESPONSES:
+- [Client Name] | [Carrier] | Submitted [date] | Awaiting response
+
+🚩 FLAGS FOR EVA:
+- [Anything unsure, blocked, or needs Eva review]
+
+⭐ TOMORROW PRIORITY:
+- [Top 1-3 tasks for next shift]</div>
+
+    <div class="tip-block">
+      EOD must be submitted every day by 4:00 PM even if you had no new submissions. If you had a slow day log what you worked on and what is pending. Never skip EOD.
+    </div>
+  </div>
+
+  <!-- TAB 6: EVA ACTION ITEMS -->
+  <div class="tab-content" id="tab-eva">
+    <div class="section-label red">Eva Action Items — Pedro Security and Compliance</div>
+
+    <div class="warn-block">
+      <strong>These items are Eva's responsibility, not Pedro's.</strong> Complete these as soon as possible to close all security gaps.
+    </div>
+
+    <ul class="checklist">
+      <li>
+        <div class="box"></div>
+        <span>Contact Farmers District Manager this week to confirm Pedro's sub-user access level is approved in writing. Confirm he has minimum access needed only.</span>
+        <span class="who">EVA THIS WEEK</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Confirm Pedro has his own Farmers login credentials and is not using Eva's credentials.</span>
+        <span class="who">EVA TODAY</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Store Pedro's credentials in 1Password under his own vault. Never share Eva's master credentials with any VA.</span>
+        <span class="who">EVA THIS WEEK</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Log all payments to Pedro for tax purposes: date, hours worked, amount paid, transaction ID.</span>
+        <span class="who">EVA ONGOING</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Confirm Pedro W-9 status: US based or international contractor. Determine correct tax filing requirement.</span>
+        <span class="who">EVA THIS WEEK</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Confirm with Farmers District Manager in writing that Pedro sending quotes on behalf of Eva is compliant with Farmers guidelines before Pedro sends another quote.</span>
+        <span class="who">EVA THIS WEEK</span>
+      </li>
+      <li>
+        <div class="box"></div>
+        <span>Confirm Insightful monitoring is actively running on Pedro's machine and screenshots are being captured.</span>
+        <span class="who">EVA CONFIRM</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer-note">Insurance Town Agency &nbsp;|&nbsp; Pedro Commercial Data and Market Specialist &nbsp;|&nbsp; June 23, 2026 &nbsp;|&nbsp; Internal Use Only</div>
+
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
