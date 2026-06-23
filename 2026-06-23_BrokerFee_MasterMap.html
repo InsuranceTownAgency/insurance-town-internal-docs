@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broker Fee — Master Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:#0D1B2A;color:#E8EFF7;min-height:100vh;padding:0 0 60px;}
+  .conf-banner{background:#B8860B;color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:0.08em;padding:8px 16px;text-transform:uppercase;}
+  .header{background:linear-gradient(135deg,#1C2B35 0%,#0D1B2A 100%);border-bottom:2px solid #AAD0E7;padding:28px 40px;}
+  .header h1{font-size:22px;color:#AAD0E7;font-weight:700;margin-bottom:4px;}
+  .header .sub{color:#7AAFC8;font-size:13px;}
+  .container{max-width:860px;margin:0 auto;padding:36px 24px;}
+  .section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#AAD0E7;border-bottom:1px solid #AAD0E730;padding-bottom:8px;margin:36px 0 18px;}
+  .section-label:first-of-type{margin-top:0;}
+  .flow{display:flex;flex-direction:column;gap:0;}
+  .flow-step{display:flex;gap:0;align-items:stretch;}
+  .flow-left{display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0;}
+  .flow-dot{width:28px;height:28px;border-radius:50%;background:#AAD0E7;color:#0D1B2A;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:16px;}
+  .flow-line{width:2px;background:#2A4A60;flex:1;margin:0 auto;}
+  .flow-card{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;margin:8px 0 8px 16px;flex:1;}
+  .flow-card h3{color:#AAD0E7;font-size:14px;font-weight:700;margin-bottom:6px;}
+  .flow-card p{font-size:12px;color:#BDD5E8;line-height:1.7;}
+  .flow-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .tag{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:#AAD0E715;color:#AAD0E7;border:1px solid #AAD0E730;}
+  .tag.gold{background:#B8860B20;color:#C8933A;border-color:#B8860B30;}
+  .tag.green{background:#06D6A015;color:#06D6A0;border-color:#06D6A030;}
+  .billing-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px;}
+  .billing-mini{background:#0D1B2A;border:1px solid #2A4A60;border-radius:6px;padding:10px 12px;}
+  .billing-mini h4{font-size:10px;font-weight:700;color:#AAD0E7;text-transform:uppercase;margin-bottom:4px;}
+  .billing-mini p{font-size:10px;color:#7AAFC8;line-height:1.6;}
+  .band-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px;}
+  .band-box{background:#0D1B2A;border:1px solid #2A4A60;border-radius:6px;padding:10px;text-align:center;}
+  .band-box .premium{font-size:9px;color:#7AAFC8;margin-bottom:4px;line-height:1.4;}
+  .band-box .fee{font-size:16px;font-weight:700;color:#AAD0E7;}
+  .rule-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
+  .rule-item{background:#0D1B2A;border:1px solid #2A4A60;border-radius:6px;padding:10px 12px;font-size:11px;color:#BDD5E8;line-height:1.6;}
+  .rule-item::before{content:"✓ ";color:#06D6A0;font-weight:700;}
+  @media(max-width:640px){.billing-row,.band-row,.rule-row{grid-template-columns:1fr 1fr;}.header{padding:24px 20px;}.container{padding:24px 16px;}}
+</style>
+</head>
+<body>
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <h1>Broker Fee — Master Map</h1>
+  <div class="sub">Quick reference overview of the full broker fee process &nbsp;·&nbsp; Pedro and JoJo</div>
+</div>
+<div class="container">
+
+  <div class="section-label">Fee Bands — Quick Reference</div>
+  <div class="band-row">
+    <div class="band-box"><div class="premium">Under $2,500</div><div class="fee">$200</div></div>
+    <div class="band-box"><div class="premium">$2,500 — $4,999</div><div class="fee">$250</div></div>
+    <div class="band-box"><div class="premium">$5,000 — $9,999</div><div class="fee">$500</div></div>
+    <div class="band-box"><div class="premium">$10,000 — $24,999</div><div class="fee">$750</div></div>
+    <div class="band-box"><div class="premium">$25,000+</div><div class="fee">$1,000</div></div>
+  </div>
+
+  <div class="section-label">Full Process Flow</div>
+  <div class="flow">
+
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-dot">1</div><div class="flow-line"></div></div>
+      <div class="flow-card">
+        <h3>Complete Broker Fee Customer Form</h3>
+        <p>Fill customer info, LOB, carrier, annual premium. Fee band calculates automatically. Select billing method. Copy ePayPolicy payment link.</p>
+        <div class="tags"><span class="tag">Customer Form Tool</span><span class="tag gold">Select Billing Method</span></div>
+        <div class="billing-row">
+          <div class="billing-mini"><h4>Direct Bill</h4><p>Carrier bills direct. Collect fee separately.</p></div>
+          <div class="billing-mini"><h4>Agency Bill</h4><p>Invoice + disclosure sent simultaneously.</p></div>
+          <div class="billing-mini"><h4>Financing</h4><p>Never include fee in financing. Collect separately.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-dot">2</div><div class="flow-line"></div></div>
+      <div class="flow-card">
+        <h3>Complete Disclosure and Send via AZ E-Sign</h3>
+        <p>Fill disclosure form. Save as PDF. Upload to AZ lead card. Send via AZ E-Sign. Agency Bill: send ePayPolicy invoice at the same time.</p>
+        <div class="tags"><span class="tag">Disclosure Tool</span><span class="tag green">AZ E-Sign</span><span class="tag gold">Agency Bill: Invoice simultaneously</span></div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-dot">3</div><div class="flow-line"></div></div>
+      <div class="flow-card">
+        <h3>Send Customer Email with Payment Link</h3>
+        <p>Wait for DocuSign to be fully signed. Then fill the email template and send with ePayPolicy link. Never send before signing.</p>
+        <div class="tags"><span class="tag">Email Template Tool</span><span class="tag gold">After DocuSign only</span></div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-dot">4</div></div>
+      <div class="flow-card">
+        <h3>Log in AZ — Same Day</h3>
+        <p>Add AZ submission note with broker fee payment status. Confirm disclosure signed. Check binder delivered checkbox. Update lead stage.</p>
+        <div class="tags"><span class="tag green">AZ Note</span><span class="tag">Binder Delivered Checkbox</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Standing Rules</div>
+  <div class="rule-row">
+    <div class="rule-item">You own all 3 steps on your own deals</div>
+    <div class="rule-item">Never bind before fee payment confirmed</div>
+    <div class="rule-item">Never send email before DocuSign signed</div>
+    <div class="rule-item">Never include fee in financing</div>
+    <div class="rule-item">Log in AZ the same day action is taken</div>
+    <div class="rule-item">ePayPolicy collected upfront always</div>
+  </div>
+
+</div>
+</body>
+</html>
