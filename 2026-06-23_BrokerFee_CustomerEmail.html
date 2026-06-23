@@ -81,11 +81,7 @@ select option{background:var(--navy2);}
     <div class="row-2">
       <div class="form-group"><label>Broker Fee Amount</label><input type="text" id="feeAmt" placeholder="e.g. $250" oninput="updatePreview()"></div>
       <div class="form-group"><label>Your Name</label>
-        <select id="vaName" onchange="updatePreview()">
-          <option value="your Insurance Town agent">Select your name</option>
-          <option value="Pedro Torres Jr.">Pedro Torres Jr.</option>
-          <option value="JoJo">JoJo</option>
-        </select>
+        <input type="text" id="vaName" placeholder="Your full name" oninput="updatePreview()">
       </div>
     </div>
     <div class="form-group"><label>ePayPolicy Payment Link</label><input type="url" id="payLink" placeholder="https://app.epaypolicy.com/..." oninput="updatePreview()"></div>
