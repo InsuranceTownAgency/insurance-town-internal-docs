@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Pipeline Cheat Sheet | Insurance Town Agency</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --navy:#0D1B2A;--mid:#112236;--card:#1a3352;
+  --gold:#C9A84C;--gold-l:#E8C96A;--gold-p:rgba(201,168,76,0.1);--gold-b:rgba(201,168,76,0.25);
+  --green:#2ecc71;--green2:rgba(46,204,113,0.1);--green-b:rgba(46,204,113,0.3);
+  --red:#e74c3c;--red2:rgba(231,76,60,0.1);--red-b:rgba(231,76,60,0.3);
+  --blue:#3498db;--blue2:rgba(52,152,219,0.1);--blue-b:rgba(52,152,219,0.3);
+  --purple:#9b59b6;--purple2:rgba(155,89,182,0.1);--purple-b:rgba(155,89,182,0.3);
+  --teal:#1abc9c;--teal2:rgba(26,188,156,0.1);--teal-b:rgba(26,188,156,0.3);
+  --amber:#e67e22;--amber2:rgba(230,126,34,0.1);--amber-b:rgba(230,126,34,0.3);
+  --text:#DDE6F0;--muted:#7A8FA3;--border:rgba(201,168,76,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;min-height:100vh;}
+
+/* BANNER */
+.banner{background:var(--gold);color:var(--navy);text-align:center;padding:6px 12px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#060f18,#0d1f33);border-bottom:2px solid var(--gold-b);padding:18px 28px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.hero-left{}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);}
+.hero h1 span{color:var(--gold);}
+.hero-meta{font-size:11px;color:var(--muted);margin-top:3px;}
+.hero-right{display:flex;gap:8px;flex-wrap:wrap;}
+.owner-pill{font-size:10px;font-weight:700;padding:4px 12px;border-radius:12px;}
+.op-dialer{background:var(--blue2);border:1px solid var(--blue-b);color:var(--blue);}
+.op-eva{background:var(--gold-p);border:1px solid var(--gold-b);color:var(--gold);}
+.op-pedro{background:var(--green2);border:1px solid var(--green-b);color:var(--green);}
+.op-auto{background:var(--purple2);border:1px solid var(--purple-b);color:#bb8fce;}
+
+/* RULE STRIP */
+.rule-strip{background:var(--red2);border-bottom:1px solid var(--red-b);padding:8px 28px;font-size:11px;color:#ff9999;display:flex;align-items:center;gap:8px;}
+.rule-strip strong{color:#fff;}
+
+/* PIPELINE CONTAINER */
+.pipeline-wrap{overflow-x:auto;padding:20px 28px 40px;-webkit-overflow-scrolling:touch;}
+.pipeline{display:flex;gap:0;align-items:stretch;min-width:max-content;}
+
+/* CONNECTOR */
+.connector{display:flex;align-items:center;padding:0 2px;margin-top:40px;}
+.conn-arrow{color:var(--gold);font-size:18px;opacity:0.6;}
+.conn-fork{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 4px;}
+.conn-fork .fork-label{font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);}
+
+/* STAGE CARD */
+.stage{width:180px;flex-shrink:0;}
+.stage-inner{background:var(--mid);border:1px solid var(--border);border-radius:10px;overflow:hidden;height:100%;}
+.stage-header{padding:10px 12px 8px;}
+.stage-num{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;font-family:'JetBrains Mono',monospace;}
+.stage-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:6px;}
+.stage-owner{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.stage-body{padding:10px 12px;border-top:1px solid var(--border);}
+.field-label{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;margin-top:8px;}
+.field-label:first-child{margin-top:0;}
+.field-value{font-size:11px;color:var(--muted);line-height:1.5;}
+.field-value strong{color:var(--text);}
+.field-value.mono{font-family:'JetBrains Mono',monospace;font-size:10px;}
+
+/* TAGS */
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px;}
+.tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.tag-gold{background:var(--gold-p);border:1px solid var(--gold-b);color:var(--gold);}
+.tag-green{background:var(--green2);border:1px solid var(--green-b);color:var(--green);}
+.tag-blue{background:var(--blue2);border:1px solid var(--blue-b);color:var(--blue);}
+.tag-purple{background:var(--purple2);border:1px solid var(--purple-b);color:#bb8fce;}
+.tag-teal{background:var(--teal2);border:1px solid var(--teal-b);color:var(--teal);}
+.tag-amber{background:var(--amber2);border:1px solid var(--amber-b);color:var(--amber);}
+.tag-red{background:var(--red2);border:1px solid var(--red-b);color:var(--red);}
+
+/* TRIGGER BLOCK */
+.trigger{background:rgba(201,168,76,0.06);border:1px solid var(--gold-b);border-left:2px solid var(--gold);border-radius:0 5px 5px 0;padding:6px 8px;margin-top:8px;font-size:10px;color:var(--muted);line-height:1.5;}
+.trigger strong{color:var(--gold-l);font-size:9px;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px;}
+
+/* AUTOMATION BADGE */
+.auto-badge{background:var(--purple2);border:1px solid var(--purple-b);color:#bb8fce;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;display:inline-block;margin-top:4px;}
+
+/* FORK SECTION */
+.fork-section{display:flex;flex-direction:column;gap:8px;width:180px;flex-shrink:0;}
+.fork-label-top{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:4px;}
+
+/* STAGE COLOR VARIANTS */
+.s-inbound .stage-header{background:rgba(52,152,219,0.08);border-bottom:1px solid var(--blue-b);}
+.s-engaged .stage-header{background:rgba(201,168,76,0.06);border-bottom:1px solid var(--gold-b);}
+.s-review .stage-header{background:rgba(230,126,34,0.08);border-bottom:1px solid var(--amber-b);}
+.s-present .stage-header{background:rgba(201,168,76,0.08);border-bottom:1px solid var(--gold-b);}
+.s-quotesent .stage-header{background:rgba(46,204,113,0.07);border-bottom:1px solid var(--green-b);}
+.s-farmers .stage-header{background:rgba(26,188,156,0.07);border-bottom:1px solid var(--teal-b);}
+.s-submitted .stage-header{background:rgba(155,89,182,0.08);border-bottom:1px solid var(--purple-b);}
+.s-pedro .stage-header{background:rgba(46,204,113,0.08);border-bottom:1px solid var(--green-b);}
+.s-bind .stage-header{background:rgba(201,168,76,0.1);border-bottom:1px solid var(--gold-b);}
+.s-esig .stage-header{background:rgba(52,152,219,0.08);border-bottom:1px solid var(--blue-b);}
+.s-sold .stage-header{background:rgba(46,204,113,0.12);border-bottom:1px solid var(--green-b);}
+.s-sold .stage-name{color:var(--green);}
+
+/* LEGEND */
+.legend{padding:12px 28px 20px;display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border);}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+
+/* PRINT */
+@media print{
+  body{background:#fff!important;color:#000!important;}
+  .banner{display:none;}
+  .stage-inner{border:1px solid #ccc!important;background:#f9f9f9!important;}
+  .stage-header{background:#eee!important;}
+  .stage-name,.hero h1{color:#000!important;}
+  .field-value{color:#333!important;}
+  .trigger{background:#f5f5f5!important;border-color:#ccc!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="banner">Internal Insurance Town Resource | Authorized Internal Use Only | Do Not Share Outside Agency</div>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Insurance Town Agency · Commercial Pipeline</div>
+    <h1>4 New Comm. Leads — <span>Pipeline Flow</span></h1>
+    <div class="hero-meta">Quick reference · Stage by stage · Who owns it · What triggers the move · June 2026</div>
+  </div>
+  <div class="hero-right">
+    <span class="owner-pill op-dialer">🎯 Dialer</span>
+    <span class="owner-pill op-eva">⭐ Eva</span>
+    <span class="owner-pill op-pedro">📋 Pedro / Commercial VA</span>
+    <span class="owner-pill op-auto">⚡ Kyle Automation</span>
+  </div>
+</div>
+
+<div class="rule-strip">
+  <strong>★ Hard Rule:</strong> Always attempt Farmers first → then KraftLake → then outside market. When KL rejects: log "KL Rejected + case number" in AZ note + screenshot with case ID. &nbsp;|&nbsp; <strong>★ Never skip a stage. Never move a lead without logging a note.</strong>
+</div>
+
+<div class="pipeline-wrap">
+<div class="pipeline">
+
+  <!-- 1. INBOUND LEAD -->
+  <div class="stage">
+    <div class="stage-inner s-inbound">
+      <div class="stage-header">
+        <div class="stage-num">Stage 01</div>
+        <div class="stage-name">Inbound Lead</div>
+        <span class="owner-pill op-dialer" style="font-size:9px;padding:2px 8px;">🎯 Dialer</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--blue);">Source</div>
+        <div class="field-value">Facebook Ads · Web form · Other lead sources</div>
+        <div class="field-label" style="color:var(--blue);">Dialer Action</div>
+        <div class="field-value">Call immediately on drop. Use commercial opening script. Confirm Facebook business insurance request. Transfer to Eva.</div>
+        <div class="field-label" style="color:var(--blue);">Tags on Entry</div>
+        <div class="tag-row">
+          <span class="tag tag-blue">comm-lead</span>
+          <span class="tag tag-blue">cslb</span>
+          <span class="tag tag-teal">linkedin-res</span>
+        </div>
+        <div class="trigger"><strong>Move to →</strong> Engaged / Prospect once Eva confirms interest and qualifies the lead</div>
+        <span class="auto-badge">⚡ Kyle auto-creates AZ record on FB lead drop</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 2. ENGAGED / PROSPECT -->
+  <div class="stage">
+    <div class="stage-inner s-engaged">
+      <div class="stage-header">
+        <div class="stage-num">Stage 02</div>
+        <div class="stage-name">Engaged / Prospect</div>
+        <span class="owner-pill op-eva" style="font-size:9px;padding:2px 8px;">⭐ Eva</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--gold);">Eva Action</div>
+        <div class="field-value">Qualify the lead. Gather all info needed to quote. Confirm vertical, business type, employees, current coverage.</div>
+        <div class="field-label" style="color:var(--gold);">Note Required</div>
+        <div class="field-value mono">## 📌 Submission Update<br>Business type · Vertical · Employees · Current carrier · Contact preference</div>
+        <div class="field-label" style="color:var(--gold);">Tags</div>
+        <div class="tag-row">
+          <span class="tag tag-gold">Primary: [Line]</span>
+          <span class="tag tag-teal">X-Sell: [Line]</span>
+        </div>
+        <div class="trigger"><strong>Move to →</strong> Present Quote if ready to quote<br><strong>Move to →</strong> Review if no reply / stalled</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="conn-fork">
+      <div class="conn-arrow" style="color:var(--green);">↗</div>
+      <div class="conn-arrow" style="color:var(--amber);">↘</div>
+    </div>
+  </div>
+
+  <!-- FORK: REVIEW + PRESENT QUOTE stacked -->
+  <div class="fork-section">
+    <div class="fork-label-top">Two paths from Engaged</div>
+
+    <!-- REVIEW -->
+    <div class="stage-inner s-review" style="border-radius:8px;overflow:hidden;">
+      <div class="stage-header" style="padding:8px 12px 6px;">
+        <div class="stage-num">Stage 03A</div>
+        <div class="stage-name" style="font-size:12px;">Review</div>
+        <span class="owner-pill op-eva" style="font-size:8px;padding:2px 6px;">⭐ Eva</span>
+      </div>
+      <div class="stage-body" style="padding:8px 12px;">
+        <div class="field-label" style="color:var(--amber);">Meaning</div>
+        <div class="field-value" style="font-size:10px;">Stalled. Quote started or info gathered but lead went quiet. Needs follow-up push.</div>
+        <div class="field-label" style="color:var(--amber);">Action</div>
+        <div class="field-value" style="font-size:10px;">Eva or dialer re-contacts. If response: move to Present Quote. If hard no: Smart Cycle.</div>
+        <div class="trigger" style="font-size:9px;"><strong>Move to →</strong> Present Quote on re-engagement · Smart Cycle if no response</div>
+      </div>
+    </div>
+
+    <!-- PRESENT QUOTE -->
+    <div class="stage-inner s-present" style="border-radius:8px;overflow:hidden;">
+      <div class="stage-header" style="padding:8px 12px 6px;">
+        <div class="stage-num">Stage 03B</div>
+        <div class="stage-name" style="font-size:12px;">Present Quote</div>
+        <span class="owner-pill op-eva" style="font-size:8px;padding:2px 6px;">⭐ Eva / Pedro</span>
+      </div>
+      <div class="stage-body" style="padding:8px 12px;">
+        <div class="field-label" style="color:var(--gold);">Action</div>
+        <div class="field-value" style="font-size:10px;">Quote is ready. Present to prospect live or schedule presentation call.</div>
+        <div class="field-label" style="color:var(--gold);">Note Required</div>
+        <div class="field-value mono" style="font-size:9px;">Quote presented · carrier · premium · date</div>
+        <div class="trigger" style="font-size:9px;"><strong>Move to →</strong> Quote Sent · Farmers/KL · Submitted to Market</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 4. QUOTE SENT -->
+  <div class="stage">
+    <div class="stage-inner s-quotesent">
+      <div class="stage-header">
+        <div class="stage-num">Stage 04</div>
+        <div class="stage-name">Quote Sent</div>
+        <span class="owner-pill op-pedro" style="font-size:9px;padding:2px 8px;">📋 Pedro / Comm VA</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--green);">Meaning</div>
+        <div class="field-value">Quote prepared and emailed to prospect. Pedro or confirmed commercial VA sends. Eva reviews before it goes out.</div>
+        <div class="field-label" style="color:var(--green);">Note Required</div>
+        <div class="field-value mono">Quote sent · carrier · premium · date sent</div>
+        <div class="field-label" style="color:var(--green);">Dialer Alert</div>
+        <div class="field-value" style="font-size:10px;">Sales team tags dialer in AZ when quote is sent so dialer dispositions Quoted in Ricochet immediately.</div>
+        <div class="trigger"><strong>Move to →</strong> Farmers/KL to attempt placement · or await prospect decision</div>
+        <span class="auto-badge">⚡ Kyle Slack alert fires to dialer on stage change</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 5. FARMERS / KRAFTLAKE -->
+  <div class="stage">
+    <div class="stage-inner s-farmers">
+      <div class="stage-header">
+        <div class="stage-num">Stage 05</div>
+        <div class="stage-name">Farmers / Kraft Lake</div>
+        <span class="owner-pill op-pedro" style="font-size:9px;padding:2px 8px;">📋 Pedro</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--teal);">Hard Rule</div>
+        <div class="field-value" style="color:#ff9999;font-weight:600;font-size:11px;">★ Always Farmers first → then KraftLake → then outside market</div>
+        <div class="field-label" style="color:var(--teal);">If KL Rejects</div>
+        <div class="field-value">Log in AZ note: "KL Rejected — Case #[number]" + screenshot with case ID shown.</div>
+        <div class="field-label" style="color:var(--teal);">Next Ergo</div>
+        <div class="field-value">Available through KL dashboard direct link.</div>
+        <div class="trigger"><strong>Move to →</strong> Submitted to Market if going outside · Pedro Brokered if placed brokered</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 6. SUBMITTED TO MARKET -->
+  <div class="stage">
+    <div class="stage-inner s-submitted">
+      <div class="stage-header">
+        <div class="stage-num">Stage 06</div>
+        <div class="stage-name">Submitted to Market</div>
+        <span class="owner-pill op-pedro" style="font-size:9px;padding:2px 8px;">📋 Pedro</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:#bb8fce;">Meaning</div>
+        <div class="field-value">Application submitted to outside brokered market. Awaiting quote back from carrier.</div>
+        <div class="field-label" style="color:#bb8fce);">Note Required</div>
+        <div class="field-value mono">Carrier submitted to · submission date · expected turnaround</div>
+        <div class="field-label" style="color:#bb8fce;">Tags</div>
+        <div class="tag-row">
+          <span class="tag tag-purple">submitted</span>
+        </div>
+        <div class="trigger"><strong>Move to →</strong> Pedro Brokered once quote received and placement confirmed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 7. PEDRO BROKERED -->
+  <div class="stage">
+    <div class="stage-inner s-pedro">
+      <div class="stage-header">
+        <div class="stage-num">Stage 07</div>
+        <div class="stage-name">Pedro Brokered</div>
+        <span class="owner-pill op-pedro" style="font-size:9px;padding:2px 8px;">📋 Pedro</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--green);">Meaning</div>
+        <div class="field-value">Brokered carrier placement confirmed. Quote received. Presenting to prospect for binding decision.</div>
+        <div class="field-label" style="color:var(--green);">Note Required</div>
+        <div class="field-value mono">Carrier · premium · coverage details · presented date</div>
+        <div class="trigger"><strong>Move to →</strong> Waiting to Bind once prospect agrees to move forward</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 8. WAITING TO BIND -->
+  <div class="stage">
+    <div class="stage-inner s-bind">
+      <div class="stage-header">
+        <div class="stage-num">Stage 08</div>
+        <div class="stage-name">Waiting to Bind</div>
+        <span class="owner-pill op-eva" style="font-size:9px;padding:2px 8px;">⭐ Eva</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--gold);">Gate</div>
+        <div class="field-value" style="color:#ff9999;font-weight:600;">Nothing binds until broker fee is paid AND disclosure is signed.</div>
+        <div class="field-label" style="color:var(--gold);">Broker Fee Trigger</div>
+        <div class="field-value" style="font-size:10px;">Broker Fee Required checkbox fires here. Agency Bill = ePayPolicy invoice + disclosure. Financing = disclosure only.</div>
+        <div class="field-label" style="color:var(--gold);">Note Required</div>
+        <div class="field-value mono">Broker fee status · payment method · disclosure sent date</div>
+        <div class="trigger"><strong>Move to →</strong> Bind once fee paid and disclosure signed</div>
+        <span class="auto-badge">⚡ Kyle broker fee automation fires here</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 9. BIND -->
+  <div class="stage">
+    <div class="stage-inner s-bind">
+      <div class="stage-header">
+        <div class="stage-num">Stage 09</div>
+        <div class="stage-name">Bind</div>
+        <span class="owner-pill op-eva" style="font-size:9px;padding:2px 8px;">⭐ Eva</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--gold);">Meaning</div>
+        <div class="field-value">Policy is being bound. Binder issued. All conditions met.</div>
+        <div class="field-label" style="color:var(--gold);">Note Required</div>
+        <div class="field-value mono">Binder number · effective date · carrier · policy number</div>
+        <div class="field-label" style="color:var(--gold);">Binder Delivered</div>
+        <div class="field-value" style="font-size:10px;">Check Binder Delivered checkbox in AZ when binder is sent to client. This fires a DocuSign confirmation alert.</div>
+        <div class="trigger"><strong>Move to →</strong> Awaiting E-Signature for DocuSign execution</div>
+        <span class="auto-badge">⚡ DocuSign monitoring flow activates</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 10. AWAITING E-SIGNATURE -->
+  <div class="stage">
+    <div class="stage-inner s-esig">
+      <div class="stage-header">
+        <div class="stage-num">Stage 10</div>
+        <div class="stage-name">Awaiting E-Signature</div>
+        <span class="owner-pill op-eva" style="font-size:9px;padding:2px 8px;">⭐ Eva / JoJo</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--blue);">Meaning</div>
+        <div class="field-value">DocuSign envelope sent. Awaiting client signature to complete binding.</div>
+        <div class="field-label" style="color:var(--blue);">Monitoring</div>
+        <div class="field-value" style="font-size:10px;">48-hour unsigned reminder to assigned VA. 72-hour escalation to Eva via ops-alerts.</div>
+        <div class="field-label" style="color:var(--blue);">Note Required</div>
+        <div class="field-value mono">DocuSign sent date · envelope ID · status</div>
+        <div class="trigger"><strong>Move to →</strong> Sold once all signatures complete and policy confirmed</div>
+        <span class="auto-badge">⚡ Kyle DocuSign 5-trigger monitoring active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-arrow">›</div></div>
+
+  <!-- 11. SOLD -->
+  <div class="stage">
+    <div class="stage-inner s-sold">
+      <div class="stage-header">
+        <div class="stage-num">Stage 11</div>
+        <div class="stage-name">Sold</div>
+        <span class="owner-pill op-auto" style="font-size:9px;padding:2px 8px;">⚡ Kyle Auto</span>
+      </div>
+      <div class="stage-body">
+        <div class="field-label" style="color:var(--green);">Meaning</div>
+        <div class="field-value">Policy bound and signed. Deal closed.</div>
+        <div class="field-label" style="color:var(--green);">Auto Actions on Sold</div>
+        <div class="field-value" style="font-size:10px;">Broker fee logs to Supabase broker_fees table + Broker Fee Log sheet. Hassan ePayPolicy hub notified. ops-alerts Slack fired.</div>
+        <div class="field-label" style="color:var(--green);">Note Required</div>
+        <div class="field-value mono">Policy number · effective date · premium · carrier · bound date</div>
+        <div class="trigger" style="border-color:var(--green-b);"><strong style="color:var(--green);">🎉 Done.</strong> Cross-sell opportunities flagged by Kyle automation for follow-up.</div>
+        <span class="auto-badge">⚡ Supabase + Slack + Hassan ePayPolicy hub</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue);"></div>Dialer owned</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div>Eva owned</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Pedro / Commercial VA owned</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#bb8fce;"></div>Kyle automation fires</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber);"></div>Review = stalled / no reply</div>
+  <div class="legend-item" style="color:#ff9999;">★ = Hard rule — no exceptions</div>
+  <div style="margin-left:auto;font-size:10px;color:var(--muted);">Insurance Town Agency · Commercial Pipeline v1 · June 2026</div>
+</div>
+
+</body>
+</html>
