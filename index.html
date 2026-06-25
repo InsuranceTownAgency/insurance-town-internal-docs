@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance Town — Internal Docs Portal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:#0D1B2A;color:#E8EFF7;min-height:100vh;padding:0 0 60px 0;}
+  .conf-banner{background:#B8860B;color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:0.08em;padding:8px 16px;text-transform:uppercase;}
+  .header{background:linear-gradient(135deg,#1C2B35 0%,#0D1B2A 100%);border-bottom:2px solid #AAD0E7;padding:32px 40px 28px;}
+  .header h1{font-family:'DM Serif Display',serif;font-size:28px;color:#AAD0E7;margin-bottom:6px;}
+  .header .sub{color:#7AAFC8;font-size:13px;}
+  .container{max-width:900px;margin:0 auto;padding:40px 24px;}
+  .section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#AAD0E7;border-bottom:1px solid #AAD0E730;padding-bottom:8px;margin-bottom:16px;margin-top:40px;}
+  .section-label:first-of-type{margin-top:0;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .doc-link{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 18px;text-decoration:none;color:#E8EFF7;display:flex;align-items:flex-start;gap:14px;transition:border-color 0.2s;}
+  .doc-link:hover{border-color:#AAD0E7;}
+  .doc-link.full{grid-column:1/-1;}
+  .doc-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
+  .icon-blue{background:rgba(170,208,231,0.1);}
+  .icon-green{background:rgba(6,214,160,0.1);}
+  .icon-gold{background:rgba(200,151,58,0.1);}
+  .icon-purple{background:rgba(160,120,220,0.1);}
+  .icon-orange{background:rgba(220,140,60,0.1);}
+  .doc-text{flex:1;}
+  .doc-name{font-size:14px;font-weight:700;color:#AAD0E7;margin-bottom:3px;line-height:1.3;}
+  .badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:5px;}
+  .badge-green{background:rgba(6,214,160,0.15);color:#06D6A0;border:1px solid #06D6A030;}
+  .badge-trial{background:rgba(255,170,0,0.15);color:#FFAA00;border:1px solid #FFAA0030;}
+  .badge-pending{background:rgba(255,170,0,0.12);color:#C8933A;border:1px solid #C8933A30;}
+  .doc-desc{font-size:11px;color:#7AAFC8;line-height:1.6;}
+  .step-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #1A2A38;}
+  .step-row:last-child{border-bottom:none;}
+  .step-num{width:22px;height:22px;border-radius:50%;background:#AAD0E7;color:#0D1B2A;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step-text{font-size:12px;color:#BDD5E8;line-height:1.6;}
+  .step-text strong{color:#AAD0E7;}
+  .broker-step-box{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;margin-top:12px;}
+  @media(max-width:640px){.grid,.grid-3{grid-template-columns:1fr;}.doc-link.full{grid-column:1;}.header{padding:24px 20px;}.container{padding:24px 16px;}}
+</style>
+</head>
+<body>
+
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+
+<div class="header">
+  <h1>Insurance Town — Internal Docs Portal</h1>
+  <div class="sub">VA Onboarding Guides &nbsp;·&nbsp; Broker Fee Tools &nbsp;·&nbsp; Carrier Hub &nbsp;·&nbsp; June 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- VA ONBOARDING -->
+  <div class="section-label">VA Onboarding Guides</div>
+  <div class="grid">
+
+    <a class="doc-link" href="2026-06-23_Pedro_FullOnboarding_CommercialMarket.html">
+      <div class="doc-icon icon-blue">📋</div>
+      <div class="doc-text">
+        <div class="badge badge-green">Confirmed Hire</div>
+        <div class="doc-name">Pedro Torres Jr.</div>
+        <div class="doc-desc">Brokerage VA2 · Commercial Market Specialist<br>Market order, AZ notes, quoting rules, broker fee process</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_JoJo_FullReference_ArmindaAndRenewals.html">
+      <div class="doc-icon icon-green">📗</div>
+      <div class="doc-text">
+        <div class="badge badge-green">Confirmed Hire</div>
+        <div class="doc-name">JoJo</div>
+        <div class="doc-desc">Brokerage VA1 · PL Quotes, Renewals, CERTs, DocuSign<br>Full reference: scope, renewals, Arminda boundaries, carriers</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_Arminda_FullOnboarding_BackOffice.html">
+      <div class="doc-icon icon-gold">🗂️</div>
+      <div class="doc-text">
+        <div class="badge badge-trial">On Trial</div>
+        <div class="doc-name">Arminda</div>
+        <div class="doc-desc">Back Office · AZ Cleanup, Automation Audit<br>Momentum AMP: decision pending</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_Frances_FullOnboarding_CommercialMarket.html">
+      <div class="doc-icon icon-purple">📋</div>
+      <div class="doc-text">
+        <div class="badge badge-trial">On Trial</div>
+        <div class="doc-name">Frances Olive</div>
+        <div class="doc-desc">VA3 · Commercial Market Specialist<br>Alongside Pedro — commercial quoting and submissions</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_John_FullOnboarding_PersonalLines.html">
+      <div class="doc-icon icon-orange">📋</div>
+      <div class="doc-text">
+        <div class="badge badge-trial">On Trial</div>
+        <div class="doc-name">John Mark Jimenez Canoy</div>
+        <div class="doc-desc">Personal Lines VA · PL Quotes and Service<br>11AM–4PM · Independent hire</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- BROKER FEE TOOLS -->
+
+    <a class="doc-link" href="2026-06-24_Zel_FullOnboarding_CommercialSpecialist.html">
+      <div class="doc-icon icon-green">📋</div>
+      <div class="doc-text">
+        <div class="badge badge-trial">On Trial</div>
+        <div class="doc-name">Jayzel Dollente — "Zel"</div>
+        <div class="doc-desc">Commercial Specialist · Renewals, Stale Lead Re-Engagement, Backup Quoting<br>Referred by Pedro · 10AM–3PM</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-24_Zel_StaleLeadOutreachScript.html">
+      <div class="doc-icon icon-purple">📡</div>
+      <div class="doc-text">
+        <div class="badge badge-trial">On Trial</div>
+        <div class="doc-name">Zel — Re-Engagement Scripts</div>
+        <div class="doc-desc">SMS, Email, and Call scripts for stale lead re-engagement. Assumable transfer. Copy-ready.</div>
+      </div>
+    </a>
+
+  <div class="section-label">Broker Fee Tools — Pedro and JoJo</div>
+  <div class="grid-3">
+
+    <a class="doc-link" href="2026-06-23_BrokerFee_CustomerForm.html">
+      <div class="doc-icon icon-blue">📄</div>
+      <div class="doc-text">
+        <div class="doc-name">Step 1: Customer Form</div>
+        <div class="doc-desc">Fillable form with auto-calculating fee bands. Complete before ePayPolicy invoice.</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_BrokerFeeDisclosure_AZESign.html">
+      <div class="doc-icon icon-green">✍️</div>
+      <div class="doc-text">
+        <div class="doc-name">Step 2: Disclosure E-Sign</div>
+        <div class="doc-desc">Complete and send via AZ E-Sign. Simultaneously with ePayPolicy for Agency Bill.</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_BrokerFee_CustomerEmail.html">
+      <div class="doc-icon icon-blue">📧</div>
+      <div class="doc-text">
+        <div class="doc-name">Step 3: Customer Email</div>
+        <div class="doc-desc">Send with ePayPolicy link only after DocuSign is signed. Never before.</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_BrokerFee_VAFlowGuide.html">
+      <div class="doc-icon icon-gold">📘</div>
+      <div class="doc-text">
+        <div class="doc-name">VA Flow Guide</div>
+        <div class="doc-desc">Full broker fee process: all billing methods, fee bands, AZ logging standard.</div>
+      </div>
+    </a>
+
+    <a class="doc-link" href="2026-06-23_BrokerFee_MasterMap.html">
+      <div class="doc-icon icon-gold">🗺️</div>
+      <div class="doc-text">
+        <div class="doc-name">Master Map</div>
+        <div class="doc-desc">Visual overview of the entire broker fee flow. Quick reference lookups.</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="broker-step-box">
+    <div class="step-row"><div class="step-num">1</div><div class="step-text"><strong>Complete the Customer Form</strong> — confirm fee band, copy ePayPolicy link</div></div>
+    <div class="step-row"><div class="step-num">2</div><div class="step-text"><strong>Complete Disclosure and send via AZ E-Sign</strong> — save PDF, upload to AZ lead card</div></div>
+    <div class="step-row"><div class="step-num">3</div><div class="step-text"><strong>Send customer email with payment link</strong> — only after DocuSign is signed</div></div>
+    <div class="step-row"><div class="step-num">4</div><div class="step-text"><strong>Log everything in AZ same day</strong> — payment received, disclosure signed, binder delivered</div></div>
+  </div>
+
+  <!-- CARRIER HUB -->
+  <div class="section-label">Carrier Hub</div>
+  <div class="grid">
+    <a class="doc-link full" href="https://insurancetownhubvacarrierhub.netlify.app" target="_blank">
+      <div class="doc-icon icon-blue">🏢</div>
+      <div class="doc-text">
+        <div class="doc-name">VA Carrier Hub</div>
+        <div class="doc-desc">All carrier guidelines, appetite guides, submission requirements, and market contacts. Opens in a new tab.</div>
+      </div>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

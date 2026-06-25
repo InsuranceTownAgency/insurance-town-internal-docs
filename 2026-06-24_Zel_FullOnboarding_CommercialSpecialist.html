@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zel — Commercial Specialist Onboarding</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#0D1B2A;--navy2:#111D28;--navy3:#1C2B35;--blue:#AAD0E7;--blue2:#7AAFC8;--blue3:#4A8FB0;--green:#06D6A0;--gold:#F4C430;--gold2:#C8933A;--purple:#A078DC;--red:#FF6B6B;--text:#E8EFF7;--muted:#7AAFC8;--subtle:#BDD5E8;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;padding:0 0 80px;}
+.conf-banner{background:linear-gradient(90deg,#8B6914,#B8860B,#8B6914);color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:0.12em;padding:9px 16px;text-transform:uppercase;}
+.header{background:var(--navy3);border-bottom:3px solid var(--purple);padding:32px 40px;position:relative;overflow:hidden;}
+.header::before{content:'🌟';position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:120px;opacity:0.05;line-height:1;}
+.header-top{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+.avatar{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#7855C0,var(--purple));display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:#fff;flex-shrink:0;}
+.header-text h1{font-family:'DM Serif Display',serif;font-size:26px;color:var(--purple);}
+.header-text .role{color:var(--muted);font-size:13px;margin-top:2px;}
+.badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.badge-trial{background:rgba(244,196,48,0.15);color:var(--gold);border:1px solid rgba(244,196,48,0.3);}
+.badge-hours{background:rgba(170,208,231,0.1);color:var(--blue);border:1px solid rgba(170,208,231,0.2);}
+.badge-ref{background:rgba(6,214,160,0.1);color:var(--green);border:1px solid rgba(6,214,160,0.2);}
+
+/* TABS */
+.tabs{display:flex;gap:2px;background:var(--navy2);padding:4px;border-radius:12px;margin:24px 24px 0;overflow-x:auto;}
+.tab{padding:10px 18px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--muted);transition:all 0.2s;}
+.tab.active{background:var(--navy3);color:var(--purple);}
+.tab:hover:not(.active){color:var(--text);}
+
+.container{max-width:860px;margin:0 auto;padding:28px 24px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* CARDS */
+.section{background:var(--navy2);border:1px solid #1E3448;border-radius:14px;padding:22px 24px;margin-bottom:16px;position:relative;overflow:hidden;}
+.section::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;}
+.section.purple::before{background:var(--purple);}
+.section.blue::before{background:var(--blue);}
+.section.green::before{background:var(--green);}
+.section.gold::before{background:var(--gold);}
+.section.red::before{background:var(--red);}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.section-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.si-purple{background:rgba(160,120,220,0.15);}
+.si-blue{background:rgba(170,208,231,0.15);}
+.si-green{background:rgba(6,214,160,0.15);}
+.si-gold{background:rgba(244,196,48,0.15);}
+.si-red{background:rgba(255,107,107,0.15);}
+.section-title{font-size:14px;font-weight:700;}
+.t-purple{color:var(--purple);}
+.t-blue{color:var(--blue);}
+.t-green{color:var(--green);}
+.t-gold{color:var(--gold);}
+.t-red{color:var(--red);}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.info-item{background:#0A1520;border:1px solid #2A4A60;border-radius:9px;padding:12px 14px;}
+.info-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
+.info-value{font-size:14px;font-weight:600;color:var(--text);}
+
+.scope-list{list-style:none;}
+.scope-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #1A2A38;align-items:flex-start;}
+.scope-item:last-child{border-bottom:none;}
+.scope-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.scope-text{font-size:13px;color:var(--subtle);line-height:1.6;}
+.scope-text strong{color:var(--text);}
+
+.limit-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #1A2A38;align-items:flex-start;}
+.limit-item:last-child{border-bottom:none;}
+.limit-icon{font-size:16px;flex-shrink:0;}
+.limit-text{font-size:13px;color:#FF9999;line-height:1.6;}
+
+.step-card{background:#0A1520;border:1px solid #2A4A60;border-radius:10px;padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;}
+.step-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.sn-purple{background:var(--purple);color:#fff;}
+.sn-blue{background:var(--blue);color:var(--navy);}
+.sn-green{background:var(--green);color:var(--navy);}
+.sn-gold{background:var(--gold);color:var(--navy);}
+.step-text{font-size:13px;color:var(--subtle);line-height:1.7;}
+.step-text strong{color:var(--text);}
+
+.channel-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.channel-card{background:#0A1520;border:1.5px solid #2A4A60;border-radius:10px;padding:16px;text-align:center;}
+.channel-card.sms{border-color:rgba(6,214,160,0.3);}
+.channel-card.email{border-color:rgba(170,208,231,0.3);}
+.channel-card.call{border-color:rgba(244,196,48,0.3);}
+.channel-icon{font-size:28px;margin-bottom:8px;}
+.channel-name{font-size:12px;font-weight:700;margin-bottom:6px;}
+.cn-green{color:var(--green);}
+.cn-blue{color:var(--blue);}
+.cn-gold{color:var(--gold);}
+.channel-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+
+.eod-box{background:#060F18;border:1.5px solid #2A4A60;border-radius:12px;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--subtle);line-height:2;}
+.eod-box .eod-header{color:var(--purple);font-weight:600;margin-bottom:8px;}
+.eod-section{color:var(--blue);margin-top:12px;margin-bottom:4px;}
+.eod-item{color:var(--subtle);padding-left:12px;}
+.eod-note{color:var(--gold);margin-top:12px;}
+
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.tool-item{background:#0A1520;border:1px solid #2A4A60;border-radius:9px;padding:12px 14px;font-size:12px;color:var(--subtle);line-height:1.6;}
+.tool-item strong{color:var(--blue);display:block;margin-bottom:3px;}
+
+@media(max-width:640px){.info-grid,.channel-grid,.tool-grid{grid-template-columns:1fr;}.header{padding:24px 20px;}.tabs{margin:16px 16px 0;}.container{padding:20px 16px;}}
+</style>
+</head>
+<body>
+<div class="conf-banner">🔒 Internal Insurance Town Resource &nbsp;·&nbsp; Authorized Internal Use Only &nbsp;·&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <div class="header-top">
+    <div class="avatar">Z</div>
+    <div class="header-text">
+      <h1>Jayzel Dollente — "Zel"</h1>
+      <div class="role">Commercial Specialist &nbsp;·&nbsp; Insurance Town Agency</div>
+    </div>
+  </div>
+  <div class="badges">
+    <span class="badge badge-trial">⏳ On Trial</span>
+    <span class="badge badge-hours">🕐 10AM — 3PM</span>
+    <span class="badge badge-ref">✅ Referred by Pedro</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('profile')">Profile</div>
+  <div class="tab" onclick="showTab('scope')">Scope</div>
+  <div class="tab" onclick="showTab('flow')">Daily Flow</div>
+  <div class="tab" onclick="showTab('outreach')">Outreach Process</div>
+  <div class="tab" onclick="showTab('eod')">EOD Standard</div>
+  <div class="tab" onclick="showTab('limits')">Hard Limits</div>
+  <div class="tab" onclick="showTab('tools')">Tools</div>
+</div>
+
+<div class="container">
+
+  <!-- PROFILE -->
+  <div class="tab-content active" id="tab-profile">
+    <div class="section purple">
+      <div class="section-header"><div class="section-icon si-purple">👤</div><div class="section-title t-purple">Profile</div></div>
+      <div class="info-grid">
+        <div class="info-item"><div class="info-label">Full Name</div><div class="info-value">Jayzel Dollente</div></div>
+        <div class="info-item"><div class="info-label">Goes By</div><div class="info-value">Zel</div></div>
+        <div class="info-item"><div class="info-label">Role</div><div class="info-value">Commercial Specialist</div></div>
+        <div class="info-item"><div class="info-label">Status</div><div class="info-value" style="color:var(--gold);">On Trial</div></div>
+        <div class="info-item"><div class="info-label">Hours</div><div class="info-value">10:00 AM — 3:00 PM</div></div>
+        <div class="info-item"><div class="info-label">Start Date</div><div class="info-value">June 24, 2026</div></div>
+        <div class="info-item"><div class="info-label">Referred By</div><div class="info-value">Pedro Torres Jr.</div></div>
+        <div class="info-item"><div class="info-label">Reports To</div><div class="info-value">Eva Chong</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCOPE -->
+  <div class="tab-content" id="tab-scope">
+    <div class="section green">
+      <div class="section-header"><div class="section-icon si-green">✅</div><div class="section-title t-green">What Zel Does</div></div>
+      <ul class="scope-list">
+        <li class="scope-item"><div class="scope-icon">📞</div><div class="scope-text"><strong>Stale Lead Outreach</strong> — Contact all stale commercial leads via SMS, email, and call. Validate and qualify leads for the pipeline.</div></li>
+        <li class="scope-item"><div class="scope-icon">🔄</div><div class="scope-text"><strong>Commercial Renewals</strong> — Handle commercial renewals for both Farmers and brokered carriers. Full renewal process from identification to completion.</div></li>
+        <li class="scope-item"><div class="scope-icon">📋</div><div class="scope-text"><strong>Arminda EOD Review</strong> — Receive Arminda's stale lead flags daily. Work all cleared stale leads immediately. Flag duplicates and conflicts to Eva only.</div></li>
+        <li class="scope-item"><div class="scope-icon">💼</div><div class="scope-text"><strong>Backup Quoting for Pedro</strong> — Support Pedro on commercial quotes when needed. Follow market order: Farmers first, then KraftLake, then outside market.</div></li>
+        <li class="scope-item"><div class="scope-icon">📝</div><div class="scope-text"><strong>AZ Logging</strong> — Log every contact attempt, outcome, and stage change in AgencyZoom the same day. No exceptions.</div></li>
+      </ul>
+    </div>
+    <div class="section red">
+      <div class="section-header"><div class="section-icon si-red">🚫</div><div class="section-title t-red">What Zel Does NOT Do</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">No personal lines quotes or service</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">No customer contact outside assigned leads</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">No duplicate record decisions — flag to Eva only</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">No tag changes without Eva written instruction</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">No binding or invoicing without Eva approval</div></div>
+    </div>
+  </div>
+
+  <!-- DAILY FLOW -->
+  <div class="tab-content" id="tab-flow">
+    <div class="section blue">
+      <div class="section-header"><div class="section-icon si-blue">📅</div><div class="section-title t-blue">Daily Flow</div></div>
+      <div class="step-card"><div class="step-num sn-blue">1</div><div class="step-text"><strong>Start of shift (10AM):</strong> Check Slack for Arminda's latest EOD stale lead list. Review flagged leads assigned to you.</div></div>
+      <div class="step-card"><div class="step-num sn-green">2</div><div class="step-text"><strong>Outreach block:</strong> Work assigned stale leads in order. Contact each via SMS first, then email, then call. Log every attempt in AZ immediately.</div></div>
+      <div class="step-card"><div class="step-num sn-purple">3</div><div class="step-text"><strong>Renewals block:</strong> Review commercial renewals pipeline. Process active renewals, follow up on pending items, update AZ stages.</div></div>
+      <div class="step-card"><div class="step-num sn-gold">4</div><div class="step-text"><strong>Backup quoting:</strong> Support Pedro on commercial quotes as needed. Follow market order always.</div></div>
+      <div class="step-card"><div class="step-num sn-blue">5</div><div class="step-text"><strong>End of shift (3PM):</strong> Submit EOD report to #eod-ops-zel in Slack. Log all activity completed. Flag anything needing Eva decision.</div></div>
+    </div>
+    <div class="section gold">
+      <div class="section-header"><div class="section-icon si-gold">📋</div><div class="section-title t-gold">Arminda EOD Flow</div></div>
+      <div class="step-card"><div class="step-num sn-gold">1</div><div class="step-text">Arminda posts EOD in #eod-ops-arminda with stale leads flagged</div></div>
+      <div class="step-card"><div class="step-num sn-gold">2</div><div class="step-text">Eva or Arminda forwards cleared stale leads to Zel in Slack</div></div>
+      <div class="step-card"><div class="step-num sn-gold">3</div><div class="step-text">Zel works all cleared stale leads immediately — no Eva review needed</div></div>
+      <div class="step-card"><div class="step-num sn-gold">4</div><div class="step-text">Zel flags duplicates and Sold conflicts to Eva only — does not touch them</div></div>
+    </div>
+  </div>
+
+  <!-- OUTREACH PROCESS -->
+  <div class="tab-content" id="tab-outreach">
+    <div class="section green">
+      <div class="section-header"><div class="section-icon si-green">📡</div><div class="section-title t-green">Three Channel Outreach</div></div>
+      <div class="channel-grid">
+        <div class="channel-card sms"><div class="channel-icon">💬</div><div class="channel-name cn-green">SMS First</div><div class="channel-desc">Send SMS first. Short, friendly, direct. Include business name and your name. Wait 24 hours for response before moving to email.</div></div>
+        <div class="channel-card email"><div class="channel-icon">📧</div><div class="channel-name cn-blue">Email Second</div><div class="channel-desc">Send follow-up email if no SMS response. More detail, professional tone. Include quote offer and next step. Wait 48 hours.</div></div>
+        <div class="channel-card call"><div class="channel-icon">📞</div><div class="channel-name cn-gold">Call Third</div><div class="channel-desc">Call if no response to SMS or email. Assume transfer. No gate before transfer. Both yes and no lead to same outcome.</div></div>
+      </div>
+    </div>
+    <div class="section purple">
+      <div class="section-header"><div class="section-icon si-purple">📊</div><div class="section-title t-purple">After Outreach — What to Do</div></div>
+      <div class="step-card"><div class="step-num sn-green">✓</div><div class="step-text"><strong>Responded and interested:</strong> Move lead forward in pipeline. Schedule quote or next step. Log in AZ.</div></div>
+      <div class="step-card"><div class="step-num sn-blue">→</div><div class="step-text"><strong>No response after all 3 channels:</strong> Move to Smart Cycle in AZ. Log note with all 3 attempt dates and methods.</div></div>
+      <div class="step-card"><div class="step-num sn-gold">!</div><div class="step-text"><strong>Duplicate found:</strong> Do NOT touch. Flag to Eva in Slack with lead name and what you found. Wait for Eva decision.</div></div>
+      <div class="step-card"><div class="step-num sn-purple">✗</div><div class="step-text"><strong>Hard no or wrong number:</strong> Log in AZ. Tag as appropriate per Eva instruction. Flag to Eva.</div></div>
+    </div>
+    <div class="section blue">
+      <div class="section-header"><div class="section-icon si-blue">📝</div><div class="section-title t-blue">AZ Note Standard — Every Contact Attempt</div></div>
+      <div class="eod-box">
+        <div class="eod-header">## 📌 Outreach Attempt</div>
+        <div class="eod-item">📞 Channel: [SMS / Email / Call]</div>
+        <div class="eod-item">📅 Date: [MM/DD/YYYY]</div>
+        <div class="eod-item">💬 Outcome: [Response received / No response / Wrong number / Not interested]</div>
+        <div class="eod-item">➡️ Next Step: [Follow up / Smart Cycle / Flag to Eva]</div>
+        <div class="eod-note">— Zel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EOD -->
+  <div class="tab-content" id="tab-eod">
+    <div class="section purple">
+      <div class="section-header"><div class="section-icon si-purple">📊</div><div class="section-title t-purple">EOD Standard — Post to #eod-ops-zel</div></div>
+      <div class="eod-box">
+        <div class="eod-header">EOD REPORT | [DATE] | Commercial Specialist | [START TIME] to [END TIME] PST</div>
+        <div class="eod-section">📞 STALE LEAD OUTREACH:</div>
+        <div class="eod-item">Leads assigned: [#]</div>
+        <div class="eod-item">Contacted today: [#]</div>
+        <div class="eod-item">Responded and interested: [#] — [Names]</div>
+        <div class="eod-item">No response — Smart Cycled: [#] — [Names]</div>
+        <div class="eod-item">Flagged to Eva (duplicates/conflicts): [#] — [Names]</div>
+        <div class="eod-section">🔄 COMMERCIAL RENEWALS:</div>
+        <div class="eod-item">Renewals worked: [#]</div>
+        <div class="eod-item">Completed: [#] — [Names]</div>
+        <div class="eod-item">Pending follow-up: [#] — [Names]</div>
+        <div class="eod-section">💼 BACKUP QUOTING (Pedro Support):</div>
+        <div class="eod-item">Quotes assisted: [#] — [Names and LOB]</div>
+        <div class="eod-section">🚨 FLAGS FOR EVA:</div>
+        <div class="eod-item">[List anything needing Eva decision]</div>
+        <div class="eod-note">— Zel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIMITS -->
+  <div class="tab-content" id="tab-limits">
+    <div class="section red">
+      <div class="section-header"><div class="section-icon si-red">🚫</div><div class="section-title t-red">Hard Limits — Non-Negotiable</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Never touch duplicate records — flag to Eva and wait</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Never change tags without Eva written instruction</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Never bind or invoice without Eva approval</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Never contact customers outside your assigned lead list</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Never work personal lines — commercial only</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Always log in AZ same day — never end shift without logging</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">Market order is always Farmers first, then KraftLake, then outside market</div></div>
+      <div class="limit-item"><div class="limit-icon">🚫</div><div class="limit-text">When KraftLake rejects: log KL Rejected + case number in AZ note + screenshot with case ID</div></div>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="tab-content" id="tab-tools">
+    <div class="section blue">
+      <div class="section-header"><div class="section-icon si-blue">🔧</div><div class="section-title t-blue">Your Tools</div></div>
+      <div class="tool-grid">
+        <div class="tool-item"><strong>AgencyZoom (AZ)</strong>CRM source of truth. All leads, notes, stages, and tags live here.</div>
+        <div class="tool-item"><strong>Momentum AMP</strong>Policy management system. Used for renewals tracking.</div>
+        <div class="tool-item"><strong>Slack</strong>Primary communication. Post EOD to #eod-ops-zel. Flag to Eva in Slack.</div>
+        <div class="tool-item"><strong>Farmers Agent Portal</strong>Access provided by Eva. Used for Farmers renewals and quoting.</div>
+        <div class="tool-item"><strong>KraftLake Portal</strong>Brokerage market. Use after Farmers declines. Log rejection always.</div>
+        <div class="tool-item"><strong>Internal Docs Portal</strong>All guides and broker fee tools at insurance-town-internal-docs.netlify.app</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

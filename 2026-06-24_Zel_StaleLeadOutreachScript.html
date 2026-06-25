@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zel — Stale Lead Re-Engagement Scripts</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#0D1B2A;--navy2:#111D28;--navy3:#1C2B35;--blue:#AAD0E7;--blue3:#4A8FB0;--green:#06D6A0;--gold:#F4C430;--gold2:#C8933A;--purple:#A078DC;--text:#E8EFF7;--muted:#7AAFC8;--subtle:#BDD5E8;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;padding:0 0 80px;}
+.conf-banner{background:linear-gradient(90deg,#8B6914,#B8860B,#8B6914);color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:0.12em;padding:9px 16px;text-transform:uppercase;}
+.header{background:var(--navy3);border-bottom:3px solid var(--green);padding:32px 40px;}
+.header-top{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.header-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#04B589,var(--green));display:flex;align-items:center;justify-content:center;font-size:22px;}
+.header h1{font-family:'DM Serif Display',serif;font-size:26px;color:var(--green);}
+.header .sub{color:var(--muted);font-size:13px;margin-left:58px;}
+.rule-banner{background:rgba(244,196,48,0.08);border:1px solid rgba(244,196,48,0.25);border-radius:10px;padding:14px 18px;margin:24px 24px 0;font-size:13px;color:var(--gold2);line-height:1.7;}
+.rule-banner strong{color:var(--gold);display:block;margin-bottom:4px;}
+.context-banner{background:rgba(170,208,231,0.06);border:1px solid rgba(170,208,231,0.2);border-radius:10px;padding:14px 18px;margin:12px 24px 0;font-size:13px;color:var(--subtle);line-height:1.7;}
+.context-banner strong{color:var(--blue);display:block;margin-bottom:4px;}
+.container{max-width:800px;margin:0 auto;padding:28px 24px;}
+.section-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid #1E3448;padding-bottom:8px;margin:36px 0 18px;}
+.section-label:first-of-type{margin-top:0;}
+.channel-header{display:flex;align-items:center;gap:14px;background:var(--navy2);border:1px solid #1E3448;border-radius:14px 14px 0 0;padding:18px 22px;border-bottom:none;}
+.ch-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.chi-green{background:rgba(6,214,160,0.15);}
+.chi-blue{background:rgba(170,208,231,0.15);}
+.chi-gold{background:rgba(244,196,48,0.15);}
+.ch-info h3{font-size:15px;font-weight:700;}
+.ch-green{color:var(--green);}
+.ch-blue{color:var(--blue);}
+.ch-gold{color:var(--gold);}
+.ch-info p{font-size:11px;color:var(--muted);margin-top:2px;}
+.script-box{background:#060F18;border:1px solid #2A4A60;border-radius:0 0 14px 14px;padding:22px 24px;margin-bottom:24px;}
+.script-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.sl-green{color:var(--green);}
+.sl-blue{color:var(--blue);}
+.sl-gold{color:var(--gold);}
+.script-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--subtle);line-height:2.1;background:var(--navy2);border:1px solid #2A4A60;border-radius:8px;padding:16px 18px;margin-bottom:10px;white-space:pre-wrap;}
+.placeholder{color:var(--gold);font-style:italic;}
+.copy-btn{background:var(--navy3);border:1px solid #2A4A60;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;padding:8px 16px;border-radius:7px;cursor:pointer;transition:all 0.2s;}
+.copy-btn:hover{border-color:var(--green);color:var(--green);}
+.tip-box{background:rgba(6,214,160,0.06);border:1px solid rgba(6,214,160,0.2);border-radius:9px;padding:12px 16px;font-size:12px;color:#7AAFC8;line-height:1.7;margin-top:12px;}
+.tip-box strong{color:var(--green);}
+.assume-box{background:rgba(160,120,220,0.06);border:1px solid rgba(160,120,220,0.25);border-radius:9px;padding:12px 16px;font-size:12px;color:#C4AAEE;line-height:1.7;margin-top:10px;}
+.assume-box strong{color:var(--purple);}
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
+.outcome-card{background:var(--navy2);border:1px solid #1E3448;border-radius:9px;padding:12px 14px;}
+.outcome-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+.oc-green{color:var(--green);}
+.oc-blue{color:var(--blue);}
+.oc-gold{color:var(--gold);}
+.oc-red{color:#FF9999;}
+.outcome-card p{font-size:11px;color:var(--subtle);line-height:1.6;}
+.toast{display:none;position:fixed;bottom:24px;right:24px;background:var(--green);color:var(--navy);font-weight:700;font-size:13px;padding:12px 20px;border-radius:10px;box-shadow:0 4px 20px rgba(6,214,160,0.4);z-index:999;}
+@media(max-width:640px){.outcome-grid{grid-template-columns:1fr;}.header{padding:24px 20px;}.container{padding:20px 16px;}.rule-banner,.context-banner{margin:12px 16px 0;}}
+</style>
+</head>
+<body>
+<div class="conf-banner">🔒 Internal Insurance Town Resource &nbsp;·&nbsp; Authorized Internal Use Only &nbsp;·&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <div class="header-top"><div class="header-icon">🔁</div><h1>Stale Lead Re-Engagement Scripts</h1></div>
+  <div class="sub">Zel — Commercial Specialist &nbsp;·&nbsp; SMS then Email then Call &nbsp;·&nbsp; June 2026</div>
+</div>
+
+<div class="rule-banner">
+  <strong>⚡ Assumable Transfer Rule — Always On</strong>
+  No gate. No lock-in. Both yes and no lead to the same outcome: next step or transfer. Create momentum, not pressure.
+</div>
+<div class="context-banner">
+  <strong>📌 Re-Engagement Context — Read This First</strong>
+  These are NOT cold leads. They already connected with Insurance Town Agency before. They know who we are. Your job is to warmly reconnect, remind them we are here, and find out where they are now. Lead with the relationship, not the pitch.
+</div>
+
+<div class="container">
+
+  <!-- SMS -->
+  <div class="section-label">Channel 1 — SMS First</div>
+  <div class="channel-header">
+    <div class="ch-icon chi-green">💬</div>
+    <div class="ch-info"><h3 class="ch-green">SMS Re-Engagement</h3><p>Warm, familiar, one easy question. Send first — wait 24 hours.</p></div>
+  </div>
+  <div class="script-box">
+    <div class="script-label sl-green">Opening SMS</div>
+    <div class="script-text" id="sms1">Hey <span class="placeholder">[First Name]</span>! This is Zel with Insurance Town Agency — we worked with you before on coverage for <span class="placeholder">[Business Name]</span>. Just checking in to see where things stand — are you still looking or did you get sorted out?</div>
+    <button class="copy-btn" onclick="copyScript('sms1','SMS Opening')">📋 Copy</button>
+
+    <div class="script-label sl-green" style="margin-top:16px;">Follow-Up SMS (no response after 24hrs)</div>
+    <div class="script-text" id="sms2">Hi <span class="placeholder">[First Name]</span>! Zel from Insurance Town again 😊 — just wanted to make sure you did not fall through the cracks. We have got some new options that might be a better fit for <span class="placeholder">[Business Name]</span>. Worth a quick look?</div>
+    <button class="copy-btn" onclick="copyScript('sms2','SMS Follow-Up')">📋 Copy</button>
+
+    <div class="tip-box"><strong>Tip:</strong> "Did you get sorted out?" — this is a soft open. It acknowledges history without pressure. Either answer (yes or no) gives you something to work with and move forward.</div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="section-label">Channel 2 — Email Second</div>
+  <div class="channel-header">
+    <div class="ch-icon chi-blue">📧</div>
+    <div class="ch-info"><h3 class="ch-blue">Email Re-Engagement</h3><p>Send if no SMS response after 24 hours. Personal, brief, one next step.</p></div>
+  </div>
+  <div class="script-box">
+    <div class="script-label sl-blue">Subject Line Options (pick one)</div>
+    <div class="script-text" id="email-subjects">Checking back in — <span class="placeholder">[Business Name]</span>
+We still have options for you, <span class="placeholder">[First Name]</span>
+Quick follow-up from Insurance Town</div>
+    <button class="copy-btn" onclick="copyScript('email-subjects','Email Subject Options')">📋 Copy</button>
+
+    <div class="script-label sl-blue" style="margin-top:16px;">Email Body</div>
+    <div class="script-text" id="email-body">Hi <span class="placeholder">[First Name]</span>,
+
+This is Zel from Insurance Town Agency — we connected before regarding commercial coverage for <span class="placeholder">[Business Name]</span> and I wanted to personally reach back out.
+
+Things change and we want to make sure you are not leaving coverage on the table or overpaying for what you have. We work with multiple commercial carriers and can usually find a stronger fit quickly.
+
+I am going to have our commercial specialist follow up with you directly to take a fresh look. What is the best number to reach you this week?
+
+Talk soon,
+Zel
+Insurance Town Agency</div>
+    <button class="copy-btn" onclick="copyScript('email-body','Email Body')">📋 Copy</button>
+
+    <div class="tip-box"><strong>Key phrase:</strong> "I am going to have our specialist follow up with you directly" — assumable. You are not asking. You are telling them what happens next and making it easy to say yes.</div>
+  </div>
+
+  <!-- CALL -->
+  <div class="section-label">Channel 3 — Call Third</div>
+  <div class="channel-header">
+    <div class="ch-icon chi-gold">📞</div>
+    <div class="ch-info"><h3 class="ch-gold">Call Script</h3><p>Warm reconnect. Assumable transfer. No gate ever.</p></div>
+  </div>
+  <div class="script-box">
+    <div class="script-label sl-gold">Opening</div>
+    <div class="script-text" id="call-open">Hi, is this <span class="placeholder">[First Name]</span>?
+
+[Yes:]
+
+Hey <span class="placeholder">[First Name]</span>! This is Zel calling from Insurance Town Agency. We had connected before about commercial coverage for <span class="placeholder">[Business Name]</span> — I just wanted to personally reach back out and see where things stand with you. Do you have just 2 minutes?</div>
+    <button class="copy-btn" onclick="copyScript('call-open','Call Opening')">📋 Copy</button>
+
+    <div class="script-label sl-gold" style="margin-top:16px;">Reconnect and Qualify</div>
+    <div class="script-text" id="call-qualify">[If still looking / not yet covered:]
+Perfect timing then. A lot has changed with carrier options lately and I think we can do better for you than last time. Let me ask you a couple quick things so I can connect you with the right person —
+
+[If already covered:]
+That is great to hear! When does your policy renew? We always like to do a quick comparison at renewal to make sure you are getting the best rate — I can have our specialist take a look for you. It only takes a few minutes.
+
+[Either way — qualify quickly:]
+What type of work does <span class="placeholder">[Business Name]</span> do?
+How many employees do you have?
+When is your renewal coming up?
+
+[Then transfer:]
+Perfect — I am connecting you right now with our commercial specialist who can pull up some options for you.</div>
+    <button class="copy-btn" onclick="copyScript('call-qualify','Call Reconnect and Transfer')">📋 Copy</button>
+
+    <div class="script-label sl-gold" style="margin-top:16px;">Voicemail</div>
+    <div class="script-text" id="call-vm">Hey <span class="placeholder">[First Name]</span>! This is Zel from Insurance Town Agency — we had connected before about coverage for <span class="placeholder">[Business Name]</span> and I just wanted to personally reach back out. Give me a call at <span class="placeholder">[Phone Number]</span> when you get a chance — I have got some updated options I think will be worth a quick look. Talk soon!</div>
+    <button class="copy-btn" onclick="copyScript('call-vm','Voicemail')">📋 Copy</button>
+
+    <div class="assume-box"><strong>⚡ Assumable Transfer Always:</strong> Covered or not covered — both answers move forward. "I am connecting you right now" not "would you like to." Already covered? Renewal review is the next step. Not covered? Fresh quote is the next step. No dead ends.</div>
+  </div>
+
+  <!-- OUTCOMES -->
+  <div class="section-label">After All 3 Channels — What To Do</div>
+  <div class="outcome-grid">
+    <div class="outcome-card"><h4 class="oc-green">✅ Re-Engaged and Interested</h4><p>Transfer to Pedro or Eva for quote. Log outcome and transfer in AZ same day. Move stage forward.</p></div>
+    <div class="outcome-card"><h4 class="oc-blue">→ No Response — All 3 Channels</h4><p>Smart Cycle in AZ. Log all 3 attempt dates and methods. Done — do not chase further.</p></div>
+    <div class="outcome-card"><h4 class="oc-gold">⚠️ Duplicate Found</h4><p>Stop. Flag to Eva in Slack with lead name and what you found. Wait for Eva decision before touching anything.</p></div>
+    <div class="outcome-card"><h4 class="oc-red">✗ Hard No or Wrong Number</h4><p>Log clearly in AZ. Flag to Eva. No further contact.</p></div>
+  </div>
+
+</div>
+<div class="toast" id="toast">✅ Copied!</div>
+<script>
+function copyScript(id,label){
+  const el=document.getElementById(id);
+  const text=el.innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const t=document.getElementById('toast');
+    t.textContent='✅ '+label+' copied!';
+    t.style.display='block';
+    setTimeout(()=>t.style.display='none',2500);
+  });
+}
+</script>
+</body>
+</html>
