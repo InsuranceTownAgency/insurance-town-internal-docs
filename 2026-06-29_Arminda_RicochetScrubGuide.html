@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricochet Lead Scrub Guide | Arminda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --navy:#0D1B2A;--mid:#112236;--card:#1a3352;
+  --gold:#C9A84C;--gold-l:#E8C96A;--gold-p:rgba(201,168,76,0.1);--gold-b:rgba(201,168,76,0.25);
+  --green:#2ecc71;--green2:rgba(46,204,113,0.1);--green-b:rgba(46,204,113,0.3);
+  --red:#e74c3c;--red2:rgba(231,76,60,0.1);--red-b:rgba(231,76,60,0.35);
+  --blue:#3498db;--blue2:rgba(52,152,219,0.1);--blue-b:rgba(52,152,219,0.3);
+  --amber:#e67e22;--amber2:rgba(230,126,34,0.1);--amber-b:rgba(230,126,34,0.3);
+  --text:#DDE6F0;--muted:#7A8FA3;--border:rgba(201,168,76,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--navy);color:var(--text);font-family:"DM Sans",sans-serif;font-size:14px;line-height:1.65;min-height:100vh;padding-bottom:80px;}
+.banner{background:var(--gold);color:var(--navy);text-align:center;padding:6px 12px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;position:sticky;top:0;z-index:100;}
+.hero{background:linear-gradient(135deg,#060f18,#0d1f33);border-bottom:2px solid var(--gold-b);padding:22px 24px 18px;}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.hero h1{font-family:"Syne",sans-serif;font-size:22px;font-weight:800;color:var(--text);}
+.hero h1 span{color:var(--gold);}
+.hero-sub{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.6;}
+
+.nav{display:flex;gap:6px;padding:12px 20px;background:var(--mid);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:32px;z-index:99;}
+.nav-btn{background:transparent;border:1px solid var(--border);border-radius:20px;color:var(--muted);font-family:"DM Sans",sans-serif;font-size:11px;font-weight:600;padding:5px 14px;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.nav-btn.active,.nav-btn:hover{background:var(--gold-p);border-color:var(--gold);color:var(--gold);}
+
+.section{display:none;padding:20px;max-width:680px;}
+.section.active{display:block;}
+.sec-title{font-family:"Syne",sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.sec-title span{color:var(--gold);}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.65;}
+
+.crit{background:var(--red2);border:1.5px solid var(--red-b);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:18px;position:relative;}
+.crit-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:5px;}
+.crit p{font-size:13px;color:var(--text);line-height:1.75;}
+.crit p strong{color:#ff9999;}
+
+.info-band{background:var(--gold-p);border:1px solid var(--gold-b);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--text);line-height:1.75;}
+.info-band strong{color:var(--gold-l);}
+
+.step-wrap{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:14px;padding-bottom:18px;position:relative;}
+.step:not(:last-child)::after{content:"";position:absolute;left:16px;top:36px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(201,168,76,0.3),transparent);}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:"Syne",sans-serif;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{flex:1;background:var(--mid);border:1px solid var(--border);border-radius:8px;padding:12px 16px;}
+.step-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.step-content{font-size:13px;color:var(--text);line-height:1.75;}
+.step-content strong{color:var(--gold-l);}
+.step-note{font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;line-height:1.6;}
+.step-note strong{color:var(--text);font-style:normal;}
+
+.url-box{background:rgba(0,0,0,0.3);border:1px solid var(--green-b);border-radius:6px;padding:10px 14px;margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--green);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.copy-btn{background:rgba(46,204,113,0.15);border:1px solid var(--green-b);color:var(--green);font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.copy-btn:hover{background:rgba(46,204,113,0.3);}
+
+.pass-card{background:rgba(0,0,0,0.25);border:1px solid var(--gold-b);border-radius:8px;padding:12px 16px;margin-top:8px;}
+.pass-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.pass-value{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold-l);}
+
+.source-card{background:var(--mid);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:10px;}
+.source-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.source-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.sb-fb{background:var(--blue2);border:1px solid var(--blue-b);color:var(--blue);}
+.sb-purchased{background:var(--amber2);border:1px solid var(--amber-b);color:var(--amber);}
+.sb-recycled{background:var(--purple2,rgba(155,89,182,0.1));border:1px solid rgba(155,89,182,0.3);color:#bb8fce;}
+.sb-cslb{background:var(--green2);border:1px solid var(--green-b);color:var(--green);}
+.source-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+
+.check-list{list-style:none;margin-top:8px;}
+.check-list li{font-size:13px;color:var(--text);padding:5px 0 5px 26px;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.6;}
+.check-list li:last-child{border-bottom:none;}
+.check-list li::before{content:"";position:absolute;left:0;top:8px;width:16px;height:16px;border:1.5px solid var(--gold-b);border-radius:4px;background:rgba(201,168,76,0.05);}
+.check-list li strong{color:var(--gold-l);}
+
+.eod-box{background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-top:8px;font-size:13px;color:var(--text);line-height:1.85;white-space:pre-line;font-family:"JetBrains Mono",monospace;font-size:11px;}
+.eod-box em{color:var(--gold-l);font-style:normal;}
+
+.rule-band{background:var(--red2);border:1px solid var(--red-b);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:10px 14px;margin:10px 0;font-size:12px;color:var(--text);line-height:1.65;}
+.rule-band strong{color:#ff9999;}
+
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
+
+.toast{position:fixed;top:50px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--navy);font-weight:700;font-size:12px;padding:10px 20px;border-radius:20px;z-index:200;display:none;}
+.toast.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="banner">Internal Insurance Town Resource | Authorized Internal Use Only | Do Not Share Outside Agency</div>
+
+<div class="hero">
+  <div class="hero-tag">Insurance Town Agency | Arminda | Back Office</div>
+  <h1>Ricochet <span>Lead Scrub Guide</span></h1>
+  <div class="hero-sub">Permanent weekly responsibility. Pull reports. Scrub for DNC. Categorize by source. Upload clean lists back to Ricochet. Flag invalid numbers on AZ lead cards. Weekly rolling 30-day window.</div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="show('overview',this)">Overview</button>
+  <button class="nav-btn" onclick="show('credentials',this)">Credentials</button>
+  <button class="nav-btn" onclick="show('sources',this)">Lead Sources</button>
+  <button class="nav-btn" onclick="show('pullreports',this)">Step 1: Pull Reports</button>
+  <button class="nav-btn" onclick="show('scrub',this)">Step 2: Scrub</button>
+  <button class="nav-btn" onclick="show('upload',this)">Step 3: Upload</button>
+  <button class="nav-btn" onclick="show('flag',this)">Step 4: Flag AZ</button>
+  <button class="nav-btn" onclick="show('eod',this)">EOD Report</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="overview" class="section active">
+  <div class="sec-title">Overview <span>and Rules</span></div>
+  <div class="sec-sub">Read this tab first every week before starting the scrub. Never skip steps. Never contact any lead yourself.</div>
+
+  <div class="crit">
+    <div class="crit-label">Critical Rules</div>
+    <p>
+      <strong>Never contact any lead yourself.</strong> Your job is to scrub, flag, and report only.<br>
+      <strong>Never delete any record in AZ.</strong> Flag with a note only.<br>
+      <strong>Never upload an unscrubbed list to Ricochet.</strong> Always scrub first.<br>
+      <strong>Always use Eva's admin credentials.</strong> Never your own login. Never share credentials.<br>
+      <strong>Report to Eva before uploading</strong> anything back to Ricochet.
+    </p>
+  </div>
+
+  <div class="info-band"><strong>Your weekly scrub flow in 4 steps:</strong><br>
+  Step 1: Pull lead reports from Ricochet (Deedma portal)<br>
+  Step 2: Run each list through RealValidation scrub<br>
+  Step 3: Upload clean categorized lists back to Ricochet<br>
+  Step 4: Flag DNC and invalid numbers on AZ lead cards</div>
+
+  <div class="info-band"><strong>Frequency:</strong> Weekly. Rolling 30-day window. Every Monday at the start of your shift.</div>
+
+  <div class="info-band"><strong>Lead sources you scrub (4 total):</strong><br>
+  1. Facebook Meta Ads: Home and Commercial<br>
+  2. Internet lead companies: Home and Auto purchased<br>
+  3. Recycled Ricochet leads (re-scrub every cycle)<br>
+  4. CSLB and LinkedIn researcher leads (Jaffer delivers these as Excel files — add to scrub queue when received)</div>
+
+  <div class="rule-band"><strong>TCPA Compliance — Never Skip This:</strong><br>
+  Facebook leads: compliant for 90 days from opt-in date. After 90 days = email only, no SMS, no calls.<br>
+  Purchased internet leads: compliant for 30 days from purchase date.<br>
+  Recycled leads: re-scrub required every cycle before re-uploading.<br>
+  If you find a lead over its compliance window, flag it in your EOD with the lead name and date. Do not upload it.</div>
+</div>
+
+<!-- CREDENTIALS -->
+<div id="credentials" class="section">
+  <div class="sec-title">Credentials <span>from 1Password</span></div>
+  <div class="sec-sub">All credentials are stored in Eva's 1Password account. You will receive 1Password access at 2:30PM today. Find each item by searching the exact label name shown below.</div>
+
+  <div class="crit">
+    <div class="crit-label">Important</div>
+    <p>These are <strong>Eva's admin credentials.</strong> Never save them anywhere outside 1Password. Never share them with anyone. Never use them for anything other than the scrub workflow.</p>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Ricochet Admin Login (Deedma Portal)</div>
+        <div class="step-content">In 1Password, search for: <strong>Ricochet Admin</strong><br>This gives you the username and password for Eva's admin account.</div>
+        <div class="url-box">
+          https://reports.ricochet.me/login
+          <button class="copy-btn" onclick="copy('https://reports.ricochet.me/login',this)">Copy URL</button>
+        </div>
+        <div class="step-note"><strong>This is Eva's admin login only.</strong> The regular Ricochet login at ricochet.me is different. You need reports.ricochet.me specifically to pull lead reports.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">RealValidation Login</div>
+        <div class="step-content">In 1Password, search for: <strong>RealValidation</strong><br>This gives you the login email (eva@insurancetownagency.com) and password. The Authorization Token is saved in the notes field of this 1Password entry.</div>
+        <div class="url-box">
+          https://www.realvalidation.com
+          <button class="copy-btn" onclick="copy('https://www.realvalidation.com',this)">Copy URL</button>
+        </div>
+        <div class="step-note"><strong>The Authorization Token</strong> is in the Notes section of the 1Password entry. You will need this for the RealValidation portal upload step.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-band"><strong>First time setup check:</strong> Open both URLs, log in with the credentials from 1Password, and confirm you can access both portals. Report back to Eva in Slack: "Confirmed access to Ricochet admin portal and RealValidation." Do not do anything else until Eva gives the go-ahead.</div>
+</div>
+
+<!-- LEAD SOURCES -->
+<div id="sources" class="section">
+  <div class="sec-title">Lead <span>Sources</span></div>
+  <div class="sec-sub">You pull a separate report for each source and keep them as separate files. Never mix sources in one file. Each source has its own TCPA compliance window.</div>
+
+  <div class="source-card">
+    <div class="source-title">Facebook Meta Ads <span class="source-badge sb-fb">Facebook</span></div>
+    <div class="source-desc">Home leads and Commercial leads from Facebook ad campaigns. Two sub-categories: Home and Commercial. Pull as two separate reports. TCPA window: 90 days from opt-in date. Any lead over 90 days from opt-in = flag in EOD, do not upload.</div>
+  </div>
+
+  <div class="source-card">
+    <div class="source-title">Internet Lead Companies <span class="source-badge sb-purchased">Purchased</span></div>
+    <div class="source-desc">Home leads and Auto leads purchased from internet lead vendors. Two sub-categories: Home and Auto. Pull as two separate reports. TCPA window: 30 days from purchase date. Any lead over 30 days = flag in EOD, do not upload.</div>
+  </div>
+
+  <div class="source-card">
+    <div class="source-title">Recycled Ricochet Leads <span class="source-badge sb-recycled">Recycled</span></div>
+    <div class="source-desc">Leads that have gone through a dial cycle and are being recycled back into Ricochet. Must be re-scrubbed every cycle without exception. No TCPA exemption — always scrub before re-uploading regardless of original opt-in date.</div>
+  </div>
+
+  <div class="source-card">
+    <div class="source-title">CSLB and LinkedIn Researcher Leads <span class="source-badge sb-cslb">Jaffer</span></div>
+    <div class="source-desc">Excel files delivered by Jaffer (Lead Researcher). Add to scrub queue when received. Jaffer delivers to Eva first. Eva forwards to you. Scrub same as other sources before any upload to Ricochet. Currently not yet delivered — expected Friday June 27. Do not action until you receive the file.</div>
+  </div>
+</div>
+
+<!-- STEP 1: PULL REPORTS -->
+<div id="pullreports" class="section">
+  <div class="sec-title">Step 1: <span>Pull Reports from Ricochet</span></div>
+  <div class="sec-sub">Log into the Ricochet admin portal (Deedma) and download each lead source as a separate CSV file. Keep every source in its own file. Never combine sources.</div>
+
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Log into Ricochet Admin Portal</div>
+        <div class="step-content">Go to <strong>reports.ricochet.me/login</strong>. Use Eva's admin credentials from 1Password (search: Ricochet Admin). Do not use the regular Ricochet login.</div>
+        <div class="url-box">https://reports.ricochet.me/login<button class="copy-btn" onclick="copy('https://reports.ricochet.me/login',this)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">Pull Rolling 30-Day Lead Report</div>
+        <div class="step-content">Set the date range to the last 30 days from today. Pull one report per lead source. Download as CSV each time. Name each file exactly as shown:<br><br>
+        <strong>Facebook Home leads:</strong> FB_Home_[YYYY-MM-DD].csv<br>
+        <strong>Facebook Commercial leads:</strong> FB_Commercial_[YYYY-MM-DD].csv<br>
+        <strong>Internet Home leads:</strong> Purchased_Home_[YYYY-MM-DD].csv<br>
+        <strong>Internet Auto leads:</strong> Purchased_Auto_[YYYY-MM-DD].csv<br>
+        <strong>Recycled leads:</strong> Recycled_[YYYY-MM-DD].csv</div>
+        <div class="step-note">Replace [YYYY-MM-DD] with today's date. Example: FB_Home_2026-06-29.csv</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-label">Check TCPA Compliance Dates</div>
+        <div class="step-content">Before scrubbing, check the opt-in or purchase date on each lead.<br><br>
+        <strong>Facebook leads:</strong> Remove any lead where opt-in date is more than 90 days ago. Flag these in your EOD.<br>
+        <strong>Purchased leads:</strong> Remove any lead where purchase date is more than 30 days ago. Flag these in your EOD.</div>
+        <div class="step-note"><strong>Do not delete these from AZ.</strong> Just remove them from the upload CSV and note them in your EOD report.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: SCRUB -->
+<div id="scrub" class="section">
+  <div class="sec-title">Step 2: <span>Run RealValidation Scrub</span></div>
+  <div class="sec-sub">Upload each CSV file separately to RealValidation. Run DNC and phone validation on each one. Download the clean output. Never skip this step before uploading to Ricochet.</div>
+
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Log into RealValidation</div>
+        <div class="step-content">Go to <strong>realvalidation.com</strong>. Use Eva's account credentials from 1Password (search: RealValidation). The Authorization Token is in the Notes section of that 1Password entry.</div>
+        <div class="url-box">https://www.realvalidation.com<button class="copy-btn" onclick="copy('https://www.realvalidation.com',this)">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">Upload Each CSV Separately</div>
+        <div class="step-content">Upload one CSV at a time. Start with Facebook Home, then Facebook Commercial, then Purchased Home, then Purchased Auto, then Recycled. Run the full DNC and phone validation scrub on each file. Wait for results before moving to the next file.</div>
+        <div class="step-note"><strong>Never combine files before scrubbing.</strong> Each source must be scrubbed separately so the categorization stays clean for Kyle's routing automation.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-label">Download Clean Output</div>
+        <div class="step-content">Download the clean output file for each source. RealValidation will show which numbers are DNC, invalid, or clean. Save the clean output with this naming format:<br><br>
+        <strong>CLEAN_FB_Home_[YYYY-MM-DD].csv</strong><br>
+        <strong>CLEAN_FB_Commercial_[YYYY-MM-DD].csv</strong><br>
+        <strong>CLEAN_Purchased_Home_[YYYY-MM-DD].csv</strong><br>
+        <strong>CLEAN_Purchased_Auto_[YYYY-MM-DD].csv</strong><br>
+        <strong>CLEAN_Recycled_[YYYY-MM-DD].csv</strong></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-label">Save the DNC and Invalid List Separately</div>
+        <div class="step-content">From each scrub result, save the flagged numbers (DNC and invalid) as a separate file. Name it:<br><br>
+        <strong>FLAGGED_[Source]_[YYYY-MM-DD].csv</strong><br><br>
+        You will use this in Step 4 to flag the AZ lead cards.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: UPLOAD -->
+<div id="upload" class="section">
+  <div class="sec-title">Step 3: <span>Upload Clean Lists to Ricochet</span></div>
+  <div class="sec-sub">Upload each clean categorized file back to Ricochet in the correct campaign. Never mix sources. Always report to Eva before activating any list.</div>
+
+  <div class="crit">
+    <div class="crit-label">Before You Upload Anything</div>
+    <p>Send Eva a Slack message with a summary of what you scrubbed and what you found. Wait for Eva's reply before uploading. <strong>Never upload without Eva's green light.</strong></p>
+  </div>
+
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Send Eva the Scrub Summary First</div>
+        <div class="step-content">Before uploading anything, message Eva in Slack with:<br><br>
+        Total leads per source reviewed<br>
+        How many removed for TCPA compliance<br>
+        How many flagged as DNC<br>
+        How many flagged as invalid phone<br>
+        How many clean and ready to upload per source</div>
+        <div class="step-note">Wait for Eva to reply "go ahead" before proceeding to the upload step.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">Upload Each Clean File to the Correct Ricochet Campaign</div>
+        <div class="step-content">Log back into Ricochet. Upload each clean CSV to its matching campaign:<br><br>
+        <strong>CLEAN_FB_Home</strong> → Campaign 1: New Home/Auto leads<br>
+        <strong>CLEAN_FB_Commercial</strong> → Campaign 2: Commercial CSLB and LinkedIn<br>
+        <strong>CLEAN_Purchased_Home</strong> → Campaign 1: New Home/Auto leads<br>
+        <strong>CLEAN_Purchased_Auto</strong> → Campaign 1: New Home/Auto leads<br>
+        <strong>CLEAN_Recycled</strong> → correct campaign based on lead type</div>
+        <div class="step-note">If you are unsure which campaign a file belongs to, stop and message Eva before uploading.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: FLAG AZ -->
+<div id="flag" class="section">
+  <div class="sec-title">Step 4: <span>Flag DNC and Invalid Numbers in AZ</span></div>
+  <div class="sec-sub">For every number that came back as DNC or invalid in the scrub, find that lead card in AgencyZoom and add a note. Never delete anything. Flag only.</div>
+
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Open Your Flagged CSV File</div>
+        <div class="step-content">Open the FLAGGED_[Source]_[Date].csv file you saved in Step 2. This has every number that came back as DNC or invalid. Go through each one.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">Find the Lead Card in AgencyZoom</div>
+        <div class="step-content">Search for the lead by phone number or name in AZ. Open the lead card.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-label">Add a Note on the Lead Card</div>
+        <div class="step-content">Add this exact note format on the AZ lead card:<br><br>
+        For DNC: <strong>"RealValidation: DNC — do not contact. Flagged [today's date]."</strong><br>
+        For invalid phone: <strong>"RealValidation: Invalid phone number. Flagged [today's date]."</strong></div>
+        <div class="step-note"><strong>Do not close, delete, or move the card.</strong> Do not tag the card. Just add the note. Eva decides next steps.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-label">Log Every Flagged Lead in Your EOD</div>
+        <div class="step-content">In your EOD report, list every lead you flagged in AZ with: lead name, phone number, source, and reason (DNC or invalid). See the EOD tab for the exact format.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EOD -->
+<div id="eod" class="section">
+  <div class="sec-title">EOD <span>Report Format</span></div>
+  <div class="sec-sub">Submit this in Slack at the end of every scrub shift. Use this exact format every time.</div>
+
+  <div class="eod-box">📋 <em>SCRUB EOD REPORT | [DATE] | Arminda</em>
+
+<em>SOURCES SCRUBBED THIS WEEK:</em>
+Facebook Home: [total pulled] leads reviewed, [#] removed TCPA, [#] DNC, [#] invalid, [#] clean uploaded
+Facebook Commercial: [total pulled] leads reviewed, [#] removed TCPA, [#] DNC, [#] invalid, [#] clean uploaded
+Purchased Home: [total pulled] leads reviewed, [#] removed TCPA, [#] DNC, [#] invalid, [#] clean uploaded
+Purchased Auto: [total pulled] leads reviewed, [#] removed TCPA, [#] DNC, [#] invalid, [#] clean uploaded
+Recycled: [total pulled] leads reviewed, [#] DNC, [#] invalid, [#] clean uploaded
+
+<em>TCPA FLAGGED (over compliance window — not uploaded):</em>
+[Lead name] | [Source] | [Opt-in or purchase date] | [Days over limit]
+
+<em>DNC AND INVALID FLAGGED IN AZ:</em>
+[Lead name] | [Phone] | [Source] | [DNC or Invalid] | AZ note added
+
+<em>UPLOAD STATUS:</em>
+Eva approval received: [Yes / Pending]
+All clean lists uploaded: [Yes / No — reason if no]
+
+<em>NOTES FOR EVA:</em>
+[Any questions, issues, or things Eva needs to decide]</div>
+
+  <div class="divider"></div>
+
+  <div class="info-band"><strong>Reminder:</strong> Send Eva the scrub summary and wait for approval BEFORE uploading. Then submit your full EOD after upload is complete. Two separate Slack messages.</div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+  window.scrollTo(0,0);
+}
+function copy(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    var t=document.getElementById("toast");
+    t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"),2000);
+  });
+}
+</script>
+</body>
+</html>

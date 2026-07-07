@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arminda — Back Office Specialist | Insurance Town Agency</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0D1B2A;--mid:#112236;--card:#1a3352;
+  --gold:#C9A84C;--gold-l:#E8C96A;--gold-p:rgba(201,168,76,0.1);--gold-b:rgba(201,168,76,0.25);
+  --green:#2ecc71;--green2:rgba(46,204,113,0.1);--green-b:rgba(46,204,113,0.3);
+  --red:#e74c3c;--red2:rgba(231,76,60,0.1);--red-b:rgba(231,76,60,0.35);
+  --blue:#3498db;--blue2:rgba(52,152,219,0.1);--blue-b:rgba(52,152,219,0.3);
+  --amber:#e67e22;--amber2:rgba(230,126,34,0.1);--amber-b:rgba(230,126,34,0.3);
+  --text:#DDE6F0;--muted:#7A8FA3;--border:rgba(201,168,76,0.15);
+}
+body{background:var(--navy);color:var(--text);font-family:"DM Sans",sans-serif;font-size:14px;line-height:1.65;min-height:100vh;padding-bottom:80px;}
+.banner{background:var(--gold);color:var(--navy);text-align:center;padding:6px 12px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;position:sticky;top:0;z-index:100;}
+.hero{background:linear-gradient(135deg,#060f18,#0d1f33);border-bottom:2px solid var(--amber-b);padding:24px 24px 18px;}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.hero h1{font-family:"Syne",sans-serif;font-size:24px;font-weight:800;color:var(--text);}
+.hero h1 span{color:var(--amber);}
+.hero-badges{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.badge{font-size:9px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.06em;text-transform:uppercase;}
+.b-trial{background:var(--amber2);border:1px solid var(--amber-b);color:var(--amber);}
+.b-hours{background:var(--blue2);border:1px solid var(--blue-b);color:var(--blue);}
+.b-role{background:var(--gold-p);border:1px solid var(--gold-b);color:var(--gold);}
+.nav{display:flex;gap:4px;padding:10px 20px;background:var(--mid);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:32px;z-index:99;}
+.nav-btn{background:transparent;border:1px solid var(--border);border-radius:20px;color:var(--muted);font-family:"DM Sans",sans-serif;font-size:10px;font-weight:600;padding:5px 12px;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.nav-btn.active,.nav-btn:hover{background:var(--amber2);border-color:var(--amber);color:var(--amber);}
+.section{display:none;padding:20px;max-width:720px;}
+.section.active{display:block;}
+.sec-title{font-family:"Syne",sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.sec-title span{color:var(--amber);}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.65;}
+.card{background:var(--mid);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px;}
+.card-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.ct-amber{color:var(--amber);}
+.ct-green{color:var(--green);}
+.ct-red{color:var(--red);}
+.ct-blue{color:var(--blue);}
+.ct-gold{color:var(--gold);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.info-item{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 12px;}
+.info-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.info-value{font-size:13px;font-weight:600;color:var(--text);}
+.crit{background:var(--red2);border:1.5px solid var(--red-b);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:12px;}
+.crit-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:5px;}
+.crit p{font-size:13px;color:var(--text);line-height:1.75;}
+.crit p strong{color:#ff9999;}
+.info-band{background:var(--gold-p);border:1px solid var(--gold-b);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px;font-size:13px;color:var(--text);line-height:1.75;}
+.info-band strong{color:var(--gold-l);}
+.green-band{background:var(--green2);border:1px solid var(--green-b);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px;font-size:13px;color:var(--text);line-height:1.75;}
+.green-band strong{color:var(--green);}
+.amber-band{background:var(--amber2);border:1px solid var(--amber-b);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px;font-size:13px;color:var(--text);line-height:1.75;}
+.amber-band strong{color:var(--amber);}
+.scope-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
+.scope-item:last-child{border-bottom:none;}
+.scope-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.scope-text{font-size:13px;color:var(--muted);line-height:1.6;}
+.scope-text strong{color:var(--text);}
+.limit-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
+.limit-item:last-child{border-bottom:none;}
+.limit-text{font-size:13px;color:#ff9999;line-height:1.6;}
+.step{display:flex;gap:14px;padding-bottom:14px;position:relative;}
+.step:not(:last-child)::after{content:"";position:absolute;left:16px;top:34px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(230,126,34,0.3),transparent);}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--amber);color:#fff;font-family:"Syne",sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{flex:1;background:var(--mid);border:1px solid var(--border);border-radius:8px;padding:10px 14px;}
+.step-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.step-content{font-size:13px;color:var(--text);line-height:1.75;}
+.step-content strong{color:var(--gold-l);}
+.step-note{font-size:11px;color:var(--muted);margin-top:5px;font-style:italic;}
+.source-card{background:var(--mid);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+.source-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:8px;}
+.source-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.sb-fb{background:var(--blue2);border:1px solid var(--blue-b);color:var(--blue);}
+.sb-purchased{background:var(--amber2);border:1px solid var(--amber-b);color:var(--amber);}
+.sb-recycled{background:rgba(155,89,182,0.1);border:1px solid rgba(155,89,182,0.3);color:#bb8fce;}
+.sb-cslb{background:var(--green2);border:1px solid var(--green-b);color:var(--green);}
+.source-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.eod-box{background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text);line-height:2;white-space:pre-line;}
+.eod-box em{color:var(--amber);font-style:normal;}
+.eod-box .gold{color:var(--gold-l);}
+.table-wrap{overflow-x:auto;margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:rgba(0,0,0,0.3);color:var(--gold);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text);line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+.divider{border:none;border-top:1px solid var(--border);margin:14px 0;}
+@media(max-width:480px){.info-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="banner">Internal Insurance Town Resource | Authorized Internal Use Only | Do Not Share Outside Agency</div>
+<div class="hero">
+  <div class="hero-tag">Insurance Town Agency | Back Office Specialist</div>
+  <h1>Arminda S. <span>Back Office</span></h1>
+  <div class="hero-badges">
+    <span class="badge b-trial">On Trial</span>
+    <span class="badge b-hours">2:30PM to end of shift PST</span>
+    <span class="badge b-role">AZ + Ricochet Scrub Specialist</span>
+  </div>
+</div>
+<div class="nav">
+  <button class="nav-btn active" onclick="show('profile',this)">Profile</button>
+  <button class="nav-btn" onclick="show('scope',this)">Scope</button>
+  <button class="nav-btn" onclick="show('scrub',this)">Ricochet Scrub</button>
+  <button class="nav-btn" onclick="show('az',this)">AZ Cleanup</button>
+  <button class="nav-btn" onclick="show('smartcycle',this)">Smart Cycle</button>
+  <button class="nav-btn" onclick="show('tags',this)">Tag Rules</button>
+  <button class="nav-btn" onclick="show('eod',this)">EOD Standard</button>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="section active">
+  <div class="sec-title">Profile <span>and Schedule</span></div>
+  <div class="card">
+    <div class="card-title ct-amber">Contact and Schedule</div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">Full Name</div><div class="info-value">Arminda S.</div></div>
+      <div class="info-item"><div class="info-label">Role</div><div class="info-value">Back Office Specialist</div></div>
+      <div class="info-item"><div class="info-label">Status</div><div class="info-value" style="color:var(--amber);">On Trial</div></div>
+      <div class="info-item"><div class="info-label">Upwork Title</div><div class="info-value">AZ and Momentum AMP Data Specialist</div></div>
+      <div class="info-item"><div class="info-label">Shift Start</div><div class="info-value">2:30PM PST</div></div>
+      <div class="info-item"><div class="info-label">EOD Channel</div><div class="info-value">#eod-ops-arminda</div></div>
+      <div class="info-item"><div class="info-label">Reports To</div><div class="info-value">Eva Chong</div></div>
+      <div class="info-item"><div class="info-label">Updated</div><div class="info-value">June 29 2026</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-amber">EOD Deadline Schedule</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Week</th><th>EOD Deadline</th></tr>
+        <tr><td>Week 1</td><td>By 2:00PM PST</td></tr>
+        <tr><td>Week 2</td><td>By 3:00PM PST</td></tr>
+        <tr><td>Week 3 onward</td><td>By 4:00PM PST</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="amber-band"><strong>Communication rule:</strong> All task assignments come from Eva via Slack. Arminda never contacts customers, leads, or carriers directly. Arminda never coordinates with Zel directly. Eva is the only routing point between Arminda and Zel. Flag stale leads in EOD only.</div>
+</div>
+
+<!-- SCOPE -->
+<div id="scope" class="section">
+  <div class="sec-title">Scope <span>and Boundaries</span></div>
+  <div class="sec-sub">Confirmed scope as of June 29 2026. Back office only. No customer contact. No quotes. No CERTs. No service.</div>
+  <div class="card">
+    <div class="card-title ct-green">What Arminda Does</div>
+    <div class="scope-item"><div class="scope-icon">🧹</div><div class="scope-text"><strong>Ricochet Lead Scrub — Permanent Weekly Responsibility</strong> — Pull all lead reports from Ricochet (reports.ricochet.me) using Eva admin credentials from 1Password. Run every list through RealValidation scrub. Categorize clean lists by lead source. Upload clean lists back to Ricochet correctly sorted. Flag DNC and invalid numbers on AZ lead cards. Submit scrub EOD with full counts. See the Ricochet Scrub tab for full step-by-step instructions.</div></div>
+    <div class="scope-item"><div class="scope-icon">🏢</div><div class="scope-text"><strong>AZ Commercial Pipeline Cleanup</strong> — Review commercial pipeline cards. Flag stale leads (30+ days no activity), duplicates, and misplaced cards in EOD. Never move or close without Eva written instruction.</div></div>
+    <div class="scope-item"><div class="scope-icon">📊</div><div class="scope-text"><strong>QNC Card Audit (When Leads Exist)</strong> — Open every QNC Commercial pipeline card and confirm three fields are populated: First Name, Business Name, Vertical. Add a note on any card missing a field: "Missing field — [field name]." Never fill in the field yourself. Report count in EOD.</div></div>
+    <div class="scope-item"><div class="scope-icon">🔄</div><div class="scope-text"><strong>Smart Cycle Management</strong> — Set re-contact dates per confirmed timing rules. Log note on every card touched.</div></div>
+    <div class="scope-item"><div class="scope-icon">📝</div><div class="scope-text"><strong>AZ Data Corrections</strong> — Address corrections, missing fields, data errors per Eva written instruction only. Never act without explicit Eva instruction in writing.</div></div>
+    <div class="scope-item"><div class="scope-icon">🏦</div><div class="scope-text"><strong>Momentum AMP Data Input</strong> — Pending Eva confirmation. Eva is evaluating an agency migration service. Do not begin any Momentum AMP work until Eva confirms in writing.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-red">What Arminda Does NOT Do</div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No quotes of any kind</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No customer contact — phone, email, text, or any channel</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No carrier contact</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No CERTs (certificates of insurance)</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No DocuSign envelopes</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No ePayPolicy actions</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No tag changes without specific written instruction from Eva</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No stage moves beyond what Eva has explicitly assigned in writing</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No direct coordination with Zel — Eva is the only routing point</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No QNC sequence building — that is Kyle scope only</div></div>
+    <div class="limit-item"><div class="scope-icon">🚫</div><div class="limit-text">No contacting any lead flagged as stale — flag in EOD only</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-blue">Authorized Pipelines</div>
+    <div class="green-band">
+      <strong>Three pipelines only:</strong><br>
+      Commercial New Business Pipeline — review, flag, Smart Cycle per instruction<br>
+      Commercial Renewals Pipeline (Farmers) — flag stale records only<br>
+      Brokered Carrier Renewals Pipeline — flag stale records and duplicates only<br>
+      QNC Commercial Pipeline — card audit only (confirm merge fields populated)
+    </div>
+    <div class="amber-band"><strong>All other pipelines are off limits.</strong> If a card appears in the wrong pipeline, flag it to Eva in EOD and do not move it without written approval.</div>
+  </div>
+</div>
+
+<!-- RICOCHET SCRUB -->
+<div id="scrub" class="section">
+  <div class="sec-title">Ricochet <span>Lead Scrub</span></div>
+  <div class="sec-sub">Permanent weekly responsibility. Every Monday at start of shift. Full step-by-step guide is live on the internal docs portal.</div>
+  <div class="info-band"><strong>Full guide:</strong> Open the Ricochet Lead Scrub Guide on the internal docs portal at insurance-town-internal-docs.netlify.app before starting every scrub. Read the Overview tab first every week.</div>
+  <div class="crit">
+    <div class="crit-label">Critical Rules — Never Skip</div>
+    <p>
+      <strong>Never contact any lead yourself.</strong> Scrub, flag, and report only.<br>
+      <strong>Never delete any AZ record.</strong> Add a note only.<br>
+      <strong>Never upload an unscrubbed list to Ricochet.</strong> Always scrub first.<br>
+      <strong>Always use Eva admin credentials from 1Password.</strong> Never your own login.<br>
+      <strong>Send Eva scrub summary and wait for green light</strong> before uploading anything back to Ricochet.
+    </p>
+  </div>
+  <div class="card">
+    <div class="card-title ct-amber">4-Step Scrub Flow — Every Week</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-label">Pull Reports from Ricochet</div>
+        <div class="step-content">Log into <strong>reports.ricochet.me</strong> using Eva admin credentials from 1Password (search: Ricochet Admin). Pull rolling 30-day report per lead source. Download as separate CSV per source.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-label">Run RealValidation Scrub</div>
+        <div class="step-content">Log into <strong>realvalidation.com</strong> using Eva account from 1Password (search: RealValidation). Upload one CSV at a time. Download clean output and flagged list separately per source.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-label">Send Eva Summary — Wait for Green Light</div>
+        <div class="step-content">Message Eva in Slack with totals per source: leads reviewed, TCPA removed, DNC flagged, invalid flagged, clean and ready to upload. Wait for Eva reply before uploading anything.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-label">Upload Clean Lists and Flag AZ Cards</div>
+        <div class="step-content">Upload each clean CSV to correct Ricochet campaign after Eva approves. Find every DNC and invalid number in AZ. Add note: "RealValidation: DNC — do not contact. Flagged [date]." or "RealValidation: Invalid phone number. Flagged [date]." Log all flagged leads in EOD.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-blue">Lead Sources — Scrub All Four</div>
+    <div class="source-card">
+      <div class="source-title">Facebook Meta Ads <span class="source-badge sb-fb">Facebook</span></div>
+      <div class="source-desc">Home and Commercial — two separate CSVs. TCPA window: 90 days from opt-in. Over 90 days = email only, flag in EOD, do not upload.</div>
+    </div>
+    <div class="source-card">
+      <div class="source-title">Internet Lead Companies <span class="source-badge sb-purchased">Purchased</span></div>
+      <div class="source-desc">Home and Auto — two separate CSVs. TCPA window: 30 days from purchase date. Over 30 days = flag in EOD, do not upload.</div>
+    </div>
+    <div class="source-card">
+      <div class="source-title">Recycled Ricochet Leads <span class="source-badge sb-recycled">Recycled</span></div>
+      <div class="source-desc">Re-scrub every cycle without exception before re-uploading. No TCPA exemption.</div>
+    </div>
+    <div class="source-card">
+      <div class="source-title">CSLB and LinkedIn Researcher Leads <span class="source-badge sb-cslb">Jaffer</span></div>
+      <div class="source-desc">Excel files from Jaffer delivered to Eva first. Eva forwards to Arminda. Not yet delivered — add to scrub queue when received.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-gold">File Naming Convention</div>
+    <div class="info-band">
+      <strong>Raw reports:</strong> FB_Home_[YYYY-MM-DD].csv, FB_Commercial_[YYYY-MM-DD].csv, Purchased_Home_[YYYY-MM-DD].csv, Purchased_Auto_[YYYY-MM-DD].csv, Recycled_[YYYY-MM-DD].csv<br><br>
+      <strong>Clean outputs:</strong> CLEAN_FB_Home_[YYYY-MM-DD].csv, etc.<br>
+      <strong>Flagged lists:</strong> FLAGGED_[Source]_[YYYY-MM-DD].csv
+    </div>
+  </div>
+</div>
+
+<!-- AZ CLEANUP -->
+<div id="az" class="section">
+  <div class="sec-title">AZ <span>Pipeline Cleanup</span></div>
+  <div class="sec-sub">Ongoing commercial pipeline audit. Flag only. Never move or close without Eva written instruction.</div>
+  <div class="crit">
+    <div class="crit-label">Rule — Log a Note on Every Card You Touch</div>
+    <p>Every card you open and take action on must have a note logged the same day. No exceptions.</p>
+  </div>
+  <div class="card">
+    <div class="card-title ct-amber">What to Flag in EOD</div>
+    <div class="scope-item"><div class="scope-icon">⚠️</div><div class="scope-text"><strong>Stale leads</strong> — no activity 30 or more days. Flag with lead name and last activity date.</div></div>
+    <div class="scope-item"><div class="scope-icon">⚠️</div><div class="scope-text"><strong>Duplicate cards</strong> — flag both card names. Do not close either without Eva instruction.</div></div>
+    <div class="scope-item"><div class="scope-icon">⚠️</div><div class="scope-text"><strong>Misplaced cards</strong> — flag with where you think they belong. Eva decides.</div></div>
+    <div class="scope-item"><div class="scope-icon">⚠️</div><div class="scope-text"><strong>Missing or broken tags</strong> — note in EOD only. Do not add or change any tags.</div></div>
+    <div class="scope-item"><div class="scope-icon">⚠️</div><div class="scope-text"><strong>QNC cards missing merge fields</strong> — note card name and which field is missing. Add note on AZ card: "Missing field — [field name]." Do not fill in the field yourself.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-blue">Smart Cycle Timing Reference</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Lead Type</th><th>Re-Contact Timing</th></tr>
+        <tr><td>Commercial</td><td style="color:var(--gold-l);font-weight:600;">11 months from lead created date</td></tr>
+        <tr><td>Home</td><td style="color:var(--gold-l);font-weight:600;">11 months from lead created date</td></tr>
+        <tr><td>Auto</td><td style="color:var(--blue);font-weight:600;">5 months from lead created date</td></tr>
+      </table>
+    </div>
+    <div class="amber-band"><strong>Note format:</strong> "Smart Cycled — [reason], re-contact [calculated date]"</div>
+  </div>
+</div>
+
+<!-- SMART CYCLE -->
+<div id="smartcycle" class="section">
+  <div class="sec-title">Smart Cycle <span>Reference</span></div>
+  <div class="sec-sub">Smart Cycle parks a lead to return at a future date. You are not closing it. You are scheduling it for re-engagement.</div>
+  <div class="card">
+    <div class="card-title ct-amber">When to Use Smart Cycle</div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">No response after multiple contact attempts</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Rate too high — re-quote at renewal window</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Lead said not now — follow up later</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-red">When NOT to Use Smart Cycle</div>
+    <div class="scope-item"><div class="scope-icon">🚫</div><div class="scope-text">Leads Eva has specifically told you to close</div></div>
+    <div class="scope-item"><div class="scope-icon">🚫</div><div class="scope-text">Duplicate dead records — close those per Eva instruction</div></div>
+    <div class="scope-item"><div class="scope-icon">🚫</div><div class="scope-text">Any lead outside the authorized pipelines</div></div>
+  </div>
+</div>
+
+<!-- TAG RULES -->
+<div id="tags" class="section">
+  <div class="sec-title">Tag <span>Rules</span></div>
+  <div class="sec-sub">Never add, change, or remove any tag without specific written instruction from Eva. Flag only in EOD.</div>
+  <div class="crit">
+    <div class="crit-label">Hard Rule</div>
+    <p>If you see a missing or incorrect tag, your only action is to note it in your EOD report. Eva decides what gets changed and when. <strong>Do not touch Bus. Auto tags at all.</strong> Do not flag them. Do not ask about them.</p>
+  </div>
+  <div class="card">
+    <div class="card-title ct-blue">Correct Tag Format — Reference Only</div>
+    <div class="green-band">
+      <strong>Two tag categories only — agency wide:</strong><br>
+      Primary: [Line] — main coverage being quoted. Example: Primary: GL, Primary: BOP<br>
+      X-Sell: [Line] — cross-sell opportunity. Example: X-Sell: Workers Comp<br><br>
+      Tags indicate sales opportunities only. Never indicate coverage the customer already has.
+    </div>
+  </div>
+</div>
+
+<!-- EOD -->
+<div id="eod" class="section">
+  <div class="sec-title">EOD <span>Standard</span></div>
+  <div class="sec-sub">Post to #eod-ops-arminda every shift. Use this exact format. Never skip a section. Write None or 0 if nothing to report.</div>
+  <div class="card">
+    <div class="card-title ct-amber">Full EOD Format</div>
+    <div class="eod-box"><em>📋 EOD REPORT | [DATE] | Back Office</em>
+<em>Shift: [Start Time] to [End Time] PST</em>
+
+<span class="gold">🧹 RICOCHET SCRUB (Mondays only):</span>
+Facebook Home: [# reviewed] | [# TCPA removed] | [# DNC] | [# invalid] | [# clean uploaded]
+Facebook Commercial: [# reviewed] | [# TCPA removed] | [# DNC] | [# invalid] | [# clean uploaded]
+Purchased Home: [# reviewed] | [# TCPA removed] | [# DNC] | [# invalid] | [# clean uploaded]
+Purchased Auto: [# reviewed] | [# TCPA removed] | [# DNC] | [# invalid] | [# clean uploaded]
+Recycled: [# reviewed] | [# DNC] | [# invalid] | [# clean uploaded]
+Eva approval received: [Yes / Pending]
+DNC and invalid flagged in AZ: [# or None]
+
+<span class="gold">💼 COMMERCIAL NEW BUSINESS PIPELINE:</span>
+Records reviewed: [#]
+Stale leads flagged (30+ days): [#]
+Flagged lead names and last activity:
+  [Lead Name] — Last activity [Month YYYY]
+Duplicate cards flagged: [# or None]
+Tag issues noted (flag only): [# or None]
+
+<span class="gold">🔄 COMMERCIAL RENEWALS PIPELINE (Farmers):</span>
+Records reviewed: [#]
+Stale records flagged: [# or None]
+Flagged record names: [Names or None]
+
+<span class="gold">📂 BROKERED CARRIER RENEWALS PIPELINE:</span>
+Records reviewed: [#]
+Stale records flagged: [# or None]
+Duplicate records found: [Names or None]
+
+<span class="gold">📋 QNC COMMERCIAL CARD AUDIT:</span>
+Cards reviewed: [#]
+Missing fields flagged: [# or None]
+Details: [Card name — missing field name]
+
+<span class="gold">🚩 FLAGS FOR EVA:</span>
+[List anything needing Eva decision]
+[If nothing: None today]
+
+⭐ TOMORROW PRIORITY:
+[What you plan to work on next session]</div>
+  </div>
+  <div class="card">
+    <div class="card-title ct-red">EOD Rules</div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Post to #eod-ops-arminda — not Slack DM to Eva</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Submit at end of every shift even if only 1 hour worked</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">If no work was done, message Eva in DM before the shift — do not skip EOD silently</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Never note a tag as changed unless Eva gave written instruction that session</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Always include all pipeline sections — write None or 0 if nothing to report</div></div>
+    <div class="scope-item"><div class="scope-icon">✅</div><div class="scope-text">Flag anything you are unsure about — never guess on card actions</div></div>
+  </div>
+</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
