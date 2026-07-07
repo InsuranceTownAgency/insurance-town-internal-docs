@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro — Commercial Market Specialist | Insurance Town Agency</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#0D1B2A;color:#E8EFF7;padding:0 0 60px}
+  .conf-banner{background:#B8860B;color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 16px;text-transform:uppercase}
+  .header{background:linear-gradient(135deg,#1C2B35 0%,#0D1B2A 100%);border-bottom:2px solid #AAD0E7;padding:28px 32px 22px}
+  .header h1{font-family:'DM Serif Display',serif;font-size:26px;color:#AAD0E7;margin-bottom:4px}
+  .header .sub{color:#7AAFC8;font-size:13px}
+  .header .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{background:#1C3040;border:1px solid #2A4A60;border-radius:20px;padding:4px 14px;font-size:11px;color:#AAD0E7;font-weight:500}
+  .pill.red{background:#1A0F0F;border-color:#FF6B6B60;color:#FF6B6B}
+  .pill.green{background:#0A1A10;border-color:#06D6A060;color:#06D6A0}
+  .pill.yellow{background:#1A1600;border-color:#FFD16660;color:#FFD166}
+  .container{max-width:900px;margin:0 auto;padding:36px 24px 0}
+  .tab-bar{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
+  .tab-btn{padding:8px 18px;border-radius:20px;border:1px solid #2A4A60;background:#1C2B35;color:#7AAFC8;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+  .tab-btn.active{background:#AAD0E7;color:#0D1B2A;border-color:#AAD0E7}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .section-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #AAD0E730;color:#AAD0E7}
+  .section-label.red{color:#FF6B6B;border-color:#FF6B6B30}
+  .section-label.green{color:#06D6A0;border-color:#06D6A030}
+  .section-label.yellow{color:#FFD166;border-color:#FFD16630}
+  .warn-block{background:#1A0F0F;border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFB3B3}
+  .warn-block strong{color:#FF6B6B;display:block;margin-bottom:2px}
+  .info-block{background:#0A1525;border-left:3px solid #AAD0E7;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#BDD5E8}
+  .tip-block{background:#1A1600;border-left:3px solid #FFD166;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFE9A0}
+  .tip-block strong{color:#FFD166;display:block;margin-bottom:2px}
+  .green-block{background:#0A1A10;border-left:3px solid #06D6A0;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#A3D9B8}
+  .green-block strong{color:#06D6A0;display:block;margin-bottom:2px}
+  .profile-card{background:#111D28;border:1px solid #AAD0E760;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .profile-row{padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .profile-row:last-child{border-bottom:none}
+  .profile-label{font-size:10px;font-weight:700;color:#7AAFC8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .profile-value{color:#E8EFF7;font-weight:500}
+  .market-flow{display:flex;flex-direction:column;gap:4px;margin:16px 0}
+  .market-card{background:#111D28;border-radius:10px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;position:relative}
+  .market-card::after{content:'';position:absolute;left:28px;bottom:-5px;width:2px;height:9px;background:#2A4A60}
+  .market-card:last-child::after{display:none}
+  .market-num{width:28px;height:28px;min-width:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .market-num.first{background:#06D6A0;color:#0D1B2A}
+  .market-num.second{background:#AAD0E7;color:#0D1B2A}
+  .market-num.third{background:#FFD166;color:#0D1B2A}
+  .market-body{flex:1}
+  .market-title{font-size:14px;font-weight:700;color:#E8EFF7;margin-bottom:4px}
+  .market-detail{font-size:12px;color:#7AAFC8;line-height:1.8}
+  .market-card.first-card{border:1px solid #06D6A060}
+  .market-card.second-card{border:1px solid #AAD0E760}
+  .market-card.third-card{border:1px solid #FFD16660}
+  .az-note{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#AAD0E7;line-height:2;margin:14px 0;white-space:pre-wrap}
+  .field-list{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;margin:12px 0}
+  .field-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px;align-items:flex-start}
+  .field-row:last-child{border-bottom:none}
+  .field-num{width:22px;min-width:22px;height:22px;background:#AAD0E7;color:#0D1B2A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
+  .field-label{font-weight:600;color:#AAD0E7;min-width:160px}
+  .field-value{color:#BDD5E8;line-height:1.7}
+  .checklist{list-style:none;padding:0;margin:12px 0}
+  .checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #1A2A38;font-size:13px;color:#BDD5E8;line-height:1.7}
+  .checklist li:last-child{border-bottom:none}
+  .checklist li .box{width:16px;height:16px;min-width:16px;border:1.5px solid #AAD0E7;border-radius:3px;margin-top:2px}
+  .checklist li .who{font-size:10px;font-weight:700;color:#FFD166;background:#1A1600;border-radius:4px;padding:1px 6px;white-space:nowrap;margin-top:2px}
+  .eod-box{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#AAD0E7;line-height:2;white-space:pre-wrap;margin:14px 0}
+  .stage-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .stage-row:last-child{border-bottom:none}
+  .stage-num{width:26px;height:26px;min-width:26px;background:#C9A84C;color:#0D1B2A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+  .stage-body strong{font-size:14px;color:#E8EFF7;display:block;margin-bottom:3px}
+  .stage-body span{font-size:12px;color:#7AAFC8;line-height:1.7}
+  .ref-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+  .ref-table th{text-align:left;padding:10px 14px;background:#1C2B35;color:#7AAFC8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #2A4A60}
+  .ref-table td{padding:10px 14px;border-bottom:1px solid #1A2A38;color:#BDD5E8;vertical-align:top;line-height:1.6}
+  .ref-table tr:last-child td{border-bottom:none}
+  .divider{height:1px;background:linear-gradient(90deg,#AAD0E710,#AAD0E740,#AAD0E710);margin:24px 0}
+  .footer-note{text-align:center;color:#2A4A60;font-size:11px;margin-top:40px}
+  @media(max-width:600px){.profile-grid{grid-template-columns:1fr}.header{padding:20px 16px}.container{padding:20px 16px 0}}
+</style>
+</head>
+<body>
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <h1>Pedro — Commercial Market Specialist</h1>
+  <div class="sub">Full Onboarding Reference: Market Submission Order, AZ Notes, Rejection Logging, Stale Lead Cadence, and Daily Standards</div>
+  <div class="meta">
+    <span class="pill">Updated July 6, 2026</span>
+    <span class="pill red">Hard Rules Apply From Day One</span>
+    <span class="pill green">Confirmed Hired — NDA and ICA Executed</span>
+  </div>
+</div>
+<div class="container">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile')">👤 Profile</button>
+    <button class="tab-btn" onclick="switchTab('scope')">📋 Scope</button>
+    <button class="tab-btn" onclick="switchTab('market')">🏦 Market Order</button>
+    <button class="tab-btn" onclick="switchTab('az')">📝 AZ Notes</button>
+    <button class="tab-btn" onclick="switchTab('rejections')">🚫 Rejections</button>
+    <button class="tab-btn" onclick="switchTab('stale')">⏱ Stale Cadence</button>
+    <button class="tab-btn" onclick="switchTab('eod')">📊 EOD Standard</button>
+    <button class="tab-btn" onclick="switchTab('rules')">⚠️ Rules</button>
+    <button class="tab-btn" onclick="switchTab('carriers')">🗂 Carriers</button>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="tab-content active" id="tab-profile">
+    <div class="section-label">👤 Your Role and Setup</div>
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row"><div class="profile-label">Full Name</div><div class="profile-value">Pedro Torres Jr.</div></div>
+          <div class="profile-row"><div class="profile-label">Role</div><div class="profile-value">Commercial Market Specialist</div></div>
+          <div class="profile-row"><div class="profile-label">Work Email</div><div class="profile-value">sales@insurancetownagency.com</div></div>
+          <div class="profile-row"><div class="profile-label">Schedule</div><div class="profile-value">9:00 AM to 4:00 PM daily</div></div>
+        </div>
+        <div>
+          <div class="profile-row"><div class="profile-label">AZ ID</div><div class="profile-value">179234</div></div>
+          <div class="profile-row"><div class="profile-label">Monday Board ID</div><div class="profile-value">18414906501</div></div>
+          <div class="profile-row"><div class="profile-label">EOD Channel</div><div class="profile-value">#eod-brokerage-pedro</div></div>
+          <div class="profile-row"><div class="profile-label">NDA and ICA</div><div class="profile-value">Executed June 14, 2026</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-block">You handle all new inbound commercial leads for Insurance Town Agency. You research markets, submit applications to carriers and GAs, log all activity in AgencyZoom, and report daily. All quotes and communications go out under Eva Chong's agency identity. You never imply you are a licensed agent. You never sign your name as the agent on any document.</div>
+    <div class="tip-block"><strong>🤝 Sending on Behalf of Eva</strong>Every quote and communication to a client or carrier must include: "On behalf of Eva Chong, Insurance Town Agency." Never send as yourself. Never imply you are licensed. Always represent Eva's agency identity.</div>
+    <div class="warn-block"><strong>🚫 You Are Not Responsible for QNC or Stale Re-Engagement</strong>When a commercial lead goes stale and eventually moves to QNC, Zel handles re-engagement outreach. If Eva qualifies a re-engaged lead, Eva assigns it back to Pedro for fresh quoting. Zel is not your backup. Your pipeline is new inbound commercial leads only.</div>
+  </div>
+
+  <!-- SCOPE -->
+  <div class="tab-content" id="tab-scope">
+    <div class="section-label green">✅ What Pedro Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>All new inbound commercial leads from all sources</li>
+      <li><div class="box"></div>Market research and carrier submission for every commercial risk</li>
+      <li><div class="box"></div>Farmers Apex portal submissions for commercial accounts</li>
+      <li><div class="box"></div>KraftLake portal submissions and case management</li>
+      <li><div class="box"></div>Outside market submissions after Farmers and KL both exhausted and documented</li>
+      <li><div class="box"></div>AZ submission note logging same day on every file touched</li>
+      <li><div class="box"></div>Carrier file uploads using QUOTE_ naming standard</li>
+      <li><div class="box"></div>Rejection logging with case number and screenshot on every decline</li>
+      <li><div class="box"></div>Stale lead flagging in AZ at Day 30</li>
+      <li><div class="box"></div>Fresh requotes after Eva qualifies a re-engaged QNC lead</li>
+      <li><div class="box"></div>Daily EOD report by 4:00 PM every shift</li>
+    </ul>
+    <div class="section-label red" style="margin-top:20px;">🚫 What Pedro Never Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>Reply to customers directly without Eva approval</li>
+      <li><div class="box"></div>Bind any policy without Eva written confirmation</li>
+      <li><div class="box"></div>Personal lines quotes or service of any kind</li>
+      <li><div class="box"></div>QNC re-engagement outreach (Zel handles this)</li>
+      <li><div class="box"></div>Contact Arminda directly for any reason</li>
+      <li><div class="box"></div>Skip Farmers or KraftLake and go directly to outside market</li>
+      <li><div class="box"></div>Submit to outside market without documented Farmers and KL declines</li>
+    </ul>
+  </div>
+
+  <!-- MARKET ORDER -->
+  <div class="tab-content" id="tab-market">
+    <div class="section-label red">🚨 Hard Rule — Market Submission Order</div>
+    <div class="warn-block"><strong>This rule applies to every single commercial quote from day one. No exceptions ever.</strong>Always follow this exact order. Never go to an outside market without completing and documenting steps 1 and 2 first.</div>
+    <div class="market-flow">
+      <div class="market-card first-card">
+        <div class="market-num first">1</div>
+        <div class="market-body">
+          <div class="market-title">🟢 Farmers First — Always</div>
+          <div class="market-detail">Every commercial quote starts with Farmers. Check Farmers eligibility before anything else. If Farmers can write it, it stays with Farmers. If Farmers declines, log in AZ notes: Farmers Declined plus reason. Then move to KraftLake.</div>
+        </div>
+      </div>
+      <div class="market-card second-card">
+        <div class="market-num second">2</div>
+        <div class="market-body">
+          <div class="market-title">🔵 KraftLake Second — All Direct Carriers in Dashboard</div>
+          <div class="market-detail">Go to KraftLake dashboard. Check all direct carriers available. Submit to the most appropriate carrier. If a KraftLake carrier declines, log carrier name, case number, and reason in AZ notes. Attach screenshot showing the case ID. If all KraftLake carriers decline, log each one before moving to step 3.</div>
+        </div>
+      </div>
+      <div class="market-card third-card">
+        <div class="market-num third">3</div>
+        <div class="market-body">
+          <div class="market-title">🟡 Outside Broker Markets — Only After 1 and 2 Exhausted</div>
+          <div class="market-detail">Only go to outside broker markets after Farmers and all available KraftLake carriers are attempted and declined with full documentation. Outside markets include TAPCO, IMACO, US Asia, CID, Connect, Next, Ergo. Flag to Eva before submitting to any outside market on a new risk type for the first time.</div>
+        </div>
+      </div>
+    </div>
+    <div class="green-block"><strong>📋 Carrier File Naming Standard — Locked July 6, 2026</strong>Format: QUOTE_CarrierName_ClientLastName_MMDDYYYY. Examples: QUOTE_Farmers_Garcia_07062026 and QUOTE_KraftLake_Garcia_07062026. One file per carrier per quote session. Upload to AZ lead profile File Upload tab immediately. Make.com watches for QUOTE_ prefix and auto-links to your Monday board.</div>
+  </div>
+
+  <!-- AZ NOTES -->
+  <div class="tab-content" id="tab-az">
+    <div class="section-label">📝 AZ Submission Note Standard</div>
+    <div class="info-block">Log a note in AZ for every submission action you take. Same day. Every time. Update the existing note for the same file. Never create a new note for the same submission. One note per file per submission cycle.</div>
+
+    <div class="section-label yellow" style="margin-top:20px;">📋 New Submission Note Template</div>
+    <div class="az-note">## 📌 New Commercial Submission
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: Pedro
+
+🔵 Line of Business: [GL / BOP / Workers Comp / Commercial Auto / Umbrella]
+📊 Markets Submitted: [Number]
+
+🟢 FARMERS:
+📋 Status: [Quoted $amount / Declined: reason / Not eligible]
+
+🔵 KRAFTLAKE — [Carrier Name]:
+📋 Status: [Quoted $amount / Declined: reason]
+🔖 Case#: [KL-XXXX-XXXXXX]
+📸 Screenshot: [Attached / Case ID visible]
+
+🔵 KRAFTLAKE — [Carrier Name 2 if applicable]:
+📋 Status: [Quoted $amount / Declined: reason]
+🔖 Case#: [KL-XXXX-XXXXXX]
+📸 Screenshot: [Attached / Case ID visible]
+
+🟡 OUTSIDE MARKET — [Carrier Name if applicable]:
+📋 Status: [Quoted $amount / Referred to UW / Declined: reason]
+
+📁 Carrier Files Uploaded:
+QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+
+📄 Docs Sent:
+[ ] ACORD Application
+[ ] Supplemental App
+[ ] Loss Runs
+[ ] Driver List
+[ ] Current Competing Quote
+[ ] Photos
+
+📅 Next Follow-Up: [Date and time]
+🚦 Status: [Pending Review / Quoted / Declined All Markets]
+🙋 Handled By: Pedro</div>
+
+    <div class="section-label yellow" style="margin-top:20px;">✏️ Updated Submission Note Template</div>
+    <div class="az-note">## 📌 Submission Update
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: Pedro
+
+✏️ Update Type: [Revised quote / New carrier attempt / Docs received / Quote accepted / Bind requested]
+🔵 Line of Business: [GL / BOP / Workers Comp / Commercial Auto / Umbrella]
+🏦 Carrier: [Carrier Name]
+📋 Updated Status: [New status]
+
+📁 Updated File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📝 Notes: [What changed and why]
+📅 New Follow-Up Date: [Date]
+🙋 Handled By: Pedro</div>
+
+    <div class="warn-block"><strong>🚫 Never Create a New Note for the Same File</strong>Update the existing note only. Same-day logging always. One note per file per submission cycle.</div>
+  </div>
+
+  <!-- REJECTION LOGGING -->
+  <div class="tab-content" id="tab-rejections">
+    <div class="section-label red">🚫 Rejection Logging — Hard Rule</div>
+    <div class="warn-block"><strong>Every rejection must be logged the same day it happens.</strong>No exceptions. A rejection without documentation did not happen as far as the agency is concerned.</div>
+
+    <div class="section-label yellow" style="margin-top:20px;">🔵 KraftLake Rejection — Exact Steps</div>
+    <div class="field-list">
+      <div class="field-row"><div class="field-num">1</div><div class="field-label">Note the carrier</div><div class="field-value">Write down the exact KraftLake carrier name that declined.</div></div>
+      <div class="field-row"><div class="field-num">2</div><div class="field-label">Note the case number</div><div class="field-value">Copy the exact case number from the KraftLake dashboard. No case number means no move forward.</div></div>
+      <div class="field-row"><div class="field-num">3</div><div class="field-label">Take screenshot</div><div class="field-value">Screenshot the decline screen. The case ID must be visible. If case ID is not visible, take another screenshot until it is.</div></div>
+      <div class="field-row"><div class="field-num">4</div><div class="field-label">Log in AZ notes</div><div class="field-value">Add to AZ submission note: KL Rejected. Carrier name. Case number. Reason if shown. Screenshot attached.</div></div>
+      <div class="field-row"><div class="field-num">5</div><div class="field-label">Attach screenshot</div><div class="field-value">Attach screenshot directly to the AZ record so Eva can see it without asking.</div></div>
+      <div class="field-row"><div class="field-num">6</div><div class="field-label">Move to next carrier</div><div class="field-value">Only after logging the rejection, move to the next available KraftLake carrier or outside market.</div></div>
+    </div>
+
+    <div class="section-label yellow" style="margin-top:20px;">📝 Rejection AZ Note Example</div>
+    <div class="az-note">🔵 KRAFTLAKE — Markel:
+📋 Status: KL Rejected
+🔖 Case#: KL-2026-084521
+❌ Reason: Habitational risk not eligible
+📸 Screenshot: Attached — Case ID visible
+
+🔵 KRAFTLAKE — Employers:
+📋 Status: KL Rejected
+🔖 Case#: KL-2026-084599
+❌ Reason: Loss ratio too high
+📸 Screenshot: Attached — Case ID visible
+
+🟡 Moving to outside market: TAPCO
+🚩 Flag to Eva: Yes — first TAPCO submission for this risk type</div>
+
+    <div class="info-block">Same rule applies to outside markets. Every decline gets logged with carrier name, reason, and any reference number. Flag to Eva any time all markets decline on a risk. Eva decides next steps.</div>
+  </div>
+
+  <!-- STALE CADENCE -->
+  <div class="tab-content" id="tab-stale">
+    <div class="section-label yellow">⏱ Stale Lead Cadence — Commercial</div>
+    <div class="info-block">Every commercial lead has a stale clock running from the last contact date. Know this cadence. Your job is Day 30 only. Everything after that is automated or handled by others.</div>
+
+    <div class="field-list" style="margin:16px 0;">
+      <div class="field-row">
+        <div class="field-num" style="background:#FFD166;color:#0D1B2A;">30</div>
+        <div class="field-label">Day 30 — Your Action</div>
+        <div class="field-value">Add an AZ note flagging the lead as stale. Log it in your EOD. This is your only action on stale leads. Format: "Lead stale as of [date]. Last contact [date]. No response to [number] attempts." Then stop. Do not contact the client again.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num" style="background:#AAD0E7;color:#0D1B2A;">45</div>
+        <div class="field-label">Day 45 — Automated</div>
+        <div class="field-value">Make.com fires an automatic Slack alert to you via #ops-alerts. This is just a notification. You do not need to do anything new at Day 45 if you already logged the Day 30 note.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-num" style="background:#06D6A0;color:#0D1B2A;">60</div>
+        <div class="field-label">Day 60 — Automated</div>
+        <div class="field-value">Make.com auto-moves the card to QNC Commercial pipeline. Zel picks it up from there for re-engagement outreach. If Zel re-engages and the lead responds, Eva qualifies the lead personally. Eva then assigns back to Pedro for a fresh quote. Your pipeline is active leads only.</div>
+      </div>
+    </div>
+
+    <div class="warn-block"><strong>🚫 Do Not Contact Stale Leads After Day 30</strong>Your role ends at the Day 30 AZ note. Zel handles re-engagement from QNC. Never reach back out to a stale lead on your own. Wait for Eva to re-assign after qualification.</div>
+    <div class="green-block"><strong>✅ Day 30 AZ Note Template</strong>Use this exact format in your stale lead note. Add it as an update to the existing AZ submission note, not a new note.</div>
+    <div class="az-note">## 📌 Stale Lead Flag
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: Pedro
+
+⏱ Lead Status: Stale as of [MM/DD/YYYY]
+📅 Last Contact Date: [MM/DD/YYYY]
+📊 Days Since Last Contact: [Number]
+📞 Outreach Attempts: [Number and channels used]
+📋 Last Known Status: [Quote sent / Application submitted / No response / Other]
+
+🚩 Flag to Eva: Stale — ready for QNC routing at Day 60
+🙋 Handled By: Pedro</div>
+  </div>
+
+  <!-- EOD -->
+  <div class="tab-content" id="tab-eod">
+    <div class="section-label">📊 EOD Standard — Submit Daily by 4:00 PM to #eod-brokerage-pedro</div>
+    <div class="tip-block"><strong>📢 Every Day Without Exception</strong>Submit EOD by 4:00 PM even if you had no new submissions. If you had a slow day, log what you worked on and what is pending. Never skip EOD.</div>
+    <div class="eod-box">EOD REPORT | [MM/DD/YYYY] | Commercial Market Specialist
+Shift: 9:00 AM to 4:00 PM
+
+📋 SUBMISSIONS TODAY
+Records worked: [Number]
+New submissions sent: [Number]
+Markets attempted: [Number]
+
+Details:
+- [Client Last Name] | [LOB] | [Markets tried] | [Status]
+- [Client Last Name] | [LOB] | [Markets tried] | [Status]
+
+🚫 REJECTIONS LOGGED
+KraftLake rejections: [Number] | Case numbers in AZ: Yes / No
+Outside market rejections: [Number]
+Screenshots attached in AZ: Yes / No
+
+⏱ STALE LEADS FLAGGED TODAY
+Leads at 30 days with no response:
+- [Client Last Name] | Last contact [date] | AZ note added: Yes / No
+None if no stale leads to flag
+
+⏳ PENDING RESPONSES
+- [Client Last Name] | [Carrier] | Submitted [date] | Awaiting response
+- [Client Last Name] | [Carrier] | Submitted [date] | Awaiting response
+
+💰 QUOTES RECEIVED TODAY
+- [Client Last Name] | [Carrier] | $[premium] | [Status: Sent to Eva / Pending review]
+
+🔴 FLAGS FOR EVA
+[Customer response requiring Eva reply]
+[All markets declined on a risk — Eva decides next step]
+[First submission to a new outside market carrier]
+[Any binding decision or coverage question]
+[None if nothing to flag]
+
+🔧 BLOCKERS
+[Anything preventing completion of work]
+[None if no blockers]</div>
+  </div>
+
+  <!-- RULES -->
+  <div class="tab-content" id="tab-rules">
+    <div class="section-label red">⚠️ Standing Rules — Non-Negotiable From Day One</div>
+    <div class="warn-block"><strong>🚫 Never Reply to Customers Directly</strong>Monitor all communications. Flag Eva via Slack when a customer responds. Eva handles all replies. Every channel. No exceptions ever.</div>
+    <div class="warn-block"><strong>🚫 Never Bind Without Eva Written Confirmation</strong>Eva confirms in writing via Slack. Then and only then do you proceed. Never skip this step.</div>
+    <div class="warn-block"><strong>🚫 Never Skip Farmers or KraftLake</strong>No outside market submission unless Farmers AND KraftLake both attempted and declined with documented case numbers and screenshots in AZ. No exceptions.</div>
+    <div class="warn-block"><strong>🚫 Zero Direct Coordination with Arminda</strong>Eva is the only routing point. Never contact Arminda directly for any reason.</div>
+    <div class="warn-block"><strong>🚫 Never Contact Stale Leads After Day 30</strong>Log the Day 30 AZ note. Stop there. Zel handles re-engagement from QNC. Wait for Eva to re-assign after qualification.</div>
+    <div class="tip-block"><strong>📌 Zel Is Not Your Backup</strong>Zel handles commercial renewals and QNC re-engagement only. Pedro handles all new inbound commercial leads. These are completely separate workflows. Never cross over.</div>
+    <div class="green-block"><strong>✅ Escalation Path</strong>Customer response: Slack Eva immediately. All markets decline: flag in EOD, Eva decides. Binding decision: wait for Eva written confirmation. New risk type outside market: flag Eva before submitting. Urgent issue: Slack Eva with full context.</div>
+  </div>
+
+  <!-- CARRIERS -->
+  <div class="tab-content" id="tab-carriers">
+    <div class="section-label">🗂 Carriers and Resources</div>
+    <div class="info-block">Always attempt Farmers first, then KraftLake, before any outside market. Log every carrier attempt in AZ submission note with emoji color coding.</div>
+    <table class="ref-table">
+      <tr><th>Carrier</th><th>Type</th><th>Access</th><th>Notes</th></tr>
+      <tr><td>🟢 Farmers Insurance</td><td>Primary — Always First</td><td>Farmers Agent Portal</td><td>All commercial lines. Attempt first every time.</td></tr>
+      <tr><td>🔵 KraftLake</td><td>Brokered GA — Always Second</td><td>KL Portal via 1Password</td><td>Broader commercial market access. Log case ID and screenshot on every rejection.</td></tr>
+      <tr><td>Next</td><td>Brokered via KL</td><td>KraftLake dashboard direct link</td><td>Available through KL platform only.</td></tr>
+      <tr><td>Ergo</td><td>Brokered via KL</td><td>KraftLake dashboard direct link</td><td>Available through KL platform only.</td></tr>
+      <tr><td>TAPCO</td><td>Outside Market</td><td>Direct contact — flag Eva first</td><td>Flag to Eva before first submission on any new risk type.</td></tr>
+      <tr><td>IMACO</td><td>Outside Market GA</td><td>Portal or email contact</td><td>Flag to Eva before first submission on any new risk type.</td></tr>
+      <tr><td>US Asia</td><td>Outside Market GA</td><td>Contact via GA</td><td>Often used for Korean market commercial accounts.</td></tr>
+      <tr><td>CID</td><td>Outside Market GA</td><td>Submit through CID</td><td>Flag to Eva before first submission on any new risk type.</td></tr>
+      <tr><td>Connect</td><td>Outside Market GA</td><td>Confirm contact before submitting</td><td>Flag to Eva before first submission on any new risk type.</td></tr>
+    </table>
+    <div class="field-list" style="margin-top:20px;">
+      <div class="field-row"><div class="field-label">🏦 VA Carrier Hub</div><div class="field-value"><a href="https://insurancetownhubvacarrierhub.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurancetownhubvacarrierhub.netlify.app</a> — All carriers, GAs, and submission guidelines</div></div>
+      <div class="field-row"><div class="field-label">🌾 Farmers Apex</div><div class="field-value">Login via Farmers agent portal. Commercial Farmers submissions.</div></div>
+      <div class="field-row"><div class="field-label">🔑 KraftLake Portal</div><div class="field-value">Login credentials in 1Password vault. All brokered commercial submissions.</div></div>
+      <div class="field-row"><div class="field-label">📚 Internal Docs Portal</div><div class="field-value"><a href="https://insurance-town-internal-docs.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurance-town-internal-docs.netlify.app</a> — All VA guides and agency resources</div></div>
+    </div>
+    <div class="green-block"><strong>📁 Carrier File Naming Reminder</strong>QUOTE_CarrierName_ClientLastName_MMDDYYYY every time. One file per carrier per session. Upload to AZ File Upload tab immediately. Make.com watches for QUOTE_ prefix and auto-links to your Monday board.</div>
+  </div>
+
+</div>
+<div class="footer-note">Insurance Town Agency — Pedro Full Onboarding — July 6, 2026 — Internal Use Only</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');event.target.classList.add('active')}
+</script>
+</body>
+</html>

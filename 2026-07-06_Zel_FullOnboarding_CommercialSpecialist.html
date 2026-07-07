@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zel — Commercial Specialist Onboarding</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #0D1B2A; color: #E8EFF7; padding: 0 0 60px 0; }
+
+  .conf-banner { background: #B8860B; color: #fff; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 8px 16px; text-transform: uppercase; }
+
+  .header { background: linear-gradient(135deg, #1C2B35 0%, #0D1B2A 100%); border-bottom: 2px solid #AAD0E7; padding: 28px 32px 22px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #AAD0E7; margin-bottom: 4px; }
+  .header .sub { color: #7AAFC8; font-size: 13px; }
+  .header .meta { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { background: #1C3040; border: 1px solid #2A4A60; border-radius: 20px; padding: 4px 14px; font-size: 11px; color: #AAD0E7; font-weight: 500; }
+  .pill.red { background: #1A0F0F; border-color: #FF6B6B60; color: #FF6B6B; }
+  .pill.green { background: #0A1A10; border-color: #06D6A060; color: #06D6A0; }
+  .pill.yellow { background: #1A1600; border-color: #FFD16660; color: #FFD166; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 24px 0; }
+
+  .tab-bar { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #2A4A60; background: #1C2B35; color: #7AAFC8; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .tab-btn.active { background: #AAD0E7; color: #0D1B2A; border-color: #AAD0E7; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #AAD0E730; color: #AAD0E7; }
+  .section-label.red { color: #FF6B6B; border-color: #FF6B6B30; }
+  .section-label.green { color: #06D6A0; border-color: #06D6A030; }
+  .section-label.yellow { color: #FFD166; border-color: #FFD16630; }
+
+  .warn-block { background: #1A0F0F; border-left: 3px solid #FF6B6B; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFB3B3; }
+  .warn-block strong { color: #FF6B6B; display: block; margin-bottom: 2px; }
+  .info-block { background: #0A1525; border-left: 3px solid #AAD0E7; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #BDD5E8; }
+  .tip-block { background: #1A1600; border-left: 3px solid #FFD166; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #FFE9A0; }
+  .tip-block strong { color: #FFD166; display: block; margin-bottom: 2px; }
+  .green-block { background: #0A1A10; border-left: 3px solid #06D6A0; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; line-height: 1.9; color: #A3D9B8; }
+  .green-block strong { color: #06D6A0; display: block; margin-bottom: 2px; }
+
+  .profile-card { background: #111D28; border: 1px solid #AAD0E760; border-radius: 12px; padding: 20px 24px; margin: 16px 0; }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .profile-row { padding: 8px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-label { font-size: 10px; font-weight: 700; color: #7AAFC8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .profile-value { color: #E8EFF7; font-weight: 500; }
+
+  /* Market order flow */
+  .market-flow { display: flex; flex-direction: column; gap: 4px; margin: 16px 0; }
+  .market-card { background: #111D28; border-radius: 10px; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; position: relative; }
+  .market-card::after { content: ''; position: absolute; left: 28px; bottom: -5px; width: 2px; height: 9px; background: #2A4A60; }
+  .market-card:last-child::after { display: none; }
+  .market-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .market-num.first { background: #06D6A0; color: #0D1B2A; }
+  .market-num.second { background: #AAD0E7; color: #0D1B2A; }
+  .market-num.third { background: #FFD166; color: #0D1B2A; }
+  .market-body { flex: 1; }
+  .market-title { font-size: 14px; font-weight: 700; color: #E8EFF7; margin-bottom: 4px; }
+  .market-detail { font-size: 12px; color: #7AAFC8; line-height: 1.8; }
+  .market-card.first-card { border: 1px solid #06D6A060; }
+  .market-card.second-card { border: 1px solid #AAD0E760; }
+  .market-card.third-card { border: 1px solid #FFD16660; }
+
+  /* Clean workflow cards (light style adapted for dark) */
+  .workflow-section { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+  .workflow-title { font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: #7AAFC8; margin-bottom: 16px; }
+  .step-row { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .step-row:last-child { margin-bottom: 0; }
+  .step-num { width: 28px; height: 28px; min-width: 28px; background: #C9A84C; color: #0D1B2A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .step-body strong { font-size: 14px; color: #E8EFF7; display: block; margin-bottom: 3px; }
+  .step-body span { font-size: 12px; color: #7AAFC8; line-height: 1.7; }
+
+  /* QNC stage badges */
+  .stage-list { display: flex; flex-direction: column; gap: 6px; margin: 14px 0; }
+  .stage-item { display: flex; gap: 12px; align-items: center; background: #111D28; border: 1px solid #2A4A60; border-radius: 8px; padding: 10px 16px; font-size: 13px; }
+  .stage-badge { min-width: 24px; height: 24px; background: #1C3040; border: 1px solid #AAD0E760; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #AAD0E7; }
+  .stage-name { font-weight: 600; color: #E8EFF7; }
+  .stage-desc { color: #7AAFC8; font-size: 12px; margin-left: auto; }
+
+  /* AZ note box */
+  .az-note { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #AAD0E7; line-height: 2; margin: 14px 0; white-space: pre-wrap; }
+
+  /* Field list */
+  .field-list { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+  .field-row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; align-items: flex-start; }
+  .field-row:last-child { border-bottom: none; }
+  .field-label { font-weight: 600; color: #AAD0E7; min-width: 180px; }
+  .field-value { color: #BDD5E8; line-height: 1.7; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; margin: 12px 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1A2A38; font-size: 13px; color: #BDD5E8; line-height: 1.7; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .box { width: 16px; height: 16px; min-width: 16px; border: 1.5px solid #AAD0E7; border-radius: 3px; margin-top: 2px; }
+
+  /* EOD box */
+  .eod-box { background: #111D28; border: 1px solid #2A4A60; border-radius: 10px; padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #AAD0E7; line-height: 2; white-space: pre-wrap; margin: 14px 0; }
+
+  /* Ref table */
+  .ref-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .ref-table th { text-align: left; padding: 10px 14px; background: #1C2B35; color: #7AAFC8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #2A4A60; }
+  .ref-table td { padding: 10px 14px; border-bottom: 1px solid #1A2A38; color: #BDD5E8; vertical-align: top; line-height: 1.6; }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, #AAD0E710, #AAD0E740, #AAD0E710); margin: 24px 0; }
+  .footer-note { text-align: center; color: #2A4A60; font-size: 11px; margin-top: 40px; padding: 0 24px 20px; }
+
+  @media (max-width: 600px) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px 16px; }
+    .container { padding: 20px 16px 0; }
+    .stage-desc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+
+<div class="header">
+  <h1>Zel — Commercial Specialist</h1>
+  <div class="sub">Full Onboarding Reference: Commercial Renewals, QNC Pipeline, Carrier Servicing, AZ Standards, and Daily Workflow</div>
+  <div class="meta">
+    <span class="pill">July 6, 2026</span>
+    <span class="pill red">Hard Rules Apply From Day One</span>
+    <span class="pill green">Active — NDA and ICA Signed June 25</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile')">👤 Profile</button>
+    <button class="tab-btn" onclick="switchTab('scope')">📋 Scope</button>
+    <button class="tab-btn" onclick="switchTab('market')">🏦 Market Order</button>
+    <button class="tab-btn" onclick="switchTab('renewals')">🔄 Renewals</button>
+    <button class="tab-btn" onclick="switchTab('az')">📝 AZ Notes</button>
+    <button class="tab-btn" onclick="switchTab('eod')">📊 EOD Standard</button>
+    <button class="tab-btn" onclick="switchTab('rules')">⚠️ Rules</button>
+    <button class="tab-btn" onclick="switchTab('carriers')">🗂 Carriers</button>
+  </div>
+
+  <!-- TAB 1: PROFILE -->
+  <div class="tab-content active" id="tab-profile">
+    <div class="section-label">👤 Your Role and Setup</div>
+
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row"><div class="profile-label">Full Name</div><div class="profile-value">Jayzel Dollente</div></div>
+          <div class="profile-row"><div class="profile-label">Goes By</div><div class="profile-value">Zel</div></div>
+          <div class="profile-row"><div class="profile-label">Work Email</div><div class="profile-value">commercial@insurancetownagency.com</div></div>
+          <div class="profile-row"><div class="profile-label">Schedule</div><div class="profile-value">10:00 AM to 3:00 PM Philippines Time</div></div>
+        </div>
+        <div>
+          <div class="profile-row"><div class="profile-label">Start Date</div><div class="profile-value">June 26, 2026</div></div>
+          <div class="profile-row"><div class="profile-label">EOD Channel</div><div class="profile-value">#eod-ops-zel</div></div>
+          <div class="profile-row"><div class="profile-label">NDA and ICA</div><div class="profile-value">Signed June 25, 2026</div></div>
+          <div class="profile-row"><div class="profile-label">Monday Board</div><div class="profile-value">Live and active</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:24px;">🎯 What You Do</div>
+    <div class="info-block">
+      You are the Commercial Specialist for Insurance Town Agency. Your scope is brokerage carrier servicing, commercial renewals for Farmers and all brokered carriers, and the QNC commercial re-engagement pipeline. All work is performed under Eva Chong's agency identity. You never imply you are a licensed agent. You never sign your name as the agent on any document.
+    </div>
+
+    <div class="tip-block">
+      <strong>⚡ Manual Outreach Only Right Now</strong>
+      Kyle's automated commercial sequences are not yet live. You perform all outreach manually until Eva confirms the sequences are active. Do not wait for automation. Work manually every shift.
+    </div>
+
+    <div class="warn-block">
+      <strong>🚫 You Are Not Pedro's Backup</strong>
+      Pedro handles all new inbound commercial leads. You handle renewals, QNC re-engagement, and carrier servicing only. These are completely separate workflows. Never cross over.
+    </div>
+  </div>
+
+  <!-- TAB 2: SCOPE -->
+  <div class="tab-content" id="tab-scope">
+    <div class="section-label green">✅ What You Do</div>
+    <ul class="checklist">
+      <li><span class="box"></span>🔄 Commercial renewals for Farmers and all brokered carriers</li>
+      <li><span class="box"></span>📄 Brokerage carrier servicing: COIs, ACORD forms, endorsements, policy changes</li>
+      <li><span class="box"></span>🎯 QNC Commercial pipeline re-engagement outreach (routed by Eva only)</li>
+      <li><span class="box"></span>📞 Stale lead re-engagement via manual SMS, email, and call</li>
+      <li><span class="box"></span>🏦 Farmers Apex submissions for commercial accounts</li>
+      <li><span class="box"></span>🔑 KraftLake portal submissions and case management</li>
+      <li><span class="box"></span>📝 AZ submission note logging on every commercial file you touch</li>
+      <li><span class="box"></span>📊 Daily EOD report in #eod-ops-zel by end of every shift</li>
+    </ul>
+
+    <div class="divider"></div>
+    <div class="section-label red">🚫 What You Never Do</div>
+    <ul class="checklist">
+      <li><span class="box"></span>New inbound commercial leads — Pedro only, never Zel</li>
+      <li><span class="box"></span>Personal lines quotes or service of any kind</li>
+      <li><span class="box"></span>Farmers retention — Valerie and Tracie only</li>
+      <li><span class="box"></span>Reply to customers directly without Eva approval</li>
+      <li><span class="box"></span>Move AZ pipeline stages without Eva written direction</li>
+      <li><span class="box"></span>Contact Arminda directly for any reason</li>
+      <li><span class="box"></span>Pick up QNC leads independently without Eva routing them</li>
+      <li><span class="box"></span>Fill in missing fields on stale cards — flag only, never fill</li>
+    </ul>
+
+    <div class="divider"></div>
+    <div class="section-label yellow">📌 QNC Commercial Pipeline — 7 Stages</div>
+    <div class="stage-list">
+      <div class="stage-item"><span class="stage-badge">1</span><span class="stage-name">🆕 New Lead</span><span class="stage-desc">Just entered or assigned</span></div>
+      <div class="stage-item"><span class="stage-badge">2</span><span class="stage-name">📞 Outreach Attempted</span><span class="stage-desc">First contact made</span></div>
+      <div class="stage-item"><span class="stage-badge">3</span><span class="stage-name">💬 Responded</span><span class="stage-desc">Lead replied — tag Eva immediately</span></div>
+      <div class="stage-item"><span class="stage-badge">4</span><span class="stage-name">🔍 Qualifying</span><span class="stage-desc">Eva on qualifying call</span></div>
+      <div class="stage-item"><span class="stage-badge">5</span><span class="stage-name">💼 Re-Quoting</span><span class="stage-desc">Pedro re-quotes after Eva qualifies</span></div>
+      <div class="stage-item"><span class="stage-badge">6</span><span class="stage-name">✅ Converted</span><span class="stage-desc">Lead bound and moved to active pipeline</span></div>
+      <div class="stage-item"><span class="stage-badge">7</span><span class="stage-name">❌ Lost</span><span class="stage-desc">Confirmed not converting</span></div>
+    </div>
+
+    <div class="warn-block">
+      <strong>🚨 Zel and Arminda Zero Coordination Rule</strong>
+      You and Arminda never coordinate directly under any circumstances. Eva is the only routing point between you. If you need something from Arminda, tell Eva. Eva routes it.
+    </div>
+  </div>
+
+  <!-- TAB 3: MARKET ORDER -->
+  <div class="tab-content" id="tab-market">
+    <div class="section-label red">🚨 Hard Rule — Commercial Market Submission Order</div>
+
+    <div class="warn-block">
+      <strong>This applies to every commercial quote from every team member. No exceptions ever.</strong>
+      Follow this sequence exactly. Never skip a step. Never go to an outside market before both Farmers and KraftLake have been attempted and declined with documentation.
+    </div>
+
+    <div class="market-flow">
+      <div class="market-card first-card">
+        <div class="market-num first">1</div>
+        <div class="market-body">
+          <div class="market-title">🟢 Farmers First — Always</div>
+          <div class="market-detail">Attempt Farmers before any other carrier. Every commercial quote. Every time. Log attempt in AZ submission note before moving on.</div>
+        </div>
+      </div>
+      <div class="market-card second-card">
+        <div class="market-num second">2</div>
+        <div class="market-body">
+          <div class="market-title">🔵 KraftLake Second</div>
+          <div class="market-detail">When Farmers declines or cannot write the risk, submit to KraftLake immediately. Log Farmers decline reason in AZ before submitting. Attach screenshot of KL case showing case ID. Note "KL Rejected plus case number" in AZ.</div>
+        </div>
+      </div>
+      <div class="market-card third-card">
+        <div class="market-num third">3</div>
+        <div class="market-body">
+          <div class="market-title">🟡 Outside Market Only After Both Decline</div>
+          <div class="market-detail">No outside market unless Farmers family carriers AND KraftLake both attempted and declined with documented decline reasons in AZ notes. KL case number required. Next and Ergo are available through the KL dashboard direct link.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="green-block">
+      <strong>📁 Carrier File Naming Standard — Locked Agency-Wide July 6, 2026</strong>
+      Format: QUOTE_CarrierName_ClientLastName_MMDDYYYY
+      Examples: QUOTE_Farmers_Garcia_07062026 and QUOTE_KraftLake_Garcia_07062026
+      One file per carrier per quote session. Upload to AZ File Upload tab every time. Fresh start from July 6 only. Do not rename old files.
+    </div>
+  </div>
+
+  <!-- TAB 4: RENEWALS -->
+  <div class="tab-content" id="tab-renewals">
+    <div class="section-label">🔄 Commercial Renewal Workflow</div>
+
+    <div class="info-block">
+      Commercial renewals are one of your primary responsibilities. You handle both Farmers and brokered carrier renewals. Check AZ daily for policies expiring within 60 days and follow the workflow below every time without exception.
+    </div>
+
+    <div class="workflow-section">
+      <div class="workflow-title">📋 Renewal Workflow — Step by Step</div>
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Pull Renewal List</strong><span>Review AZ daily for commercial renewals expiring within 60 days. Check Next Expiration Date field on every commercial card.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Review Coverage and Carrier</strong><span>Confirm current carrier, premium, and coverage details. Note any changes the client mentioned in prior contact. Check AZ notes for history.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Re-Quote if Needed</strong><span>Follow market order without exception: Farmers first, then KraftLake. Log all attempts in AZ submission note with emoji color coding.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div class="step-body"><strong>Upload Quote Files</strong><span>Name every file: QUOTE_CarrierName_ClientLastName_MMDDYYYY. Upload each carrier file to the AZ File Upload tab. One file per carrier per session.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">5</div>
+        <div class="step-body"><strong>Log AZ Submission Note</strong><span>Use the renewal template below. Update the same note, never create a new note for the same submission. Same-day logging always.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">6</div>
+        <div class="step-body"><strong>Flag Eva for Any Decision</strong><span>If a binding decision, coverage change, or client issue requires Eva attention, flag in your EOD and Slack Eva with full context. Never decide independently.</span></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">7</div>
+        <div class="step-body"><strong>EOD Report</strong><span>Include every renewal touched with status. No exception. Write None if nothing happened but always include the section.</span></div>
+      </div>
+    </div>
+
+    <div class="section-label yellow" style="margin-top:24px;">📌 Stale Lead Cadence — Commercial</div>
+    <div class="tip-block">
+      <strong>Know when a lead becomes stale and what happens automatically:</strong>
+      Day 30: You add an AZ note flagging the lead as stale. Log it in your EOD.
+      Day 45: Make.com fires an automatic Slack alert to Pedro so he is aware.
+      Day 60: Make.com auto-moves the card to QNC Commercial pipeline. You pick it up from there once Eva routes it to you.
+    </div>
+
+    <div class="section-label" style="margin-top:24px;">📝 Renewal AZ Note Template</div>
+    <div class="az-note">## 📌 Submission Update
+Date: [MM/DD/YYYY]
+Handled By: Zel
+
+🔵 Line of Business: [Commercial: BOP / GL / WC / Other]
+🏦 Carrier: [Carrier Name]
+📋 Status: [Submitted / Quoted / Pending Docs / Declined]
+
+📁 Carrier File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📝 Notes: [Any relevant detail about this submission]
+📅 Follow-Up Date: [Date]
+🙋 Handled By: Zel</div>
+
+    <div class="warn-block">
+      <strong>🚫 Never Create a New Note for the Same Submission</strong>
+      Update the existing note only. One note per file per submission cycle. Never create duplicate notes for the same client or policy.
+    </div>
+  </div>
+
+  <!-- TAB 5: AZ NOTES -->
+  <div class="tab-content" id="tab-az">
+    <div class="section-label">📝 AZ Note Standards</div>
+
+    <div class="info-block">
+      Log a note in AZ for every commercial file you touch. Use the correct template below for each situation. Update the same note, never create a new one for the same submission. Same-day logging every time without exception.
+    </div>
+
+    <div class="section-label yellow" style="margin-top:20px;">📞 Re-Engagement Outreach Note Template</div>
+    <div class="az-note">## 📌 Re-Engagement Outreach
+Date: [MM/DD/YYYY]
+Handled By: Zel
+
+👤 Lead Name: [Full Name or Business Name]
+🔵 Line of Business: [Commercial: BOP / GL / WC / Other]
+📅 Last Contact Date: [Date]
+⏱ Days Since Last Contact: [Number]
+
+📞 Outreach Attempt:
+Channel: [SMS / Email / Call]
+Message Sent: [Brief summary of message]
+Response: [No response / Responded / Requested callback]
+
+🚩 Missing Fields Flagged: [DBA missing / Address incomplete / Vertical not selected / None]
+
+📅 Next Step: [Follow-up date and action]
+🗂 Stage: [Current AZ stage]
+🙋 Handled By: Zel</div>
+
+    <div class="section-label yellow" style="margin-top:20px;">📄 New Submission Note Template</div>
+    <div class="az-note">## 📌 New Submission
+Date: [MM/DD/YYYY]
+Handled By: Zel
+
+🔵 Line of Business: [Commercial: BOP / GL / WC / Other]
+🏦 Carrier Attempted 1 — Farmers: [Submitted / Declined: reason]
+🏦 Carrier Attempted 2 — KraftLake: [Submitted / Declined: KL Rejected case #XXXXX]
+📸 KL Screenshot: [Attached to this note]
+
+📋 Best Quote Carrier: [Carrier Name]
+💰 Best Quote Premium: $[Amount]
+📁 Carrier File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📅 Follow-Up Date: [Date]
+🗂 Status: [Submitted / Quoted / Pending Docs]
+🙋 Handled By: Zel</div>
+
+    <div class="section-label yellow" style="margin-top:20px;">🔄 Updated Submission Note Template</div>
+    <div class="az-note">## 📌 Submission Update
+Date: [MM/DD/YYYY]
+Handled By: Zel
+
+✏️ Update Type: [Revised quote / Additional carrier / Coverage change / Docs received]
+🔵 Line of Business: [Commercial: BOP / GL / WC / Other]
+🏦 Carrier: [Carrier Name]
+📋 Updated Status: [New status]
+
+📁 Updated File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📝 Notes: [What changed and why]
+📅 New Follow-Up Date: [Date]
+🙋 Handled By: Zel</div>
+
+    <div class="green-block">
+      <strong>📌 Missing Fields Rule</strong>
+      If a stale card has missing fields (DBA, business address, Vertical), do not fill them in. Flag them in the Re-Engagement note using the Missing Fields Flagged line above. Fields get completed at re-qualification when the lead is re-engaged. Your job is to flag only.
+    </div>
+
+    <div class="warn-block">
+      <strong>🚫 Next Expiration Date</strong>
+      This field is required on all commercial cards permanently. Do not remove it. Do not flag it as an error. It is a required AZ field that must stay on every commercial record always.
+    </div>
+  </div>
+
+  <!-- TAB 6: EOD STANDARD -->
+  <div class="tab-content" id="tab-eod">
+    <div class="section-label">📊 EOD Report Standard</div>
+
+    <div class="tip-block">
+      <strong>📢 Submit To: #eod-ops-zel in Slack</strong>
+      Post at the end of every shift. If your shift ends early, post before logging off. Never skip a section. Write None if nothing happened. Missing sections are not acceptable.
+    </div>
+
+    <div class="eod-box">EOD REPORT | [MM/DD/YYYY] | Commercial Specialist
+Shift: [Start Time] to [End Time] Philippines Time
+
+🔄 COMMERCIAL RENEWALS
+Renewals reviewed today: [Number]
+Renewals actioned: [Number]
+Details:
+- [Business Name] | [Carrier] | [Status: Submitted / Pending / Quoted]
+- [Business Name] | [Carrier] | [Status]
+
+📞 QNC RE-ENGAGEMENT
+Leads worked today: [Number]
+Responses received: [Number]
+Details:
+- [Business Name] | [Channel: SMS/Email/Call] | [Result]
+
+📄 COMMERCIAL SERVICING
+COIs issued: [Number]
+Endorsements processed: [Number]
+ACORD forms completed: [Number]
+Details: [Brief summary or None]
+
+🚩 MISSING FIELDS FLAGGED
+Cards with missing fields found today:
+- [Business Name] | Missing: [DBA / Address / Vertical / Other]
+- None if nothing flagged
+
+🔴 FLAGS FOR EVA
+[Customer response requiring Eva reply — never reply yourself]
+[Decision or approval needed from Eva]
+[Binding decision or coverage change]
+[None if nothing to flag]
+
+🔧 BLOCKERS
+[Anything preventing you from completing work]
+[None if no blockers]</div>
+
+    <div class="section-label" style="margin-top:20px;">📋 EOD Rules</div>
+    <ul class="checklist">
+      <li><span class="box"></span>Post every single shift without exception</li>
+      <li><span class="box"></span>Never skip a section. Write None if nothing to report.</li>
+      <li><span class="box"></span>Flag every customer response. Eva replies. You never reply directly.</li>
+      <li><span class="box"></span>Flag every decision you cannot make independently</li>
+      <li><span class="box"></span>Flag every missing field you find on any card</li>
+      <li><span class="box"></span>Keep entries factual and brief. No lengthy explanations needed.</li>
+    </ul>
+  </div>
+
+  <!-- TAB 7: RULES -->
+  <div class="tab-content" id="tab-rules">
+    <div class="section-label red">⚠️ Standing Rules — Non-Negotiable From Day One</div>
+
+    <div class="warn-block">
+      <strong>🚫 Never Reply to Customers Directly</strong>
+      Monitor all customer communications across every channel. Flag Eva via Slack immediately when a customer responds. Eva handles all replies. SMS, email, phone, any platform. No exceptions ever.
+    </div>
+
+    <div class="warn-block">
+      <strong>🚫 Never Move AZ Pipeline Stages Without Eva Direction</strong>
+      Log notes, upload files, and flag items. You do not advance or move pipeline stages unless Eva explicitly tells you in writing.
+    </div>
+
+    <div class="warn-block">
+      <strong>🚫 Zero Direct Coordination with Arminda</strong>
+      Eva is the only routing point between you and Arminda. Never contact Arminda directly for any reason under any circumstances.
+    </div>
+
+    <div class="tip-block">
+      <strong>📌 QNC Leads Route Through Eva Only</strong>
+      All stale leads in the QNC Commercial pipeline are routed to you by Eva. You do not pick up QNC leads independently. Eva assigns. You work.
+    </div>
+
+    <div class="tip-block">
+      <strong>📌 Eva Qualifies All Re-Engaged Leads</strong>
+      When a QNC lead responds and shows interest, tag Eva in AZ immediately. Stop the conversation there. Eva makes the qualifying call personally. Pedro requotes after Eva confirms the lead. You support with documents after that point only.
+    </div>
+
+    <div class="green-block">
+      <strong>✅ Missing Fields on Stale Cards</strong>
+      If a card has missing DBA, address, or vertical, flag it in your AZ re-engagement note and in your EOD. Do not fill the fields in. They get completed at re-qualification. Your job is to flag only.
+    </div>
+
+    <div class="green-block">
+      <strong>✅ Sending on Behalf of Eva</strong>
+      Every communication to a carrier or client must include: "On behalf of Eva Chong, Insurance Town Agency." Never represent yourself as the agent. Never sign documents as the agent.
+    </div>
+
+    <div class="section-label" style="margin-top:24px;">🚨 Escalation Path</div>
+    <div class="field-list">
+      <div class="field-row"><div class="field-label">📞 Customer Response</div><div class="field-value">Slack Eva immediately. Flag in EOD. Do not reply to the customer.</div></div>
+      <div class="field-row"><div class="field-label">🏦 Carrier Decline or Issue</div><div class="field-value">Log in AZ note with case number. Flag in EOD. Wait for Eva direction.</div></div>
+      <div class="field-row"><div class="field-label">📋 Decision Above Your Authority</div><div class="field-value">Flag in EOD. Never decide independently. Wait for Eva.</div></div>
+      <div class="field-row"><div class="field-label">🔴 Urgent Issue During Shift</div><div class="field-value">Slack Eva directly with full context. Never guess or proceed without direction.</div></div>
+      <div class="field-row"><div class="field-label">🎯 QNC Lead Responds</div><div class="field-value">Tag Eva in AZ immediately. Stop the conversation. Eva qualifies personally.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 8: CARRIERS -->
+  <div class="tab-content" id="tab-carriers">
+    <div class="section-label">🗂 Carriers and Resources</div>
+
+    <table class="ref-table">
+      <tr>
+        <th>Carrier</th>
+        <th>Type</th>
+        <th>Access</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td>🟢 Farmers Insurance</td>
+        <td>Primary — Always First</td>
+        <td>Farmers Agent Portal</td>
+        <td>Attempt before any other carrier. Every time.</td>
+      </tr>
+      <tr>
+        <td>🔵 KraftLake</td>
+        <td>Brokered GA — Always Second</td>
+        <td>KL Portal via 1Password</td>
+        <td>Log case ID and screenshot on every rejection. Note "KL Rejected plus case number" in AZ.</td>
+      </tr>
+      <tr>
+        <td>Next</td>
+        <td>Brokered via KL</td>
+        <td>KraftLake dashboard direct link</td>
+        <td>Available through KL platform only.</td>
+      </tr>
+      <tr>
+        <td>Ergo</td>
+        <td>Brokered via KL</td>
+        <td>KraftLake dashboard direct link</td>
+        <td>Available through KL platform only.</td>
+      </tr>
+    </table>
+
+    <div class="section-label" style="margin-top:24px;">🔗 Key Resources</div>
+    <div class="field-list">
+      <div class="field-row">
+        <div class="field-label">🏦 VA Carrier Hub</div>
+        <div class="field-value"><a href="https://insurancetownhubvacarrierhub.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurancetownhubvacarrierhub.netlify.app</a> — All carriers, GAs, and submission guidelines</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">🌾 Farmers Apex</div>
+        <div class="field-value">Login via Farmers agent portal. Use for all commercial Farmers submissions and renewals.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">🔑 KraftLake Portal</div>
+        <div class="field-value">Login credentials in your 1Password vault. Use for all brokered commercial submissions.</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">📚 Internal Docs Portal</div>
+        <div class="field-value"><a href="https://insurance-town-internal-docs.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurance-town-internal-docs.netlify.app</a> — All VA guides and agency resources</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">📅 ePayPolicy</div>
+        <div class="field-value"><a href="https://app.epaypolicy.com/Transactions" target="_blank" style="color:#AAD0E7;">https://app.epaypolicy.com/Transactions</a> — Payment processing</div>
+      </div>
+    </div>
+
+    <div class="green-block">
+      <strong>📁 File Naming Reminder</strong>
+      QUOTE_CarrierName_ClientLastName_MMDDYYYY every single time. One file per carrier per session. Upload to AZ File Upload tab immediately after saving. Make.com watches for the QUOTE_ prefix and auto-links to your Monday board.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note">Insurance Town Agency — Internal Use Only — July 6, 2026 — commercial@insurancetownagency.com</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

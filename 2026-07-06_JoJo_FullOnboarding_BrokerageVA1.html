@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JoJo — Brokerage VA1 | Insurance Town Agency</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#0D1B2A;color:#E8EFF7;padding:0 0 60px}
+  .conf-banner{background:#B8860B;color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 16px;text-transform:uppercase}
+  .header{background:linear-gradient(135deg,#1C2B35 0%,#0D1B2A 100%);border-bottom:2px solid #AAD0E7;padding:28px 32px 22px}
+  .header h1{font-family:'DM Serif Display',serif;font-size:26px;color:#AAD0E7;margin-bottom:4px}
+  .header .sub{color:#7AAFC8;font-size:13px}
+  .header .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{background:#1C3040;border:1px solid #2A4A60;border-radius:20px;padding:4px 14px;font-size:11px;color:#AAD0E7;font-weight:500}
+  .pill.red{background:#1A0F0F;border-color:#FF6B6B60;color:#FF6B6B}
+  .pill.green{background:#0A1A10;border-color:#06D6A060;color:#06D6A0}
+  .pill.yellow{background:#1A1600;border-color:#FFD16660;color:#FFD166}
+  .container{max-width:900px;margin:0 auto;padding:36px 24px 0}
+  .tab-bar{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
+  .tab-btn{padding:8px 18px;border-radius:20px;border:1px solid #2A4A60;background:#1C2B35;color:#7AAFC8;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+  .tab-btn.active{background:#AAD0E7;color:#0D1B2A;border-color:#AAD0E7}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .sec{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #AAD0E730;color:#AAD0E7}
+  .sec.red{color:#FF6B6B;border-color:#FF6B6B30}
+  .sec.green{color:#06D6A0;border-color:#06D6A030}
+  .sec.yellow{color:#FFD166;border-color:#FFD16630}
+  .warn{background:#1A0F0F;border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFB3B3}
+  .warn strong{color:#FF6B6B;display:block;margin-bottom:2px}
+  .info{background:#0A1525;border-left:3px solid #AAD0E7;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#BDD5E8}
+  .tip{background:#1A1600;border-left:3px solid #FFD166;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFE9A0}
+  .tip strong{color:#FFD166;display:block;margin-bottom:2px}
+  .good{background:#0A1A10;border-left:3px solid #06D6A0;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#A3D9B8}
+  .good strong{color:#06D6A0;display:block;margin-bottom:2px}
+  .profile-card{background:#111D28;border:1px solid #AAD0E760;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .profile-row{padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .profile-row:last-child{border-bottom:none}
+  .profile-label{font-size:10px;font-weight:700;color:#7AAFC8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .profile-value{color:#E8EFF7;font-weight:500}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .role-card{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 18px}
+  .role-card .name{font-size:14px;font-weight:700;color:#AAD0E7;margin-bottom:2px}
+  .role-card .title{font-size:11px;color:#7AAFC8;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em}
+  .role-card ul{list-style:none;padding:0}
+  .role-card ul li{font-size:13px;color:#BDD5E8;padding:5px 0;border-bottom:1px solid #1A2A38;line-height:1.5;display:flex;gap:8px}
+  .role-card ul li:last-child{border-bottom:none}
+  .role-card ul li.yes::before{content:"";width:8px;height:8px;min-width:8px;background:#06D6A0;border-radius:50%;margin-top:5px}
+  .role-card ul li.no::before{content:"";width:8px;height:8px;min-width:8px;background:#FF6B6B;border-radius:50%;margin-top:5px}
+  .step-flow{display:flex;flex-direction:column;gap:4px;margin:14px 0}
+  .step-item{background:#111D28;border:1px solid #2A4A60;border-radius:8px;padding:14px 18px;display:flex;gap:14px;position:relative}
+  .step-item::after{content:'';position:absolute;left:29px;bottom:-5px;width:2px;height:9px;background:#2A4A60}
+  .step-item:last-child::after{display:none}
+  .step-num{width:26px;height:26px;min-width:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+  .num-gold{background:#C9A84C;color:#0D1B2A}
+  .num-blue{background:#AAD0E7;color:#0D1B2A}
+  .step-own{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+  .own-jojo{color:#AAD0E7}
+  .own-eva{color:#C9A84C}
+  .step-title{font-size:14px;font-weight:600;color:#E8EFF7;margin-bottom:3px}
+  .step-detail{font-size:12px;color:#7AAFC8;line-height:1.7}
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:14px 0}
+  .stage-card{border-radius:6px;padding:10px 12px;font-size:12px;font-weight:600}
+  .stage-card .owner{font-size:11px;font-weight:400;margin-top:3px}
+  .s-jojo{background:#0A1525;border:1px solid #AAD0E760;color:#AAD0E7}
+  .s-arminda{background:#0A1A10;border:1px solid #06D6A060;color:#06D6A0}
+  .s-eva{background:#1A1600;border:1px solid #FFD16660;color:#FFD166}
+  .field-list{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;margin:12px 0}
+  .field-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .field-row:last-child{border-bottom:none}
+  .field-num{width:22px;min-width:22px;height:22px;background:#AAD0E7;color:#0D1B2A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px;flex-shrink:0}
+  .field-label{font-weight:600;color:#AAD0E7;min-width:160px}
+  .field-value{color:#BDD5E8;line-height:1.7}
+  .checklist{list-style:none;padding:0;margin:12px 0}
+  .checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #1A2A38;font-size:13px;color:#BDD5E8;line-height:1.7}
+  .checklist li:last-child{border-bottom:none}
+  .checklist li .box{width:16px;height:16px;min-width:16px;border:1.5px solid #AAD0E7;border-radius:3px;margin-top:2px}
+  .ref-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+  .ref-table th{text-align:left;padding:10px 14px;background:#1C2B35;color:#7AAFC8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #2A4A60}
+  .ref-table td{padding:10px 14px;border-bottom:1px solid #1A2A38;color:#BDD5E8;vertical-align:top;line-height:1.6}
+  .ref-table tr:last-child td{border-bottom:none}
+  .az-note{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#AAD0E7;line-height:2;margin:14px 0;white-space:pre-wrap}
+  .eod-box{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#AAD0E7;line-height:2;white-space:pre-wrap;margin:14px 0}
+  .fee-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+  .fee-table th{text-align:left;padding:10px 14px;background:#1C2B35;color:#7AAFC8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #2A4A60}
+  .fee-table td{padding:10px 14px;border-bottom:1px solid #1A2A38;color:#BDD5E8;vertical-align:top}
+  .fee-table tr:last-child td{border-bottom:none}
+  .divider{height:1px;background:linear-gradient(90deg,#AAD0E710,#AAD0E740,#AAD0E710);margin:24px 0}
+  .footer-note{text-align:center;color:#2A4A60;font-size:11px;margin-top:40px}
+  @media(max-width:600px){.profile-grid,.two-col{grid-template-columns:1fr}.header{padding:20px 16px}.container{padding:20px 16px 0}}
+</style>
+</head>
+<body>
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <h1>JoJo — Brokerage VA1</h1>
+  <div class="sub">Full Reference: PL Quotes, Renewals, DocuSign, CERTs, Broker Fee Process, Stage Ownership, and Daily Standards</div>
+  <div class="meta">
+    <span class="pill">Updated July 6, 2026</span>
+    <span class="pill red">CRITICAL: NDA and ICA Not Yet Signed</span>
+    <span class="pill yellow">DocuSign Must Go Out Immediately</span>
+  </div>
+</div>
+<div class="container">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile')">👤 Profile</button>
+    <button class="tab-btn" onclick="switchTab('scope')">📋 Scope</button>
+    <button class="tab-btn" onclick="switchTab('arminda')">🤝 Arminda Boundaries</button>
+    <button class="tab-btn" onclick="switchTab('stages')">🗂 Stage Ownership</button>
+    <button class="tab-btn" onclick="switchTab('flow')">🔄 Renewal Flow</button>
+    <button class="tab-btn" onclick="switchTab('az')">📝 AZ Notes</button>
+    <button class="tab-btn" onclick="switchTab('checklist')">✅ Checklist</button>
+    <button class="tab-btn" onclick="switchTab('brokerfee')">💰 Broker Fee</button>
+    <button class="tab-btn" onclick="switchTab('rules')">⚠️ Rules</button>
+    <button class="tab-btn" onclick="switchTab('carriers')">🗂 Carriers</button>
+  </div>
+
+  <div class="tab-content active" id="tab-profile">
+    <div class="sec">👤 Role and Setup</div>
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row"><div class="profile-label">Role</div><div class="profile-value">Brokerage VA1</div></div>
+          <div class="profile-row"><div class="profile-label">Scope</div><div class="profile-value">PL quotes, service, renewals, DocuSign, CERTs all lines</div></div>
+          <div class="profile-row"><div class="profile-label">DocuSign Status Column</div><div class="profile-value">Yes — JoJo board</div></div>
+          <div class="profile-row"><div class="profile-label">KL Acknowledgment Signed</div><div class="profile-value">Yes — JoJo board</div></div>
+        </div>
+        <div>
+          <div class="profile-row"><div class="profile-label">Works Alongside</div><div class="profile-value">John Canoy (PL VA)</div></div>
+          <div class="profile-row"><div class="profile-label">Monday Board</div><div class="profile-value">Active</div></div>
+          <div class="profile-row"><div class="profile-label">NDA and ICA Status</div><div class="profile-value" style="color:#FF6B6B;font-weight:700;">NOT SIGNED — DocuSign today</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="warn"><strong>🚨 Critical Security Gap</strong>JoJo's NDA and ICA have never been signed. DocuSign must go out to JoJo today before any further work. Eva action required immediately.</div>
+    <div class="tip"><strong>🤝 Sending on Behalf of Eva</strong>All quotes, submissions, and communications represent Eva Chong, Insurance Town Agency. Never represent yourself as the agent. Never sign documents as the agent.</div>
+  </div>
+
+  <div class="tab-content" id="tab-scope">
+    <div class="sec green">✅ What JoJo Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>PL quotes, service, and endorsements</li>
+      <li><div class="box"></div>Renewals across all lines including brokered carriers</li>
+      <li><div class="box"></div>DocuSign processing for applications and renewal proposals</li>
+      <li><div class="box"></div>Certificates of Insurance (CERTs) across all lines</li>
+      <li><div class="box"></div>Brokered Carrier Renewal active stages: Propose through Completed</li>
+      <li><div class="box"></div>Carrier and GA follow-up and processing</li>
+      <li><div class="box"></div>AZ record creation for all renewals</li>
+      <li><div class="box"></div>Broker fee process for Agency Bill and Heritage deals</li>
+      <li><div class="box"></div>KL Acknowledgment form sent at Mercury and Progressive bind</li>
+      <li><div class="box"></div>Carrier file uploads using QUOTE_ naming standard</li>
+      <li><div class="box"></div>Daily EOD report submitted every shift</li>
+    </ul>
+    <div class="sec red" style="margin-top:20px;">🚫 What JoJo Never Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>Reply to customers directly without Eva approval</li>
+      <li><div class="box"></div>Bind without Eva written confirmation</li>
+      <li><div class="box"></div>Move records backward in AZ without Eva direction</li>
+      <li><div class="box"></div>Contact Arminda directly for any reason</li>
+      <li><div class="box"></div>Make binding decisions independently</li>
+    </ul>
+    <div class="warn"><strong>🚫 VA Reply Rule</strong>JoJo never replies to customers directly under any circumstances. Monitor, flag Eva via Slack, Eva responds. All AZ sequence replies route to eva@insurancetownagency.com only.</div>
+  </div>
+
+  <div class="tab-content" id="tab-arminda">
+    <div class="sec">🤝 Working Alongside Arminda</div>
+    <div class="info">Arminda handles back office only: AZ pipeline cleanup and Ricochet scrub. She has zero active quoting or service scope. You will never need to coordinate with her directly. Eva is the only routing point between you.</div>
+    <div class="two-col">
+      <div class="role-card">
+        <div class="name">Arminda</div>
+        <div class="title">Back Office Only</div>
+        <ul>
+          <li class="yes">AZ pipeline stale record audit</li>
+          <li class="yes">AZ tag cleanup and corrections</li>
+          <li class="yes">Early stage cleanup only</li>
+          <li class="yes">Ricochet lead scrub</li>
+          <li class="no">No quotes ever</li>
+          <li class="no">No client contact ever</li>
+          <li class="no">No CERTs ever</li>
+          <li class="no">No DocuSign ever</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="name">JoJo</div>
+        <div class="title">Brokerage VA1 — Active Work</div>
+        <ul>
+          <li class="yes">PL quotes and service</li>
+          <li class="yes">Renewals all lines</li>
+          <li class="yes">DocuSign processing</li>
+          <li class="yes">CERTs all lines</li>
+          <li class="yes">Brokered carrier renewal active stages</li>
+          <li class="yes">Broker fee process</li>
+          <li class="yes">AZ record creation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn"><strong>🚫 Three Rules Working Alongside Arminda</strong>
+1. If you see a stale or messy record in early stages, leave it. Arminda cleans it.
+2. If Arminda contacts you directly about a record, redirect her to Eva.
+3. Never move a record backward into an early stage without telling Eva first.</div>
+  </div>
+
+  <div class="tab-content" id="tab-stages">
+    <div class="sec">🗂 Brokered Carrier Renewals — Stage Ownership</div>
+    <div class="stage-grid">
+      <div class="stage-card s-arminda">Prepare<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card s-arminda">Renewal Packet<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card s-arminda">Requote<div class="owner">Arminda audits stale. JoJo works active.</div></div>
+      <div class="stage-card s-jojo">Propose<div class="owner">JoJo only</div></div>
+      <div class="stage-card s-jojo">Waiting Sign / DocuSign<div class="owner">JoJo then Eva confirms</div></div>
+      <div class="stage-card s-eva">Completed<div class="owner">JoJo logs after Eva confirms bind</div></div>
+    </div>
+    <div class="sec" style="margin-top:24px;">🗂 Commercial Renewals — Stage Ownership</div>
+    <div class="stage-grid">
+      <div class="stage-card s-arminda">60 Start<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card s-arminda">Notify / Renewal Packet<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card s-arminda">Reshop Needed / Started<div class="owner">Arminda audits stale only</div></div>
+      <div class="stage-card s-jojo">Underwriting<div class="owner">JoJo and Eva</div></div>
+      <div class="stage-card s-eva">10 Propose<div class="owner">Eva</div></div>
+      <div class="stage-card s-eva">Bind<div class="owner">Eva</div></div>
+      <div class="stage-card s-eva">Completed<div class="owner">Eva</div></div>
+    </div>
+    <div class="tip"><strong>📌 Note</strong>Arminda only audits early stages for stale records. If you are actively working a record in those stages, your activity date is current and she will not flag it. You will never be stepped on.</div>
+  </div>
+
+  <div class="tab-content" id="tab-flow">
+    <div class="sec">🔄 Full Brokered Renewal Flow</div>
+    <div class="step-flow">
+      <div class="step-item"><div class="step-num num-gold">E</div><div><div class="step-own own-eva">Eva</div><div class="step-title">Step 1: Eva receives renewal notice and forwards to JoJo</div><div class="step-detail">Eva gets renewal notice from carrier or GA. Forwards to JoJo via Slack or email. That forwarded email is your trigger.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 2: Create AZ service ticket same day</div><div class="step-detail">Create record in AZ Brokered Carrier Renewals pipeline immediately. See AZ Notes tab for exact fields. Confirm to Eva in Slack once created.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 3: Gather application and supplemental app</div><div class="step-detail">Pull current policy from AZ or Momentum AMP. Identify required application and supplemental app. Fill in updated business info from prior AZ notes.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 4: Send DocuSign to client for signatures</div><div class="step-detail">Send completed application via DocuSign. Log envelope in AZ Tab 35. Move to Renewal Packet stage. Follow up every 3 business days if no response.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 5: Submit signed application to carrier or GA</div><div class="step-detail">Once client signs, submit to correct carrier or GA. Upload file using QUOTE_ naming standard. Log submission date in AZ notes. Move to Requote stage.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 6: Receive renewal offer and prepare proposal</div><div class="step-detail">Carrier sends back final renewal offer. Prepare renewal proposal for client showing final premium. Move to Propose stage.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo</div><div class="step-title">Step 7: Send renewal proposal via DocuSign</div><div class="step-detail">Send renewal proposal to client via DocuSign. Log envelope in AZ Tab 35. Move to Waiting Sign/DocuSign stage. Follow up every 3 business days.</div></div></div>
+      <div class="step-item"><div class="step-num num-gold">E</div><div><div class="step-own own-eva">Eva confirms</div><div class="step-title">Step 8: Notify Eva and wait for written confirmation</div><div class="step-detail">Once client signs, notify Eva in Slack. Wait for Eva written confirmation before doing anything else. Never email the carrier without Eva confirmation first.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">J</div><div><div class="step-own own-jojo">JoJo — after Eva confirms</div><div class="step-title">Step 9: Email carrier to bind and complete record</div><div class="step-detail">Email carrier or GA to bind. Attach signed renewal proposal. Log binding request in AZ notes. Once binding confirmation received, move to Completed and log completion date.</div></div></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-az">
+    <div class="sec">📝 AZ Record Creation and Note Standards</div>
+    <div class="info">Create the AZ record the same day Eva forwards you a renewal email. Log notes using the templates below for every action taken. Update the existing note. Never create a new note for the same submission.</div>
+
+    <div class="sec yellow" style="margin-top:20px;">📋 New Submission Note Template</div>
+    <div class="az-note">## 📌 New Submission
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: JoJo
+
+🔵 Line of Business: [PL / Commercial / Life / Other]
+🏦 Carrier: [Carrier or GA Name]
+📋 Status: [Submitted / Quoted / Pending Docs / Declined]
+
+📁 Carrier File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📩 DocuSign Status: [Not Sent / Sent to Client / Signed / Submitted to GA / Binder Released]
+✅ KL Acknowledgment Signed: [Pending / Sent / Signed and Cleared] (Mercury and Progressive only)
+
+📝 Notes: [Any relevant detail]
+📅 Follow-Up Date: [Date]
+🙋 Handled By: JoJo</div>
+
+    <div class="sec yellow" style="margin-top:20px;">✏️ Updated Submission Note Template</div>
+    <div class="az-note">## 📌 Submission Update
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: JoJo
+
+✏️ Update Type: [Revised quote / New carrier / Coverage change / Docs received / Bind requested]
+🔵 Line of Business: [PL / Commercial / Life / Other]
+🏦 Carrier: [Carrier Name]
+📋 Updated Status: [New status]
+
+📁 Updated File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📝 Notes: [What changed and why]
+📅 New Follow-Up Date: [Date]
+🙋 Handled By: JoJo</div>
+
+    <div class="good"><strong>📁 Carrier File Naming Standard — Locked July 6, 2026</strong>Format: QUOTE_CarrierName_ClientLastName_MMDDYYYY. Example: QUOTE_KraftLake_Garcia_07062026. One file per carrier per session. Upload to AZ File Upload tab every time.</div>
+    <div class="warn"><strong>🚫 Never Create a New Note for the Same Submission</strong>Update the existing note only. Same-day logging always.</div>
+  </div>
+
+  <div class="tab-content" id="tab-checklist">
+    <div class="sec">✅ Per Record Checklist</div>
+    <ul class="checklist">
+      <li><div class="box"></div>Receive forwarded renewal email from Eva.</li>
+      <li><div class="box"></div>Create AZ service ticket same day. Confirm to Eva in Slack.</li>
+      <li><div class="box"></div>Pull current policy from AZ or Momentum AMP.</li>
+      <li><div class="box"></div>Identify application and supplemental app required by carrier.</li>
+      <li><div class="box"></div>Send DocuSign to client. Log envelope in AZ Tab 35. Move to Renewal Packet stage.</li>
+      <li><div class="box"></div>Follow up with client every 3 business days if no DocuSign response.</li>
+      <li><div class="box"></div>Once client signs, submit to carrier or GA. Upload QUOTE_ file. Log in AZ notes. Move to Requote.</li>
+      <li><div class="box"></div>Receive renewal offer. Prepare renewal proposal. Move to Propose stage.</li>
+      <li><div class="box"></div>Send renewal proposal via DocuSign. Log in AZ Tab 35. Move to Waiting Sign.</li>
+      <li><div class="box"></div>Once client signs, notify Eva. Wait for Eva written confirmation before binding.</li>
+      <li><div class="box"></div>After Eva confirms: email carrier to bind. Attach signed proposal. Log in AZ notes.</li>
+      <li><div class="box"></div>Once binding confirmation received: move to Completed. Log final AZ note.</li>
+    </ul>
+  </div>
+
+  <div class="tab-content" id="tab-brokerfee">
+    <div class="sec yellow">💰 Broker Fee Process</div>
+    <div class="tip"><strong>⚡ When Does This Apply?</strong>Any brokerage deal with billing method Agency Bill or Heritage Financing requires the full broker fee process. Direct Bill deals do not require it. Always check billing method in AZ before starting.</div>
+    <div class="warn"><strong>🚫 Never Bind Before Both Are Confirmed</strong>DocuSign must show Signed AND ePayPolicy must show Payment Confirmed. For Heritage deals the broker fee must be collected via ePayPolicy BEFORE binding. Heritage finances the premium only. The broker fee is never financed.</div>
+
+    <div class="sec" style="margin-top:20px;">💵 Fee Bands</div>
+    <table class="fee-table">
+      <tr><th>Annual Premium</th><th>Broker Fee</th></tr>
+      <tr><td>Under $2,500</td><td><strong style="color:#06D6A0;">$200</strong></td></tr>
+      <tr><td>$2,500 to $4,999</td><td><strong style="color:#06D6A0;">$250</strong></td></tr>
+      <tr><td>$5,000 to $9,999</td><td><strong style="color:#FFD166;">$500</strong></td></tr>
+      <tr><td>$10,000 to $24,999</td><td><strong style="color:#FFD166;">$750</strong></td></tr>
+      <tr><td>$25,000 and above</td><td><strong style="color:#FF6B6B;">$1,000</strong></td></tr>
+    </table>
+
+    <div class="sec" style="margin-top:20px;">🔧 9-Step Broker Fee Process</div>
+    <div class="step-flow">
+      <div class="step-item"><div class="step-num num-blue">1</div><div><div class="step-title">Check billing method in AZ</div><div class="step-detail">Direct Bill: stop, no broker fee. Agency Bill or Heritage: continue to Step 2.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">2</div><div><div class="step-title">Open Tool 1 from Slack pin</div><div class="step-detail">Fill in all fields. Type annual premium. Correct fee band highlights automatically.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">3</div><div><div class="step-title">Select billing method and click ePayPolicy button</div><div class="step-detail">Select Agency Bill or Heritage. Heritage warning appears automatically. Click green ePayPolicy button. Create invoice. Copy client payment link before closing.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">4</div><div><div class="step-title">Save form as PDF</div><div class="step-detail">Press Ctrl+P or Cmd+P. Select Save as PDF. Name: BrokerFeeDisclosure_[ClientLastName]_[Date].pdf</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">5</div><div><div class="step-title">Open Tool 2 — AZ E-Sign Disclosure from Slack pin</div><div class="step-detail">Fill all fields. Save as PDF. Upload to AZ lead card Files tab. Send via AZ E-Sign. Log in AZ activity notes same day.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">6</div><div><div class="step-title">Open Tool 3 — Customer Email from Slack pin</div><div class="step-detail">Fill all brackets. Paste ePayPolicy link from Step 3. Delete wrong billing block. Send to client from your email.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">7</div><div><div class="step-title">Log to AZ activity notes</div><div class="step-detail">Use AZ Submission Note standard. Include LOB, broker fee amount, billing method, AZ E-Sign sent status, ePayPolicy invoice created, next follow-up date. Log same day.</div></div></div>
+      <div class="step-item"><div class="step-num num-gold">8</div><div><div class="step-title">Wait for AZ E-Sign Signed AND ePayPolicy Payment Confirmed</div><div class="step-detail">Do not advance AZ stage until both confirmed. For Heritage: fee must be paid before binding.</div></div></div>
+      <div class="step-item"><div class="step-num num-blue">9</div><div><div class="step-title">Advance AZ to Waiting to Bind and notify Eva</div><div class="step-detail">Once both confirmed, advance AZ to Waiting to Bind. Notify Eva in Slack. Wait for Eva written confirmation before binding. Never bind without Eva confirmation.</div></div></div>
+    </div>
+    <div class="warn"><strong>🚨 Escalate to Eva Immediately If</strong>Client refuses to sign or pay. Client asks to waive or reduce the fee. Client wants to bind before signing or paying. You are unsure which fee band applies.</div>
+  </div>
+
+  <div class="tab-content" id="tab-rules">
+    <div class="sec red">⚠️ Standing Rules</div>
+    <div class="warn"><strong>🚫 Never Reply to Customers Directly</strong>Monitor all communications. Flag Eva via Slack. Eva handles all replies. Every channel. No exceptions.</div>
+    <div class="warn"><strong>🚫 Never Bind Without Eva Written Confirmation</strong>Always notify Eva and wait for written go-ahead before binding any policy.</div>
+    <div class="warn"><strong>🚫 Never Move Records Backward Without Telling Eva</strong>Only move records forward through stages unless Eva explicitly tells you otherwise.</div>
+    <div class="warn"><strong>🚫 Zero Direct Coordination with Arminda</strong>Eva is the only routing point. Never contact Arminda directly.</div>
+    <div class="tip"><strong>📩 DocuSign Status Column</strong>Five labels only: Not Sent, Sent to Client, Signed, Submitted to GA, Binder Released. Pre-bind submission requirement only. Not post-sale paperwork.</div>
+    <div class="tip"><strong>✅ KL Acknowledgment Signed</strong>Required at bind for Mercury or Progressive through KraftLake only. Three labels: Pending, Sent, Signed and Cleared. Send when ready to bind, before binder is issued.</div>
+    <div class="good"><strong>🚨 Escalation Path</strong>Customer response: Slack Eva immediately. Carrier issue: log in AZ, flag in EOD. Binding decision: wait for Eva written confirmation. Urgent issue: Slack Eva with full context.</div>
+  </div>
+
+  <div class="tab-content" id="tab-carriers">
+    <div class="sec">🗂 Carriers and Resources</div>
+    <table class="ref-table">
+      <tr><th>Carrier or GA</th><th>Type</th><th>Notes</th></tr>
+      <tr><td>TAPCO</td><td>Carrier</td><td>Direct brokered carrier. Submit application directly to TAPCO contact.</td></tr>
+      <tr><td>IMACO</td><td>General Agent</td><td>GA access. Submit through IMACO portal or email contact.</td></tr>
+      <tr><td>US Asia</td><td>General Agent</td><td>GA access. Often used for Korean market commercial accounts.</td></tr>
+      <tr><td>CID</td><td>General Agent</td><td>GA access. Submit application through CID.</td></tr>
+      <tr><td>Connect</td><td>General Agent</td><td>Confirm correct contact before submitting.</td></tr>
+      <tr><td>KraftLake</td><td>GA and Market Access</td><td>Broader market access on harder to place risks.</td></tr>
+    </table>
+    <div class="field-list" style="margin-top:16px;">
+      <div class="field-row"><div class="field-label">🏦 VA Carrier Hub</div><div class="field-value"><a href="https://insurancetownhubvacarrierhub.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurancetownhubvacarrierhub.netlify.app</a></div></div>
+      <div class="field-row"><div class="field-label">💳 ePayPolicy</div><div class="field-value"><a href="https://app.epaypolicy.com/Transactions" target="_blank" style="color:#AAD0E7;">https://app.epaypolicy.com/Transactions</a></div></div>
+      <div class="field-row"><div class="field-label">📚 Internal Docs Portal</div><div class="field-value"><a href="https://insurance-town-internal-docs.netlify.app" target="_blank" style="color:#AAD0E7;">https://insurance-town-internal-docs.netlify.app</a></div></div>
+    </div>
+  </div>
+
+</div>
+<div class="footer-note">Insurance Town Agency — JoJo Full Reference — July 6, 2026 — Internal Use Only</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');event.target.classList.add('active')}
+</script>
+</body>
+</html>

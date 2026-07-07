@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Mark — Personal Lines VA | Insurance Town Agency</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#0D1B2A;color:#E8EFF7;padding:0 0 60px}
+  .conf-banner{background:#B8860B;color:#fff;text-align:center;font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 16px;text-transform:uppercase}
+  .header{background:linear-gradient(135deg,#1C2B35 0%,#0D1B2A 100%);border-bottom:2px solid #4A90D9;padding:28px 32px 22px}
+  .header h1{font-family:'DM Serif Display',serif;font-size:26px;color:#7EB8E8;margin-bottom:4px}
+  .header .sub{color:#7AAFC8;font-size:13px}
+  .header .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{background:#1C3040;border:1px solid #2A4A60;border-radius:20px;padding:4px 14px;font-size:11px;color:#7EB8E8;font-weight:500}
+  .pill.red{background:#1A0F0F;border-color:#FF6B6B60;color:#FF6B6B}
+  .pill.green{background:#0A1A10;border-color:#06D6A060;color:#06D6A0}
+  .pill.yellow{background:#1A1600;border-color:#FFD16660;color:#FFD166}
+  .container{max-width:900px;margin:0 auto;padding:36px 24px 0}
+  .tab-bar{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap}
+  .tab-btn{padding:8px 18px;border-radius:20px;border:1px solid #2A4A60;background:#1C2B35;color:#7AAFC8;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+  .tab-btn.active{background:#7EB8E8;color:#0D1B2A;border-color:#7EB8E8}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .sec{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #7EB8E830;color:#7EB8E8}
+  .sec.red{color:#FF6B6B;border-color:#FF6B6B30}
+  .sec.green{color:#06D6A0;border-color:#06D6A030}
+  .sec.yellow{color:#FFD166;border-color:#FFD16630}
+  .warn{background:#1A0F0F;border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFB3B3}
+  .warn strong{color:#FF6B6B;display:block;margin-bottom:2px}
+  .info{background:#0A1525;border-left:3px solid #7EB8E8;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#BDD5E8}
+  .tip{background:#1A1600;border-left:3px solid #FFD166;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#FFE9A0}
+  .tip strong{color:#FFD166;display:block;margin-bottom:2px}
+  .good{background:#0A1A10;border-left:3px solid #06D6A0;border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13px;line-height:1.9;color:#A3D9B8}
+  .good strong{color:#06D6A0;display:block;margin-bottom:2px}
+  .profile-card{background:#111D28;border:1px solid #4A90D960;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .profile-row{padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .profile-row:last-child{border-bottom:none}
+  .profile-label{font-size:10px;font-weight:700;color:#7AAFC8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .profile-value{color:#E8EFF7;font-weight:500}
+  .board-card{background:#111D28;border:1px solid #4A90D960;border-radius:10px;overflow:hidden;margin-bottom:10px}
+  .board-header{background:#0D2035;border-bottom:1px solid #4A90D940;padding:10px 16px;font-size:12px;font-weight:700;color:#7EB8E8;text-transform:uppercase;letter-spacing:.07em}
+  .board-body{padding:12px 16px;font-size:13px;color:#BDD5E8;line-height:1.7}
+  .step-flow{display:flex;flex-direction:column;gap:4px;margin:14px 0}
+  .step-item{background:#111D28;border:1px solid #2A4A60;border-radius:8px;padding:14px 18px;display:flex;gap:14px;position:relative}
+  .step-item::after{content:'';position:absolute;left:29px;bottom:-5px;width:2px;height:9px;background:#2A4A60}
+  .step-item:last-child::after{display:none}
+  .step-num{width:26px;height:26px;min-width:26px;background:#7EB8E8;color:#0D1B2A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+  .step-title{font-size:14px;font-weight:600;color:#E8EFF7;margin-bottom:3px}
+  .step-detail{font-size:12px;color:#7AAFC8;line-height:1.7}
+  .field-list{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;margin:12px 0}
+  .field-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #1A2A38;font-size:13px}
+  .field-row:last-child{border-bottom:none}
+  .field-label{font-weight:600;color:#7EB8E8;min-width:180px}
+  .field-value{color:#BDD5E8;line-height:1.7}
+  .checklist{list-style:none;padding:0;margin:12px 0}
+  .checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #1A2A38;font-size:13px;color:#BDD5E8;line-height:1.7}
+  .checklist li:last-child{border-bottom:none}
+  .checklist li .box{width:16px;height:16px;min-width:16px;border:1.5px solid #7EB8E8;border-radius:3px;margin-top:2px}
+  .az-note{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#7EB8E8;line-height:2;margin:14px 0;white-space:pre-wrap}
+  .eod-box{background:#111D28;border:1px solid #2A4A60;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;color:#7EB8E8;line-height:2;white-space:pre-wrap;margin:14px 0}
+  .ref-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+  .ref-table th{text-align:left;padding:10px 14px;background:#1C2B35;color:#7AAFC8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #2A4A60}
+  .ref-table td{padding:10px 14px;border-bottom:1px solid #1A2A38;color:#BDD5E8;vertical-align:top;line-height:1.6}
+  .ref-table tr:last-child td{border-bottom:none}
+  .divider{height:1px;background:linear-gradient(90deg,#4A90D910,#4A90D940,#4A90D910);margin:24px 0}
+  .footer-note{text-align:center;color:#2A4A60;font-size:11px;margin-top:40px}
+  @media(max-width:600px){.profile-grid{grid-template-columns:1fr}.header{padding:20px 16px}.container{padding:20px 16px 0}}
+</style>
+</head>
+<body>
+<div class="conf-banner">Internal Insurance Town Resource &nbsp;|&nbsp; Authorized Internal Use Only &nbsp;|&nbsp; Do Not Share Outside Agency</div>
+<div class="header">
+  <h1>John Mark — Personal Lines VA</h1>
+  <div class="sub">Full Onboarding Reference: PL Quotes, Renewals, Service, DocuSign, AZ Standards, Monday Board, and Daily Workflow</div>
+  <div class="meta">
+    <span class="pill">Starts July 7, 2026</span>
+    <span class="pill green">NDA and ICA Executed</span>
+    <span class="pill yellow">AZ ID 182932</span>
+  </div>
+</div>
+<div class="container">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('profile')">👤 Profile</button>
+    <button class="tab-btn" onclick="switchTab('scope')">📋 Scope</button>
+    <button class="tab-btn" onclick="switchTab('board')">📊 Monday Board</button>
+    <button class="tab-btn" onclick="switchTab('workflow')">🔄 PL Workflow</button>
+    <button class="tab-btn" onclick="switchTab('az')">📝 AZ Notes</button>
+    <button class="tab-btn" onclick="switchTab('eod')">📊 EOD Standard</button>
+    <button class="tab-btn" onclick="switchTab('rules')">⚠️ Rules</button>
+    <button class="tab-btn" onclick="switchTab('carriers')">🗂 Carriers</button>
+  </div>
+
+  <div class="tab-content active" id="tab-profile">
+    <div class="sec">👤 Profile and Setup</div>
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row"><div class="profile-label">Full Name</div><div class="profile-value">John Mark Jimenez Canoy</div></div>
+          <div class="profile-row"><div class="profile-label">Goes By</div><div class="profile-value">John</div></div>
+          <div class="profile-row"><div class="profile-label">Work Email</div><div class="profile-value">pl@insurancetownagency.com</div></div>
+          <div class="profile-row"><div class="profile-label">Schedule</div><div class="profile-value">11:00 AM to 4:00 PM</div></div>
+          <div class="profile-row"><div class="profile-label">Start Date</div><div class="profile-value">July 7, 2026</div></div>
+        </div>
+        <div>
+          <div class="profile-row"><div class="profile-label">AZ ID</div><div class="profile-value">182932</div></div>
+          <div class="profile-row"><div class="profile-label">NDA and ICA</div><div class="profile-value">Executed</div></div>
+          <div class="profile-row"><div class="profile-label">DocuSign Status Column</div><div class="profile-value">Yes — John board</div></div>
+          <div class="profile-row"><div class="profile-label">KL Acknowledgment Signed</div><div class="profile-value">Yes — John board</div></div>
+          <div class="profile-row"><div class="profile-label">Works Alongside</div><div class="profile-value">JoJo (Brokerage VA1)</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="info">John works alongside JoJo on Personal Lines. His scope covers PL new quotes, renewals, and servicing. He works under Eva's agency identity at all times. All work represents Eva Chong, Insurance Town Agency.</div>
+    <div class="tip"><strong>🤝 Sending on Behalf of Eva</strong>All quotes, submissions, and communications must be on behalf of Eva Chong, Insurance Town Agency. Never represent yourself as the agent. Never sign documents as the agent.</div>
+  </div>
+
+  <div class="tab-content" id="tab-scope">
+    <div class="sec green">✅ What John Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>Personal Lines new quotes across all PL carriers</li>
+      <li><div class="box"></div>PL renewals — Farmers and brokered carriers</li>
+      <li><div class="box"></div>PL servicing and endorsements</li>
+      <li><div class="box"></div>DocuSign processing for PL applications and renewals</li>
+      <li><div class="box"></div>AZ record creation and note logging for every file touched</li>
+      <li><div class="box"></div>KL Acknowledgment form sent at Mercury and Progressive bind</li>
+      <li><div class="box"></div>Carrier file uploads using QUOTE_ naming standard</li>
+      <li><div class="box"></div>Monday board updates for every active record</li>
+      <li><div class="box"></div>Daily EOD report submitted every shift</li>
+    </ul>
+    <div class="sec red" style="margin-top:20px;">🚫 What John Never Does</div>
+    <ul class="checklist">
+      <li><div class="box"></div>Reply to customers directly without Eva approval</li>
+      <li><div class="box"></div>Bind any policy without Eva written confirmation</li>
+      <li><div class="box"></div>Commercial quotes or service of any kind</li>
+      <li><div class="box"></div>Contact Arminda directly for any reason</li>
+      <li><div class="box"></div>Move AZ pipeline stages without Eva direction</li>
+      <li><div class="box"></div>Make binding decisions independently</li>
+    </ul>
+    <div class="warn"><strong>🚫 VA Reply Rule</strong>John never replies to customers directly. Monitor, flag Eva via Slack, Eva responds. All AZ sequence replies route to eva@insurancetownagency.com only.</div>
+  </div>
+
+  <div class="tab-content" id="tab-board">
+    <div class="sec">📊 Monday Board Architecture — Four Groups</div>
+    <div class="info">John's Monday board has four groups. Status column tracks all stages inside each group. DocuSign Status and KL Acknowledgment Signed are columns inside the groups, not separate groups.</div>
+    <div class="board-card"><div class="board-header">Group 1 — New PL Leads</div><div class="board-body">All new inbound PL leads assigned to John. New contacts from Kat's dialer, walk-ins, referrals, and online inquiries. Work through quote and proposal before moving to next group.</div></div>
+    <div class="board-card"><div class="board-header">Group 2 — Renewals</div><div class="board-body">All PL policies coming up for renewal. Eva or JoJo will flag renewals. John works the renewal process, re-quotes as needed, and moves through stages until bind or completed.</div></div>
+    <div class="board-card"><div class="board-header">Group 3 — Servicing and Endorsements</div><div class="board-body">Policy changes, endorsements, address updates, coverage adjustments, and all mid-term service requests. Log every action in AZ notes same day.</div></div>
+    <div class="board-card"><div class="board-header">Group 4 — Closed</div><div class="board-body">All bound policies, completed renewals, and closed service requests. Move here after Eva confirms completion. Log final AZ note before moving.</div></div>
+    <div class="sec" style="margin-top:20px;">📋 Column Standards</div>
+    <div class="field-list">
+      <div class="field-row"><div class="field-label">📩 DocuSign Status</div><div class="field-value">Five labels: Not Sent, Sent to Client, Signed, Submitted to GA, Binder Released. Pre-bind submission requirement only.</div></div>
+      <div class="field-row"><div class="field-label">✅ KL Acknowledgment Signed</div><div class="field-value">Three labels: Pending, Sent, Signed and Cleared. Mercury and Progressive bind only. Advance to Sent when ready to bind before binder is issued.</div></div>
+      <div class="field-row"><div class="field-label">📅 Submission Date</div><div class="field-value">Enter manually on the day you submit to carrier. Required on all boards.</div></div>
+      <div class="field-row"><div class="field-label">📅 Follow-Up Date</div><div class="field-value">Renewal Date minus 14 days. Enter manually until Agency OS automates at launch.</div></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-workflow">
+    <div class="sec">🔄 PL New Quote Workflow</div>
+    <div class="step-flow">
+      <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Receive new lead assignment</div><div class="step-detail">New lead assigned from Kat's dialer transfer, AZ pipeline, or Eva Slack message. Create AZ lead record immediately if not already in system.</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Gather client information</div><div class="step-detail">Pull all required info from AZ record. Confirm DOB, address, vehicles or home details, current coverage, prior claims. Fill gaps by flagging Eva, never contacting client directly.</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Run quote through Farmers first</div><div class="step-detail">Always attempt Farmers first for PL. Log quote result in AZ submission note same day.</div></div></div>
+      <div class="step-item"><div class="step-num">4</div><div><div class="step-title">Run brokered quote if Farmers declines or is not competitive</div><div class="step-detail">Submit to KraftLake or other brokered PL carrier. Log each attempt in AZ. Name every file: QUOTE_CarrierName_ClientLastName_MMDDYYYY. Upload to AZ File Upload tab.</div></div></div>
+      <div class="step-item"><div class="step-num">5</div><div><div class="step-title">Prepare best quote summary</div><div class="step-detail">Identify best quote. Note carrier, premium, and coverage details. Flag Eva for presentation to client. Never present quote to client yourself.</div></div></div>
+      <div class="step-item"><div class="step-num">6</div><div><div class="step-title">Log AZ submission note and flag Eva</div><div class="step-detail">Log full AZ submission note. Flag Eva in Slack with: client name, best quote carrier, premium, coverage summary. Eva presents to client.</div></div></div>
+      <div class="step-item"><div class="step-num">7</div><div><div class="step-title">Await Eva confirmation to bind</div><div class="step-detail">Client accepts quote. Eva confirms bind in writing via Slack. Never bind without Eva written confirmation.</div></div></div>
+      <div class="step-item"><div class="step-num">8</div><div><div class="step-title">Process DocuSign if required</div><div class="step-detail">Send application via DocuSign if carrier requires it. Log envelope in AZ Tab 35. Update DocuSign Status column. Follow up every 3 business days if no response.</div></div></div>
+      <div class="step-item"><div class="step-num">9</div><div><div class="step-title">Send KL Acknowledgment if Mercury or Progressive</div><div class="step-detail">If binding Mercury or Progressive through KraftLake, send KL Acknowledgment form before binder is issued. Advance KL Acknowledgment Signed column to Sent. Log in AZ notes.</div></div></div>
+      <div class="step-item"><div class="step-num">10</div><div><div class="step-title">Complete record and move to Closed group</div><div class="step-detail">Once binder received and all documents confirmed, log final AZ note. Move Monday board item to Closed group. Include in EOD report with final status.</div></div></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-az">
+    <div class="sec">📝 AZ Note Standards</div>
+    <div class="info">Log a note in AZ for every file you touch. Same-day logging every time. Update the existing note, never create a new note for the same submission.</div>
+
+    <div class="sec yellow" style="margin-top:20px;">📋 New Submission Note Template</div>
+    <div class="az-note">## 📌 New Submission
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: John
+
+🔵 Line of Business: [PL: Auto / Home / Renters / Umbrella / Other]
+🟢 Carrier Attempted 1 — Farmers: [Submitted / Declined: reason]
+🔵 Carrier Attempted 2 — [KraftLake / Other]: [Submitted / Quoted / Declined]
+
+🏆 Best Quote Carrier: [Carrier Name]
+💰 Best Quote Premium: $[Amount]
+
+📁 Carrier File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📩 DocuSign Status: [Not Sent / Sent to Client / Signed / Submitted to GA / Binder Released]
+✅ KL Acknowledgment Signed: [Pending / Sent / Signed and Cleared] (Mercury and Progressive only)
+
+📝 Notes: [Relevant detail]
+📅 Follow-Up Date: [Date]
+🙋 Handled By: John</div>
+
+    <div class="sec yellow" style="margin-top:20px;">✏️ Updated Submission Note Template</div>
+    <div class="az-note">## 📌 Submission Update
+📅 Date: [MM/DD/YYYY]
+🙋 Handled By: John
+
+✏️ Update Type: [Revised quote / New carrier / Coverage change / Docs received / Bind requested]
+🔵 Line of Business: [PL: Auto / Home / Renters / Other]
+🏦 Carrier: [Carrier Name]
+📋 Updated Status: [New status]
+
+📁 Updated File: QUOTE_[CarrierName]_[ClientLastName]_[MMDDYYYY]
+📎 Uploaded to: AZ File Upload Tab
+
+📝 Notes: [What changed and why]
+📅 New Follow-Up Date: [Date]
+🙋 Handled By: John</div>
+
+    <div class="good"><strong>📁 Carrier File Naming Standard — Locked July 6, 2026</strong>Format: QUOTE_CarrierName_ClientLastName_MMDDYYYY. Example: QUOTE_Farmers_Garcia_07062026. One file per carrier per session. Upload to AZ File Upload tab immediately.</div>
+    <div class="warn"><strong>🚫 Never Create a New Note for the Same Submission</strong>Update the existing note only. Same-day logging always.</div>
+  </div>
+
+  <div class="tab-content" id="tab-eod">
+    <div class="sec">📊 EOD Standard</div>
+    <div class="tip"><strong>📢 Post at End of Every Shift</strong>Post before logging off. Never skip a section. Write None if nothing happened in a section.</div>
+    <div class="eod-box">EOD REPORT | [MM/DD/YYYY] | Personal Lines VA
+Shift: [Start Time] to [End Time]
+
+📋 NEW PL QUOTES
+Leads worked today: [Number]
+Quotes submitted: [Number]
+Details:
+- [Client Last Name] | [Carrier] | [Status: Quoted / Pending / Submitted]
+
+🔄 RENEWALS
+Renewals worked today: [Number]
+Details:
+- [Client Last Name] | [Carrier] | [Status]
+
+🔧 SERVICING AND ENDORSEMENTS
+Service requests handled: [Number]
+Details:
+- [Client Last Name] | [Request type] | [Status]
+
+📩 DOCUSIGN ACTIVITY
+Envelopes sent today: [Number]
+Signatures received: [Number]
+Pending follow-up (3+ days no response):
+- [Client Last Name] | Sent [date]
+
+🔴 FLAGS FOR EVA
+[Customer response requiring Eva reply]
+[Binding decision or coverage question]
+[None if nothing to flag]
+
+🔧 BLOCKERS
+[Anything preventing completion of work]
+[None if no blockers]</div>
+  </div>
+
+  <div class="tab-content" id="tab-rules">
+    <div class="sec red">⚠️ Standing Rules</div>
+    <div class="warn"><strong>🚫 Never Reply to Customers Directly</strong>Flag Eva via Slack. Eva handles all replies. Every channel. No exceptions.</div>
+    <div class="warn"><strong>🚫 Never Bind Without Eva Written Confirmation</strong>Eva confirms in writing via Slack. Then and only then do you proceed.</div>
+    <div class="warn"><strong>🚫 Never Move AZ Pipeline Stages Without Eva Direction</strong>Log notes, upload files, flag items. Do not advance pipeline stages without Eva direction.</div>
+    <div class="warn"><strong>🚫 Zero Direct Coordination with Arminda</strong>Eva is the only routing point. Never contact Arminda directly.</div>
+    <div class="tip"><strong>📩 DocuSign Status Column</strong>Five labels only: Not Sent, Sent to Client, Signed, Submitted to GA, Binder Released. Pre-bind requirement only.</div>
+    <div class="tip"><strong>✅ KL Acknowledgment Signed</strong>Mercury or Progressive through KraftLake only. Advance to Sent when ready to bind before binder is issued.</div>
+    <div class="good"><strong>🚨 Escalation Path</strong>Customer response: Slack Eva immediately. Binding decision: wait for Eva written confirmation. Carrier issue: log in AZ, flag in EOD. Urgent: Slack Eva with full context.</div>
+    <div class="info">Follow-Up Date: Renewal Date minus 14 days. Enter manually until Agency OS automates at launch.</div>
+  </div>
+
+  <div class="tab-content" id="tab-carriers">
+    <div class="sec">🗂 Carriers and Resources</div>
+    <div class="info">Attempt Farmers first on every PL quote. Only move to brokered carriers after Farmers declines or is not competitive. Log every carrier attempt in AZ submission note.</div>
+    <table class="ref-table">
+      <tr><th>Carrier</th><th>Type</th><th>Access</th><th>Notes</th></tr>
+      <tr><td>🟢 Farmers Insurance</td><td>Primary — Always First</td><td>Farmers Agent Portal</td><td>Auto, Home, Renters, Umbrella, Life. Attempt first every time.</td></tr>
+      <tr><td>🔵 KraftLake</td><td>Brokered GA</td><td>KL Portal via 1Password</td><td>Broader PL market access.</td></tr>
+      <tr><td>Mercury</td><td>Brokered via KL</td><td>KraftLake dashboard</td><td>KL Acknowledgment required at bind.</td></tr>
+      <tr><td>Progressive</td><td>Brokered via KL</td><td>KraftLake dashboard</td><td>KL Acknowledgment required at bind.</td></tr>
+    </table>
+    <div class="field-list" style="margin-top:16px;">
+      <div class="field-row"><div class="field-label">🏦 VA Carrier Hub</div><div class="field-value"><a href="https://insurancetownhubvacarrierhub.netlify.app" target="_blank" style="color:#7EB8E8;">https://insurancetownhubvacarrierhub.netlify.app</a></div></div>
+      <div class="field-row"><div class="field-label">💳 ePayPolicy</div><div class="field-value"><a href="https://app.epaypolicy.com/Transactions" target="_blank" style="color:#7EB8E8;">https://app.epaypolicy.com/Transactions</a></div></div>
+      <div class="field-row"><div class="field-label">📚 Internal Docs Portal</div><div class="field-value"><a href="https://insurance-town-internal-docs.netlify.app" target="_blank" style="color:#7EB8E8;">https://insurance-town-internal-docs.netlify.app</a></div></div>
+    </div>
+  </div>
+
+</div>
+<div class="footer-note">Insurance Town Agency — John Mark Full Onboarding — July 6, 2026 — Internal Use Only</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');event.target.classList.add('active')}
+</script>
+</body>
+</html>
